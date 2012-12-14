@@ -1,0 +1,128 @@
+
+-----------------------------------------------------
+ create table WorkFlowType(
+ WFTypeID int primary key auto_increment,
+ WFName varchar(30) not null unique,
+ Description varchar(70));
+
+
+-----------------------------------------------------
+ create table Role(
+ RoleID int primary key auto_increment,
+ WFTypeID int ,
+ RoleName varchar(20),
+ Description varchar(40)) ;
+
+alter table Role add constraint foreign key(WFTypeID) references WorkFlowType(WFTypeID);
+
+
+-----------------------------------------------------
+create table States(
+StateID int primary key auto_increment,
+WFTypeID int ,
+StateName varchar(40),
+StateDescription varchar(50));
+
+alter table States add constraint foreign key(WFTypeID)references WorkFlowType(WFTypeID);
+
+
+
+------------------------------------------------------
+ create table Actions(
+ ActionId int primary key auto_increment,
+ WFTypeID int ,
+ ActionName varchar(30),
+ ActionDescription varchar(50));
+
+ alter table Actions add constraint foreign key(WFTypeID) references WorkFlowType(WFTypeID);
+
+
+------------------------------------------------------
+create table Member(
+MemberID int primary key auto_increment,
+RoleId int ,
+Fname varchar(30),
+Lname varchar(30),
+emailID varchar(30),
+Phone numeric(10),
+Username varchar(20),
+Password varchar(30),
+Address varchar(50));
+
+
+alter table Member add constraint foreign key(RoleID) references Role(RoleID);
+
+
+
+---------------------------------------------------------
+
+
+create table StateSequenceTable(
+SeqID int ,
+WFTypeID int ,
+RoleID int ,
+PreviousStateID int ,
+NextStateID int ,
+ActionID int );
+
+alter table StateSequenceTable add constraint primary key(SeqID);
+
+alter table StateSequenceTable add constraint foreign key( WFTypeID) references WorkFlowType(WFTypeID);
+alter table StateSequenceTable add constraint foreign key( RoleID) references Role(RoleID);
+
+alter table StateSequenceTable add constraint foreign key( ActionID) references Actions(ActionID);
+
+alter table StateSequenceTable add constraint foreign key( PreviousStateID) references States(StateID);
+
+alter table StateSequenceTable add constraint foreign key(NextStateID) references States(StateID);
+
+
+------------------------------------------------------------
+
+create table WorkFlowInstance(
+
+WFInstanceID int primary key auto_increment,
+
+ MemberID int not null,
+
+ WFTypeID int not null,
+ 
+CreationDateTime datetime,
+ 
+CurrentState int);
+
+
+
+alter table WorkFlowInstance add constraint foreign key(MemberID)references Member(MemberID);
+
+alter table WorkFlowInstance add constraint foreign key(CurrentState)references States(StateID);
+
+alter table WorkFlowInstance add constraint foreign key(WFTypeID)references WorkFlowType(WFTypeID);
+
+
+-----------------------------------------------------------------
+create table EventHistory(
+
+EventHistoryID int primary key auto_increment,
+
+WFTypeID int not null,
+
+WFInstanceID int not null,
+
+SeqID int not null,
+
+EventDateTime datetime,
+
+CreatorMemberID int not null,
+
+ActorMemberID int not null);
+
+alter table EventHistory add constraint foreign key(WFTypeID)references WorkFlowType(WFTypeID);
+
+alter table EventHistory add constraint foreign key(WFInstanceID)references WorkFlowInstance(WFInstanceID);
+
+alter table EventHistory add constraint foreign key(SeqID)references StateSequenceTable(SeqID);
+
+alter table EventHistory add constraint foreign key(CreatorMemberID)references Member(MemberID);
+
+alter table EventHistory add constraint foreign key(ActorMemberID)references Member(MemberID);

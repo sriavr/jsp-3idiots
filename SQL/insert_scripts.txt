@@ -1,0 +1,211 @@
+-- workflowtype
+
+insert into WorkFlowType values (1,'Bank Loan Processing', 'This workflow deals with bank loan processing'); 
+
+insert into WorkFlowType values (2,'Asset Allocation', 'This workflow deals allocating hardware/software assets in a company'); 
+
+
+-- role
+
+insert into Role values (401,1,'Customer','Customer who applies for loan');
+
+insert into Role values (402,1,'Bank Teller','Bank Teller who verifies background');
+
+insert into Role values (403,1,'Loan Officer','Loan officer who reviews the application');
+
+insert into Role values (404,1,'Loan Committee','Decides the credit limit');
+
+insert into Role values (405,1,'Loan Manager','Grant/Reject the loan');
+
+insert into Role values (406,2,'Employee','Employee who requests the asset');
+
+insert into Role values (407,2,'ReportingManager','Manager to whom employee reports');
+
+insert into Role values (408,2,'ITHelpdeskEmp','Helpdesk Employee');
+
+insert into Role values (409,2,'ITManager','IT manager');
+
+insert into Role values (410,2,'AssetManager','Asset Dept head');
+
+
+-- member
+
+
+insert into Member values (1001,401,'Appula','Apparao','apparao.appu@gmail.com',9190002002,'Apparao','Password1','Flat 301, Appu Apts, Koramangala');
+
+insert into Member values (1002,401,'Kharchula','Kantha Reddy','kharchula@yahoo.com',9880988080,'Kantha Reddy','Password2','Phase 1, E.City');
+
+insert into Member values (1003,401,'UltaPulta','Udhaar','ultapulta@yahoo.co.in',9716789023,'Udhaar','Password3','7th cross, Indira Nagar');
+
+insert into Member values (1004,402,'Gundu','Gumaastha','nenu.gunduboss@gmail.com',8090706050,'Gumaastha','Password4','4th Block, Jaya Nagar');
+
+insert into Member values (1005,402,'Rathnala','Rathaiah','rathnalu.ivvanu@gmail.com',9869058704,'Rathaiah','Password5','8th Main, Richmond Circle');
+
+insert into Member values (1006,403,'Khulla','Khullam','khullam.khulla@gmail.com',9776045673,'Khullam','Password6','9th Street, Cubbon Road');
+
+insert into Member values (1007,404,'Sollu','Kamitee','idi_sollu@yahoo.com',8990123456,'Kamitee','Password7','18th Block, Jaya Nagar');
+
+insert into Member values (1008,405,'Manjooru','Mallanna','na_peru_mallanna@yahoo.com',9786954923,'Mallanna','Password8','H.No-12, Singasandra');
+
+insert into Member values (1009,406,'ManchiPanodu','Satthi','o.manchipanodu@gmail.com',9999988888,'Satthi','Password9','33rd cross, WhiteField');
+
+insert into Member values (1010,406,'Katthi','Karmikudu','nenu_Katthi@yahoo.co.in',9786453120,'Karmikudu','Password10','12th Main, Marathahalli');
+
+insert into Member values (1011,407,'Yejamani','Yenkaiah','Yenkaiah007@yahoo.com',8795462130,'Yenkaiah','Password11','Phase 2, BTM Layout');
+
+insert into Member values (1012,408,'Saha','Sahayakudu','Saha12345@gmail.com',9080701234,'Sahayakudu','Password12','3rd block, J P Nagar');
+
+insert into Member values (1013,409,'Alajadi','Adhikari','Alajadi_000@yahoo.com',9848082919,'Adhikari','Password13','11th Main, 3rd street, Rajaji Nagar');
+
+insert into Member values (1014,410,'Jambalakadi','Pamba Rao','jumbo.jamba@gmail.com',9887766554,'Pamba Rao','Password14','10th Cross, Bannerghatta');
+
+
+-- states
+
+
+insert into States values (111,1,'default', 'Initial default state');
+
+insert into States values (112,1,'loan applied', 'loan applied');
+
+insert into States values (113,1,'background verified', 'background verified');
+
+insert into States values (114,1,'loan application reviewed', 'loan application reviewed');
+
+insert into States values (115,1,'credit limit established', 'credit limit established');
+
+insert into States values (116,1,'loan granted', 'loan granted');
+
+insert into States values (117,1,'loan rejected', 'loan rejected');
+
+insert into States values (118,2,'default', 'Initial default state');
+
+insert into States values (119,2,'asset requested', 'asset requested');
+
+insert into States values (120,2,'asset approved', 'asset approved');
+
+insert into States values (121,2,'asset purchased', 'asset purchased');
+
+insert into States values (122,2,'asset rejected', 'asset rejected');
+
+insert into States values (123,2,'asset issued', 'asset issued');
+
+
+-- workflowinstance
+
+
+insert into WorkFlowInstance values (11,1001,1,'2012-12-12 12:12:12',116);
+
+insert into WorkFlowInstance values (12,1002,1,'2012-12-14 10:15:00',116);
+
+insert into WorkFlowInstance values (13,1003,1,'2012-12-20 12:39:49',116);
+
+insert into WorkFlowInstance values (14,1009,2,'2012-12-22 15:30:25',123);
+
+insert into WorkFlowInstance values (15,1010,2,'2012-12-22 17:30:12',123);
+
+
+-- actions
+
+
+insert into Actions values(201,1,'apply','applied');
+
+insert into Actions values(202,1,'approve','approval action');
+
+insert into Actions values(203,1,'reject','rejected');
+
+insert into Actions values(204,2,'apply','applied');
+
+insert into Actions values(205,2,'check availability','check asset availability');
+
+insert into Actions values(206,2,'approve','approval action');
+
+insert into Actions values(207,2,'reject','rejected');
+
+
+-- statesequencetable
+
+
+insert into StateSequenceTable values(501,1,401,111,112,201);
+
+insert into StateSequenceTable values(502,1,402,112,113,202);
+
+insert into StateSequenceTable values(503,1,402,112,117,203);
+
+insert into StateSequenceTable values(504,1,403,113,114,202);
+
+insert into StateSequenceTable values(505,1,403,113,117,203);
+
+insert into StateSequenceTable values(506,1,404,114,115,202);
+
+insert into StateSequenceTable values(507,1,404,114,117,203);
+
+insert into StateSequenceTable values(508,1,405,115,116,202);
+
+insert into StateSequenceTable values(509,1,405,115,117,203);
+
+insert into StateSequenceTable values(510,2,406,118,119,204);
+
+insert into StateSequenceTable values(511,2,407,119,120,206);
+
+insert into StateSequenceTable values(512,2,407,119,122,207);
+
+insert into StateSequenceTable values(513,2,408,120,123,205);
+
+insert into StateSequenceTable values(514,2,408,120,119,205);
+
+insert into StateSequenceTable values(515,2,409,119,120,206);
+
+insert into StateSequenceTable values(516,2,409,119,122,207);
+
+insert into StateSequenceTable values(517,2,410,120,121,205);
+
+
+
+-- eventhistory
+
+
+insert into EventHistory values(301,1,11,501,'2012-12-12 12:12:12',1001,1004);
+
+insert into EventHistory values(302,1,11,502,'2012-12-13 15:30:20',1001,1006);
+
+insert into EventHistory values(303,1,12,501,'2012-12-14 10:15:00',1002,1005);
+
+insert into EventHistory values(304,1,11,503,'2012-12-14 14:14:05',1001,1007);
+
+insert into EventHistory values(305,1,12,502,'2012-12-15 9:30:06',1002,1006);
+
+insert into EventHistory values(306,1,11,504,'2012-12-15 13:45:12',1001,1008);
+
+insert into EventHistory values(307,1,12,503,'2012-12-16 17:20:20',1002,1007);
+
+insert into EventHistory values(308,1,13,501,'2012-12-18 00:00:00',1003,1004);
+
+insert into EventHistory values(309,1,13,502,'2012-12-18 13:50:05',1003,1006);
+
+insert into EventHistory values(310,1,12,504,'2012-12-17 14:30:06',1002,1008);
+
+insert into EventHistory values(311,1,13,503,'2012-12-19 11:50:12',1003,1007);
+
+insert into EventHistory values(312,1,13,504,'2012-12-20 12:39:20',1003,1008);
+
+insert into EventHistory values(313,2,14,510,'2012-12-21 9:30:00',1009,1011);
+
+insert into EventHistory values(314,2,14,511,'2012-12-21 11:45:05',1009,1011);
+
+insert into EventHistory values(315,2,14,514,'2012-12-21 16:15:06',1009,1012);
+
+insert into EventHistory values(316,2,15,510,'2012-12-22 10:15:12',1010,1011);
+
+insert into EventHistory values(317,2,15,511,'2012-12-22 11:00:20',1010,1012);
+
+insert into EventHistory values(318,2,15,513,'2012-12-22 15:30:00',1010,1012);
+
+insert into EventHistory values(319,2,14,515,'2012-12-22 12:30:05',1009,1013);
+
+insert into EventHistory values(320,2,14,517,'2012-12-22 15:15:06',1009,1014);
+
+insert into EventHistory values(321,2,14,513,'2012-12-22 17:30:06',1009,1012);
+
+
+
+commit;
