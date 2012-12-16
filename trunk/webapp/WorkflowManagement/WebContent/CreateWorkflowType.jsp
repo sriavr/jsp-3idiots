@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<link rel="stylesheet" href="templatemo_style.css">
+<link rel="stylesheet" href="PSD/blue1.psd">
 <title>WorkFlow Management</title>
 </head>
  
