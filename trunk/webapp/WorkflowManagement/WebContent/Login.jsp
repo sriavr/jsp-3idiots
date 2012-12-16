@@ -2,8 +2,8 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<link rel="stylesheet" href="mystyle.css">
-<title>WorkFlow Management</title>
+<link rel="stylesheet" href="templatemo_style.css">
+<title id="site_title">WorkFlow Management</title>
 </head>
  
 <body>
@@ -14,8 +14,8 @@
       <s:actionerror/>
    </div>
 </s:if>
-<s:form action="login" method="post">
-	<s:select label="Select User" name="user" headerValue="--SelectUser--" headerKey="1" list="{'Administrator','Member'}" />
+<s:form action="login.action" method="post" id="contact_form">
+	<s:select label="Select User" id="myinput" name="user" headerValue="--SelectUser--" headerKey="1" list="{'Administrator','Member'}" />
    
     <s:textfield name="username" label = "User ID" id="myinput" 
       size="15" />
