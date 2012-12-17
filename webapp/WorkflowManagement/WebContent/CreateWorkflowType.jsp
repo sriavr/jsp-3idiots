@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<link rel="stylesheet" href="PSD/blue1.psd">
+<link rel="stylesheet" href="">
 <title>WorkFlow Management</title>
 </head>
  
@@ -15,9 +15,11 @@
    </div>
 </s:if>
 <s:form action="createworkflow" method="post">
-	 <s:textfield name="wfname" label = "Workflow Name" id="myinput" 
+	<s:textfield name="wftypeid" label = "Workflow ID" id="myinput" 
       size="15" />
-    <s:password name="description" label="Description" id="myinput"
+	<s:textfield name="wfname" label = "Workflow Name" id="myinput" 
+      size="15" />
+    <s:textfield name="description" label="Description" id="myinput"
       size="15" />
     <s:submit name = "submit" id="mysubmit" value="Create"
       align="center" />
