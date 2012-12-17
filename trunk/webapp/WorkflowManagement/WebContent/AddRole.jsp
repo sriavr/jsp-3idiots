@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<link rel="stylesheet" href=templatemo_style.css>
+<link rel="stylesheet" href="">
 <title>WorkFlow Management</title>
 </head>
  
@@ -14,10 +14,14 @@
       <s:actionerror/>
    </div>
 </s:if>
-<s:form action="AddRole" method="post">
-     <s:textfield name="rolename" label = "Role Name" id="myinput" 
+<s:form action="addrole" method="post">
+    <s:textfield name="roleid" label = "Role ID" id="myinput" 
+      size="15" />
+    <s:textfield name="wftypeid" label = "Workflow Type ID" id="myinput" 
       size="15" /> 
-    <s:password name="description" label="Description" id="myinput"
+    <s:textfield name="rolename" label = "Role Name" id="myinput" 
+      size="15" /> 
+    <s:textfield name="description" label="Description" id="myinput"
       size="15" />
     <s:submit name = "submit" id="mysubmit" value="AddRole"
       align="center" />
