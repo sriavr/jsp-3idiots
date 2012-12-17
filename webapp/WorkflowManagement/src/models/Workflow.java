@@ -22,9 +22,10 @@ public class Workflow {
 	}
 
 	public int insert() {
+		System.out.println("In wf insert()");
 		String insertSQL = "insert into workflowtype "
 				+ "(wftypeid, wfname, description) " + "values('" + wftypeid
-				+ "', '" + wfname + "', " + description + "');";
+				+ "', '" + wfname + "', '" + description + "');";
 		return DB.update(insertSQL);
 	}
 
