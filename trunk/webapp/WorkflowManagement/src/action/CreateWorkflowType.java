@@ -10,6 +10,7 @@ public class CreateWorkflowType extends ActionSupport {
     
 	private static final long serialVersionUID = 1L;
 		
+	private int wftypeid;
 	private String wfname;
     private String description; 
     private ArrayList<Workflow> workflow = new ArrayList<Workflow>();
@@ -20,6 +21,15 @@ public class CreateWorkflowType extends ActionSupport {
 
 	public void setWorkflow(ArrayList<Workflow> workflow) {
 		this.workflow = workflow;
+	}
+
+	
+	public int getWftypeid() {
+		return wftypeid;
+	}
+
+	public void setWftypeid(int wftypeid) {
+		this.wftypeid = wftypeid;
 	}
 
 	public String getWfname() {
@@ -48,10 +58,13 @@ public class CreateWorkflowType extends ActionSupport {
 			Workflow wf = new Workflow();
 			if(this.wfname.isEmpty())
 				return "initial";
+			wf.setWftypeid(wftypeid);
 			wf.setWfname(wfname);
 			wf.setDescription(description);
 			wf.insert();
 	        workflow=Workflow.selectall("");
+	        for(int i=0;i<workflow.size();i++)
+	        	System.out.println("fetched again : "+workflow.get(i).getWfname());
 	        return "success";
 	} 
 
