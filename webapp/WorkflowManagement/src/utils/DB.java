@@ -140,7 +140,9 @@ public class DB {
 		try {
 			connection = getConnection();
 			connection.setAutoCommit(true);
+			System.out.println("DB.java before");
 			rowsUpdated = update(connection, sql);
+			System.out.println("DB.java after");
 		} catch (SQLException ex) {
 			//MyLog.myCatch("/java", 143, ex);
 		} finally {
@@ -155,8 +157,10 @@ public class DB {
 		int rows = 0;
 		try {
 			statement = connection.createStatement();
+			System.out.println("update2 - DB.java");
 			rows = statement.executeUpdate(sql);
-		//	MyLog.myIO("updating " + rows + " rows for sql:" + sql + ":");
+			System.out.println("update2 - done DB.java");
+		    System.out.println("updating " + rows + " rows for sql:" + sql + ":");
 		} catch (SQLException ex) {
 			//MyLog.myCatch("/update() while running sql:" + sql + ":", 79, ex);
 		} finally {
