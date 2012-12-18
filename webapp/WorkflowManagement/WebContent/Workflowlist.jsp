@@ -27,8 +27,10 @@
 		</tr>
 	</table>		
 	</s:iterator>
-	<s:submit name ="submit" id="mysubmit" value="CreateWorkflow" align="center" width="30" />
-	<s:submit name = "submit" id="mysubmit" value="AddRole" align="center" width="30" />
+	<s:submit name ="submit" id="mysubmit" value="Create Workflow" align="center" width="30" />
+	<s:submit name = "submit" id="mysubmit" value="Add Role" align="center" width="30" />
+	<s:submit name = "submit" id="mysubmit" value="Add Member" align="center" width="30" />
+	<a href="logout" id="mysubmit">Logout</a>
 </s:form>
 </body>
 </html>
