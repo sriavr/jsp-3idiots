@@ -1,10 +1,12 @@
 package action;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.*;
 
 import models.*;
 import utils.*;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AddMember extends ActionSupport {
@@ -21,9 +23,22 @@ public class AddMember extends ActionSupport {
 	private String password;
 	private String address;
 	
-	private ArrayList<Member> memberlist = new ArrayList<Member>();
+	private ArrayList<Member> memberlist;
 
-
+	Map<String, Object> session;
+	
+	private void addToMember(Member member)
+	{
+		if(this.memberlist==null)
+		{
+			memberlist=new ArrayList<Member>();
+		}
+		memberlist.add(member);
+		session.put("membersession", memberlist);
+		
+	}
+	
+	
 	public int getMemberid() {
 		return memberid;
 	}
@@ -163,7 +178,14 @@ public class AddMember extends ActionSupport {
 		
 			System.out.println("Execute of add member action");
 		
+			session = ActionContext.getContext().getSession();
 			Member member = new Member();
+			if(session.get("membersession")==null)
+			{
+				session.put("membersession", new ArrayList<Member>());
+			}
+			this.memberlist=(ArrayList<Member>)session.get("membersession");
+
 			if(this.fname.isEmpty() && this.lname.isEmpty())
 				return "initial";
 			member.setMemberid(memberid);
@@ -176,10 +198,8 @@ public class AddMember extends ActionSupport {
 			member.setPassword(password);
 			member.setAddress(address);
 			member.insert();
-			System.out.println("After insert");
-			memberlist=Member.selectall("");
-			System.out.println("After select");
-	        return "success";
+			addToMember(member);
+		    return "success";
 	} 
 
 }
