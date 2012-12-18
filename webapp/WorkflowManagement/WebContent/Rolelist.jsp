@@ -18,17 +18,17 @@
 </tr>
 </table>
 
-<s:form action="adminfunctions.action" method="post"> 
+<s:form action="adminfunctions.action" method="post">
+	<table>	 
 	<s:iterator value="rolelist" var="i">
-	<table>	
 		<tr>
 		<td><h3>${i.roleid}</h3></td>
 		<td><h3>${i.wftypeid}</h3></td>
 		<td><h3>${i.rolename}</h3> </td>
 		<td><h3>${i.description}</h3> </td>
-		</tr>
-	</table>		
+		</tr>		
 	</s:iterator>
+	</table>
 	<s:submit name = "submit" id="mysubmit" value="Back" align="center" width="30"/>
 </s:form>
 </body>

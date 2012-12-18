@@ -23,8 +23,8 @@
 </table>
 
 <s:form action="adminfunctions.action" method="post"> 
+	<table>
 	<s:iterator value="memberlist" var="i">
-	<table>	
 		<tr>
 		<td><h4>${i.memberid}</h4></td>
 		<td><h4>${i.roleid}</h4></td>
@@ -35,8 +35,8 @@
 		<td><h4>${i.username}</h4> </td>
 		<td><h4>${i.address}</h4> </td>
 		</tr>
-	</table>		
 	</s:iterator>
+	</table>		
 	<s:submit name = "submit" id="mysubmit" value="Back" align="center" width="30"/>
 </s:form>
 </body>

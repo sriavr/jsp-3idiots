@@ -17,16 +17,16 @@
 </tr>
 </table>
 
-<s:form action="adminfunctions.action" method="post"> 
-	<s:iterator value="workflow" var="i">
-	<table>	
+<s:form action="adminfunctions.action" method="post">
+	<table> 
+	<s:iterator value="workflow" var="i">	
 		<tr>
 		<td><h3>${i.wftypeid}</h3></td>
 		<td><h3>${i.wfname}</h3> </td>
 		<td><h3>${i.description}</h3> </td>
-		</tr>
-	</table>		
+		</tr>		
 	</s:iterator>
+	</table>
 	<s:submit name ="submit" id="mysubmit" value="Create Workflow" align="center" width="30" />
 	<s:submit name = "submit" id="mysubmit" value="Add Role" align="center" width="30" />
 	<s:submit name = "submit" id="mysubmit" value="Add Member" align="center" width="30" />
