@@ -21,6 +21,7 @@
         <action name="adminfunctions" class="action.AdminFunctions">
             <result name="createworkflow">CreateWorkflowType.jsp</result>
             <result name="addrole">AddRole.jsp</result>
+            <result name="addmember">AddMember.jsp</result>
             <result name="error">Workflowlist.jsp</result>
         </action>
         
@@ -32,6 +33,16 @@
         <action name="addrole" class="action.AddRole">
             <result name="initial">AddRole.jsp</result>
             <result name="success">Rolelist.jsp</result>
+        </action>
+        
+        <action name="addmember" class="action.AddMember">
+            <result name="initial">AddMember.jsp</result>
+            <result name="success">Memberlist.jsp</result>
+        </action>
+        
+        <action name="logout" class="action.Logout">
+            <result name="success_logout">Login.jsp</result>
+            <result name="error">Login.jsp</result>
         </action>
        
     </package>
