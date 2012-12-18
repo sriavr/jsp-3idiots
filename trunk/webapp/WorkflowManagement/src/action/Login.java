@@ -1,9 +1,11 @@
 package action;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import models.*;
 import utils.*;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Login extends ActionSupport {
@@ -20,6 +22,7 @@ public class Login extends ActionSupport {
     ArrayList<Admin> adminlist = new ArrayList<Admin>();
     ArrayList<Member> memberlist = new ArrayList<Member>();
 	ArrayList<Workflow> workflow = new ArrayList<Workflow>();
+	Map<String,Object> session;
 	
 	public String getUser() {
 		return user;
@@ -83,53 +86,55 @@ public class Login extends ActionSupport {
 	        this.submit); */
         /*System.out.println("in Login.execute() with submit = " + 
     	        this.submit); */
-        if (this.username.isEmpty() || this.password.isEmpty()) {
-		    return "initial_entry";
-        } 
-        if(this.user.equalsIgnoreCase("member"))
-        {
-        int flag=0;
-        memberlist = Member.selectall("");
-        for(int i=0;i<memberlist.size();i++)
-        {
-	        if (this.username.equals(memberlist.get(i).getUsername()) 
-	                && this.password.equals(memberlist.get(i).getPassword())) {
-				flag=1;
-				break;
-	            
-	        }
-        }
-        if(flag==1)
-        	{
-	        	this.workflow = Workflow.selectall("");
-	        	return "success_member";
-        	}
-        }
-        
-        if(this.user.equalsIgnoreCase("administrator"))
-        {
-        int flag=0;
-        adminlist = Admin.selectall("");
-        for(int i=0;i<adminlist.size();i++)
-        	System.out.println("Admin details "+adminlist.get(i).getUsername()+" "+adminlist.get(i).getPassword());
-	        for(int i=0;i<adminlist.size();i++)
+	        if (this.username.isEmpty() || this.password.isEmpty()) {
+			    return "initial_entry";
+	        } 
+	        if(this.user.equalsIgnoreCase("member"))
 	        {
-		        if (this.username.equals(adminlist.get(i).getUsername()) 
-		                && this.password.equals(adminlist.get(i).getPassword())) {
+	        int flag=0;
+	        memberlist = Member.selectall("");
+	        for(int i=0;i<memberlist.size();i++)
+	        {
+		        if (this.username.equals(memberlist.get(i).getUsername()) 
+		                && this.password.equals(memberlist.get(i).getPassword())) {
 					flag=1;
 					break;
+		            
 		        }
-		        
 	        }
 	        if(flag==1)
-	    	{
-	        	this.workflow = Workflow.selectall("");
-	        	return "success_admin";
-	    	}
-        }
-        addActionError(getText("Incorrect user id and / or password!"));
-        return "error";
-    }
+	        	{
+		        	this.workflow = Workflow.selectall("");
+		        	return "success_member";
+	        	}
+	        }
+	        
+	        if(this.user.equalsIgnoreCase("administrator"))
+	        {
+	        int flag=0;
+	        adminlist = Admin.selectall("");
+	        for(int i=0;i<adminlist.size();i++)
+	        	System.out.println("Admin details "+adminlist.get(i).getUsername()+" "+adminlist.get(i).getPassword());
+		        for(int i=0;i<adminlist.size();i++)
+		        {
+			        if (this.username.equals(adminlist.get(i).getUsername()) 
+			                && this.password.equals(adminlist.get(i).getPassword())) {
+			        	session=ActionContext.getContext().getSession();
+			        	session.put("loggedin", "true");
+						flag=1;
+						break;
+			        }
+			        
+		        }
+		        if(flag==1)
+		    	{
+		        	this.workflow = Workflow.selectall("");
+		        	return "success_admin";
+		    	}
+	        }
+	    addActionError(getText("Incorrect user id and / or password!"));
+		return "error";
+	}
  
     public String getUsername() {
         return username;

@@ -54,7 +54,7 @@ public class CreateWorkflowType extends ActionSupport {
 	public String execute() {
         /*MyLog.log("in Login.execute() with submit = " + 
 	        this.submit); */
-		
+			
 			Workflow wf = new Workflow();
 			if(this.wfname.isEmpty())
 				return "initial";
