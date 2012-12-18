@@ -44,6 +44,11 @@
             <result name="success_logout">Login.jsp</result>
             <result name="error">Login.jsp</result>
         </action>
+        
+        <action name="memberlogout" class="action.MemberLogout">
+            <result name="success_member_logout">Login.jsp</result>
+            <result name="error">Login.jsp</result>
+        </action>
        
     </package>
 </struts>
