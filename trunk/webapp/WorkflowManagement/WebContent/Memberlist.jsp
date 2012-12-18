@@ -11,14 +11,14 @@
 <center><h1>Welcome to Members list</h1></center>
 <table>
 <tr> 
-	<th><h2>Member ID</h2></th>
-    <th><h2>Role ID</h2></th>
-    <th><h2>First Name</h2></th>
-    <th><h2>Last Name</h2></th>
-    <th><h2>Email ID</h2></th>
-    <th><h2>Phone</h2></th>
-    <th><h2>Username</h2></th>
-    <th><h2>Address</h2></th>
+	<th><h4>Member ID</h4></th>
+    <th><h4>Role ID</h4></th>
+    <th><h4>First Name</h4></th>
+    <th><h4>Last Name</h4></th>
+    <th><h4>Email ID</h4></th>
+    <th><h4>Phone</h4></th>
+    <th><h4>Username</h4></th>
+    <th><h4>Address</h4></th>
 </tr>
 </table>
 
@@ -26,14 +26,14 @@
 	<s:iterator value="memberlist" var="i">
 	<table>	
 		<tr>
-		<td><h2>${i.memberid}</h2></td>
-		<td><h2>${i.roleid}</h2></td>
-		<td><h2>${i.fname}</h2> </td>
-		<td><h2>${i.lname}</h2> </td>
-		<td><h2>${i.emailid}</h2> </td>
-		<td><h2>${i.phone}</h2> </td>
-		<td><h2>${i.username}</h2> </td>
-		<td><h2>${i.address}</h2> </td>
+		<td><h4>${i.memberid}</h4></td>
+		<td><h4>${i.roleid}</h4></td>
+		<td><h4>${i.fname}</h4> </td>
+		<td><h4>${i.lname}</h4> </td>
+		<td><h4>${i.emailid}</h4> </td>
+		<td><h4>${i.phone}</h4> </td>
+		<td><h4>${i.username}</h4> </td>
+		<td><h4>${i.address}</h4> </td>
 		</tr>
 	</table>		
 	</s:iterator>
