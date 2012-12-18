@@ -1,9 +1,11 @@
 package action;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import models.*;
 import utils.*;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AddRole extends ActionSupport {
@@ -14,8 +16,19 @@ public class AddRole extends ActionSupport {
 	private int wftypeid;
 	private String rolename;
     private String description; 
-    private ArrayList<Role> rolelist = new ArrayList<Role>();
+    private ArrayList<Role> rolelist;
+    Map<String, Object> session;
     
+    private void addToRole(Role role)
+	{
+		if(this.rolelist==null)
+		{
+			rolelist=new ArrayList<Role>();
+		}
+		rolelist.add(role);
+		session.put("rolesession", rolelist);
+		
+	}
 	public int getRoleid() {
 		return roleid;
 	}
@@ -81,6 +94,13 @@ public class AddRole extends ActionSupport {
 	        this.submit); */
 		
 			Role role = new Role();
+			session = ActionContext.getContext().getSession();
+			if(session.get("rolesession")==null)
+			{
+				session.put("rolesession", new ArrayList<Role>());
+			}
+			this.rolelist=(ArrayList<Role>)session.get("rolesession");
+			
 			if(this.rolename.isEmpty())
 				return "initial";
 			role.setRoleid(roleid);
@@ -88,7 +108,7 @@ public class AddRole extends ActionSupport {
 			role.setRolename(rolename);
 			role.setDescription(description);
 			role.insert();
-	        rolelist=Role.selectall("");
+			addToRole(role);
 	        return "success";
 	} 
 

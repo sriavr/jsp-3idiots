@@ -1,9 +1,11 @@
 package action;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import models.*;
 import utils.*;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CreateWorkflowType extends ActionSupport {
@@ -13,7 +15,9 @@ public class CreateWorkflowType extends ActionSupport {
 	private int wftypeid;
 	private String wfname;
     private String description; 
-    private ArrayList<Workflow> workflow = new ArrayList<Workflow>();
+    private ArrayList<Workflow> workflow;
+    Map<String,Object> session;
+    
     
 	public ArrayList<Workflow> getWorkflow() {
 		return workflow;
@@ -24,6 +28,16 @@ public class CreateWorkflowType extends ActionSupport {
 	}
 
 	
+	private void addToWorkflow(Workflow wf)
+	{
+		if(this.workflow==null)
+		{
+			workflow=new ArrayList<Workflow>();
+		}
+		workflow.add(wf);
+		session.put("workflowsession", workflow);
+		
+	}
 	public int getWftypeid() {
 		return wftypeid;
 	}
@@ -56,13 +70,20 @@ public class CreateWorkflowType extends ActionSupport {
 	        this.submit); */
 			
 			Workflow wf = new Workflow();
+			session = ActionContext.getContext().getSession();
+			if(session.get("workflowsession")==null)
+			{
+				session.put("workflowsession", new ArrayList<Workflow>());
+			}
+			this.workflow=(ArrayList<Workflow>)session.get("workflowsession");
+			
 			if(this.wfname.isEmpty())
 				return "initial";
 			wf.setWftypeid(wftypeid);
 			wf.setWfname(wfname);
 			wf.setDescription(description);
 			wf.insert();
-	        workflow=Workflow.selectall("");
+	        addToWorkflow(wf);
 	        for(int i=0;i<workflow.size();i++)
 	        	System.out.println("fetched again : "+workflow.get(i).getWfname());
 	        return "success";

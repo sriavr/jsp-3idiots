@@ -97,6 +97,8 @@ public class Login extends ActionSupport {
 	        {
 		        if (this.username.equals(memberlist.get(i).getUsername()) 
 		                && this.password.equals(memberlist.get(i).getPassword())) {
+		        	session=ActionContext.getContext().getSession();
+		        	session.put("memberloggedin", "true");
 					flag=1;
 					break;
 		            

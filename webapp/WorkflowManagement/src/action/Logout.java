@@ -16,7 +16,7 @@ public class Logout extends ActionSupport {
 	
 	public String execute() {
 		Map<String, Object> session=ActionContext.getContext().getSession();
-		if(session.isEmpty())
+		if(!session.containsKey("loggedin"))
 			{
 				addActionError(getText("User not logged in!"));
 				return "error";
