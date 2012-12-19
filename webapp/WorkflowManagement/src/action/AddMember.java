@@ -29,11 +29,12 @@ public class AddMember extends ActionSupport {
 	
 	private void addToMember(Member member)
 	{
-		if(this.memberlist==null)
+/*		if(this.memberlist==null)
 		{
 			memberlist=new ArrayList<Member>();
 		}
-		memberlist.add(member);
+		memberlist.add(member);*/
+		memberlist = Member.selectall("");
 		session.put("membersession", memberlist);
 		
 	}

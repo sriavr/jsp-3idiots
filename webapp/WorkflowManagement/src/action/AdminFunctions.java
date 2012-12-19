@@ -14,7 +14,17 @@ public class AdminFunctions extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 		
 	private String submit; 
-       
+    private ArrayList<Workflow> workflow = new ArrayList<Workflow>();   
+	
+    
+	public ArrayList<Workflow> getWorkflow() {
+		return workflow;
+	}
+
+	public void setWorkflow(ArrayList<Workflow> workflow) {
+		this.workflow = workflow;
+	}
+
 	public String getSubmit() {
 		return submit;
 	}
@@ -32,17 +42,23 @@ public class AdminFunctions extends ActionSupport {
 				System.out.println("In create workflow");
 			    return "createworkflow";
 	        }
-	        if (submit.startsWith("Add Role")) {
+	    /*    if (submit.startsWith("View")) {
 	        	System.out.println("In add role");
 			    return "addrole";
 	        }
-	        
-	        if (submit.startsWith("Add Member")) {
+	    */    
+	        /*if (submit.startsWith("Add Member")) {
 	        	System.out.println("In add member");
 			    return "addmember";
 	        }
-	        
-	        addActionError(getText("Invalid"));
+	        */
+
+			if (submit.startsWith("View")) {
+				System.out.println("In view workflow");
+				workflow = Workflow.selectall("");
+			    return "viewworkflow";
+	        }
+			addActionError(getText("Invalid"));
 	        return "error";
 	        		
 	}
