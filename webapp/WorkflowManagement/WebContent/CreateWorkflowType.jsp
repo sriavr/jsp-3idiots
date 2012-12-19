@@ -15,14 +15,14 @@
    </div>
 </s:if>
 <s:form action="createworkflow" method="post">
-	<s:textfield name="wftypeid" label = "Workflow ID" id="myinput" 
-      size="15" />
 	<s:textfield name="wfname" label = "Workflow Name" id="myinput" 
       size="15" />
     <s:textfield name="description" label="Description" id="myinput"
       size="15" />
     <s:submit name = "submit" id="mysubmit" value="Create"
       align="center" />
+    <s:submit name = "submit" id="mysubmit" value="Next"
+      align="center" /> 
 </s:form>
 </body>
 </html>
