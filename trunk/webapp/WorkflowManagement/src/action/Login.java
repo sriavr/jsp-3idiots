@@ -98,7 +98,7 @@ public class Login extends ActionSupport {
 		        if (this.username.equals(memberlist.get(i).getUsername()) 
 		                && this.password.equals(memberlist.get(i).getPassword())) {
 		        	session=ActionContext.getContext().getSession();
-		        	session.put("memberloggedin", "true");
+		        	session.put("memberloggedin", memberlist.get(i));
 					flag=1;
 					break;
 		            
@@ -106,7 +106,7 @@ public class Login extends ActionSupport {
 	        }
 	        if(flag==1)
 	        	{
-		        	this.workflow = Workflow.selectall("");
+		        	//this.workflow = Workflow.selectall("");
 		        	return "success_member";
 	        	}
 	        }
@@ -122,7 +122,7 @@ public class Login extends ActionSupport {
 			        if (this.username.equals(adminlist.get(i).getUsername()) 
 			                && this.password.equals(adminlist.get(i).getPassword())) {
 			        	session=ActionContext.getContext().getSession();
-			        	session.put("loggedin", "true");
+			        	session.put("loggedin", adminlist.get(i));
 						flag=1;
 						break;
 			        }
@@ -130,7 +130,7 @@ public class Login extends ActionSupport {
 		        }
 		        if(flag==1)
 		    	{
-		        	this.workflow = Workflow.selectall("");
+		        	//this.workflow = Workflow.selectall("");
 		        	return "success_admin";
 		    	}
 	        }
