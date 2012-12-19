@@ -11,22 +11,25 @@ public class Role {
 	private int roleid;
 	private int wftypeid;
 	private String rolename;
-	private String description;
+	private String roledescription;
 	
 	public int update() {
 		String updateSQL = 
 			    "update role "
-				+ "set wftypeid = '" + wftypeid + "', rolename = '" + rolename + "', description = '" + description + 
+				+ "set wftypeid = '" + wftypeid + "', rolename = '" + rolename + "', description = '" + roledescription + 
 				"' where id = " + roleid;
 	//	System.out.println("Updated the book");
 		return DB.update(updateSQL);
 	}
 
 	public int insert() {
+		System.out.println("In insert of role.java");
 		String insertSQL = "insert into role "
-				+ "(roleid, wftypeid,rolename, description) " + "values('" + roleid+"', '"+wftypeid
-				+ "', '" + rolename + "', '" + description + "');";
+				+ "(wftypeid,rolename, description) " + "values('"+wftypeid
+				+ "', '" + rolename + "', '" + roledescription + "');";
+		System.out.println("Succ inserted");
 		return DB.update(insertSQL);
+		
 	}
 
 	public static ArrayList<Role> selectall(String selectionModifier) {
@@ -41,7 +44,7 @@ public class Role {
 				role.roleid = resultSet.getInt("roleid");
 				role.wftypeid = resultSet.getInt("wftypeid");
 				role.rolename = resultSet.getString("rolename");
-				role.description = resultSet.getString("description");
+				role.roledescription = resultSet.getString("description");
 				selection.add(role);
 			}
 		} catch (SQLException e) {
@@ -65,7 +68,7 @@ public class Role {
 				role.roleid = resultSet.getInt("roleid");
 				role.wftypeid = resultSet.getInt("wftypeid");
 				role.rolename = resultSet.getString("rolename");
-				role.description = resultSet.getString("description");
+				role.roledescription = resultSet.getString("description");
 				DB.close(resultSet);
 				DB.close(connection);
 				return role;
@@ -103,13 +106,15 @@ public class Role {
 		this.rolename = rolename;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getRoledescription() {
+		return roledescription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setRoledescription(String roledescription) {
+		this.roledescription = roledescription;
 	}
+
+    
 	
 	
 }

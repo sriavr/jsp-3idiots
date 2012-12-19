@@ -107,8 +107,8 @@ public class Member {
 
 	public int insert() {
 		String insertSQL = "insert into member "
-				+ "(memberid,roleid,fname,lname,emailid,phone,username,password,address) " + "values('" + 
-				memberid + "', '" + roleid + "', '" + fname + "', '" + lname + "', '" + emailid + "', '"+phone + "', '"+ username + "', '"+ password + "', '" + address + "');";
+				+ "(roleid,fname,lname,emailid,phone,username,password,address) " + "values('" + 
+				+ roleid + "', '" + fname + "', '" + lname + "', '" + emailid + "', '"+phone + "', '"+ username + "', '"+ password + "', '" + address + "');";
 		return DB.update(insertSQL);
 	}
 
