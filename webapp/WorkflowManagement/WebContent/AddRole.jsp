@@ -15,7 +15,7 @@
    </div>
 </s:if>
 <s:form action="addrole" method="post">
-    <s:textfield name="wfypeid" label = "Workflow Type ID" id="myinput" 
+    <s:textfield name="wftypeid" label = "Workflow Type ID" id="myinput" 
       size="15" value="%{rolewftypeid}" />  
      <s:textfield name="rolename" label = "Role Name" id="myinput" 
       size="15" /> 
