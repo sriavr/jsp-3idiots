@@ -50,5 +50,11 @@
             <result name="error">Login.jsp</result>
         </action>
        
+       <action name ="addactions" class="action.AddActions">
+       	<result name="initial">AddActions.jsp</result>
+       	<result name="success">AddActions.jsp</result>
+       </action>
+       
+       
     </package>
 </struts>
