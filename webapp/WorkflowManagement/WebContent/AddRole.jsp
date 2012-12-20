@@ -21,8 +21,11 @@
       size="15" /> 
     <s:textfield name="roledescription" label="Description" id="myinput"
       size="15" />
-    <s:submit name = "submit" id="mysubmit" value="AddRole"
-      align="center" />
+    <s:submit name = "submit" id="mysubmit" value="Add Role"
+      align="left" />
+    <s:submit name = "submit" id="mysubmit" value="View Role List"
+      align="left" />
+    
 </s:form>
 </body>
 </html>
