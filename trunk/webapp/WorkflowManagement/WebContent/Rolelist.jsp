@@ -18,17 +18,17 @@
 </tr>
 </table>
 
-<s:form action="adminfunctions.action" method="post">
-	<table>	 
-	<s:iterator value="rolelist" var="i">
+<s:form action="displayrole" method="post">
+<table>
 		<tr>
-		<td><h3>${i.roleid}</h3></td>
-		<td><h3>${i.wftypeid}</h3></td>
-		<td><h3>${i.rolename}</h3> </td>
-		<td><h3>${i.description}</h3> </td>
-		</tr>		
-	</s:iterator>
-	</table>
+		<s:iterator value="viewrolelist" var="i">
+			<td>
+			<s:radio name="radioroleid" list="#i" listKey="roleid" listValue="rolename"/>
+			</td>
+		</s:iterator>
+		</tr>
+</table>
+	<s:submit name = "submit" id="mysubmit" value="Display" align="center" width="30"/>
 	<s:submit name = "submit" id="mysubmit" value="Back" align="center" width="30"/>
 </s:form>
 </body>
