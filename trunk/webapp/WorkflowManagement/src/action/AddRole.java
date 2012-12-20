@@ -20,9 +20,21 @@ public class AddRole extends ActionSupport {
     private String submit;
     
     private ArrayList<Role> rolelist;
+    private ArrayList<Role> viewrolelist=new ArrayList<Role>();
+    Role role=new Role();
     Map<String, Object> session;
     
-    private void addToRole(Role role)
+    public Role getRole() {
+		return role;
+	}
+
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+
+	private void addToRole(Role role)
 	{ 
 		/*if(this.rolelist==null)
 		{
@@ -38,6 +50,16 @@ public class AddRole extends ActionSupport {
 	}
     
     
+	public ArrayList<Role> getViewrolelist() {
+		return viewrolelist;
+	}
+
+
+	public void setViewrolelist(ArrayList<Role> viewrolelist) {
+		this.viewrolelist = viewrolelist;
+	}
+
+
 	private void setroleid()
 	{
 		rolelist=Role.selectall("");
@@ -164,9 +186,21 @@ public class AddRole extends ActionSupport {
 				System.out.println("After insert in role");
 				addToRole(role);
 				addActionError(getText("Add Role Successful"));
-		        return "success";
+		        return "addsuccess";
 		}
-		
+	
+		if(submit.startsWith("View")){
+			rolelist=new ArrayList<Role>();
+			rolelist=Role.selectall("");
+			for(int i=0;i<rolelist.size();i++)
+			{
+				role=rolelist.get(i);
+				viewrolelist.add(role);
+				System.out.println(viewrolelist.get(i).getRoleid()+" "+viewrolelist.get(i).getWftypeid());
+			}
+			return "viewsuccess";
+		}
+	
 		if(submit.startsWith("Next"))
 		{
 			setroleid();
