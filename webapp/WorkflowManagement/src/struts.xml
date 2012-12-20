@@ -19,18 +19,29 @@
         </action>
         
         <action name="adminfunctions" class="action.AdminFunctions">
-            <result name="createworkflow">CreateWorkflowType.jsp</result>
-            <result name="viewworkflow">Workflowlist.jsp</result>
+            <result name="next">CreateWorkflowType.jsp</result>
             <result name="error">Workflowlist.jsp</result>
         </action>
         
         <action name="createworkflow" class="action.CreateWorkflowType">
             <result name="initial">CreateWorkflowType.jsp</result>
-            <result name="success">CreateWorkflowType.jsp</result>
+            <result name="createsuccess">CreateWorkflowType.jsp</result>
+            <result name="viewsuccess">Workflowlist.jsp</result>
             <result name="next">AddRole.jsp</result>
             <result name="error">CreateWorkflowType.jsp</result>
         </action>
        
+		<action name="displayworkflowtype" class="action.DisplayWorkflowType">
+            <result name="displaysuccess">DisplayWorkflowType.jsp</result>
+             <result name="back">CreateWorkflowType.jsp</result>
+            <result name="error">Workflowlist.jsp</result>
+        </action>
+        
+        <action name="modifyworkflowtype" class="action.ModifyWorkflowType">
+            <result name="modifysuccess">DisplayWorkflowType.jsp</result>
+            <result name="error">DisplayWorkflowType.jsp</result>
+        </action>
+               
         <action name="addrole" class="action.AddRole">
             <result name="initial">AddRole.jsp</result>
             <result name="addsuccess">AddRole.jsp</result>
@@ -41,7 +52,7 @@
         
         <action name="displayrole" class="action.DisplayRole">
             <result name="displaysuccess">DisplayRole.jsp</result>
-             <result name="back">Rolelist.jsp</result>
+             <result name="back">Workflowlist.jsp</result>
             <result name="error">Rolelist.jsp</result>
         </action>
         
