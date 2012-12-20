@@ -9,15 +9,6 @@
  
 <body>
 <center><h1>Welcome to Roles list</h1></center>
-<table>
-<tr> 
-    <th><h3>Role ID</h3></th>
-    <th><h3>Workflow Type ID</h3></th>
-    <th><h3>Role Name</h3></th>
-    <th><h3>Description</h3></th>
-</tr>
-</table>
-
 <s:form action="displayrole" method="post">
 <table>
 		<tr>

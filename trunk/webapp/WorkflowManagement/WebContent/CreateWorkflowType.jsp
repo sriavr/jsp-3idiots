@@ -19,8 +19,10 @@
       size="15" />
     <s:textfield name="description" label="Description" id="myinput"
       size="15" />
-    <s:submit name = "submit" id="mysubmit" value="Create"
+    <s:submit name = "submit" id="mysubmit" value="Create Workflow"
       align="center" />
+    <s:submit name = "submit" id="mysubmit" value="View Workflow List"
+      align="center" />  
     <s:submit name = "submit" id="mysubmit" value="Next"
       align="center" /> 
 </s:form>
