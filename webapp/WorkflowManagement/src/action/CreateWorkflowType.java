@@ -18,9 +18,28 @@ public class CreateWorkflowType extends ActionSupport {
     private String description; 
     private String submit;
     private ArrayList<Workflow> workflow;
+    private ArrayList<Workflow> viewwflist= new ArrayList<Workflow>();
+    Workflow wf = new Workflow();
+    
     Map<String,Object> session;
     
     
+	public ArrayList<Workflow> getViewwflist() {
+		return viewwflist;
+	}
+
+	public void setViewwflist(ArrayList<Workflow> viewwflist) {
+		this.viewwflist = viewwflist;
+	}
+
+	public Workflow getWf() {
+		return wf;
+	}
+
+	public void setWf(Workflow wf) {
+		this.wf = wf;
+	}
+
 	public ArrayList<Workflow> getWorkflow() {
 		return workflow;
 	}
@@ -123,16 +142,28 @@ public class CreateWorkflowType extends ActionSupport {
 			wf.insert();	
 	        addToWorkflow(wf);
 	        addActionError(getText("Created Workflow Successfully"));
-	        return "success";
+	        return "createsuccess";
 		}   
 	        
+		if(submit.startsWith("View")){
+			workflow=new ArrayList<Workflow>();
+			workflow=Workflow.selectall("");
+			for(int i=0;i<workflow.size();i++)
+			{
+				wf=workflow.get(i);
+				viewwflist.add(wf);
+				System.out.println(viewwflist.get(i).getWftypeid()+" "+viewwflist.get(i).getWfname()+" "+viewwflist.get(i).getDescription());
+			}
+			return "viewsuccess";
+		}
+	
 		if(submit.startsWith("Next"))
 		{
 			settypeid();
 			System.out.println("Rolewftypeid "+getRolewftypeid());
 	        return "next";
 		}
-	        
+		
 	    addActionError(getText("Invalid  Create Workflow!"));
 	    return "error";
 	} 

@@ -38,26 +38,11 @@ public class AdminFunctions extends ActionSupport {
 	public String execute() {
         /*MyLog.log("in Login.execute() with submit = " + 
 	        this.submit); */
-			if (submit.startsWith("Create Workflow")) {
-				System.out.println("In create workflow");
-			    return "createworkflow";
+			if (submit.startsWith("Next")) {
+				System.out.println("Admin Page");
+			    return "next";
 	        }
-	    /*    if (submit.startsWith("View")) {
-	        	System.out.println("In add role");
-			    return "addrole";
-	        }
-	    */    
-	        /*if (submit.startsWith("Add Member")) {
-	        	System.out.println("In add member");
-			    return "addmember";
-	        }
-	        */
-
-			if (submit.startsWith("View")) {
-				System.out.println("In view workflow");
-				workflow = Workflow.selectall("");
-			    return "viewworkflow";
-	        }
+	  
 			addActionError(getText("Invalid"));
 	        return "error";
 	        		
