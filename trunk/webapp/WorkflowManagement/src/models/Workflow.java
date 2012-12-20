@@ -16,7 +16,7 @@ public class Workflow {
 		String updateSQL = 
 			    "update workflowtype "
 				+ "set wfname = '" + wfname + "', description = '" + description + 
-				"' where id = " + wftypeid;
+				"' where wftypeid = " + wftypeid;
 	//	System.out.println("Updated the book");
 		return DB.update(updateSQL);
 	}
@@ -53,8 +53,7 @@ public class Workflow {
 
 	public static Workflow selectOne(String selectionModifier) {
 		ResultSet resultSet = null;
-		String query = "select wftypeid, wfname, description"+
-				"from workflowtype " + selectionModifier;
+		String query = "select * from workflowtype " + selectionModifier;
 		Connection connection = DB.getConnection();
 		resultSet = DB.select(query, connection);
 		try {
