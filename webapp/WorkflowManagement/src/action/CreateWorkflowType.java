@@ -52,11 +52,6 @@ public class CreateWorkflowType extends ActionSupport {
 	
 	private void addToWorkflow(Workflow wf)
 	{
-	/*	if(this.workflow==null)
-		{
-			workflow=new ArrayList<Workflow>();
-		}
-	*/	//workflow.add(wf);
 		workflow=Workflow.selectall("");
 		for(int i=0;i<workflow.size();i++) {
 			System.out.println(workflow.get(i).getWftypeid()+" "+workflow.get(i).getWfname());
@@ -157,6 +152,7 @@ public class CreateWorkflowType extends ActionSupport {
 			return "viewsuccess";
 		}
 	
+				
 		if(submit.startsWith("Next"))
 		{
 			settypeid();

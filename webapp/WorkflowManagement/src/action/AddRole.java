@@ -36,12 +36,7 @@ public class AddRole extends ActionSupport {
 
 	private void addToRole(Role role)
 	{ 
-		/*if(this.rolelist==null)
-		{
-			rolelist=new ArrayList<Role>();
-		}
-		rolelist.add(role);
-		*/
+		
     	rolelist = Role.selectall("");
     	for(int i=0;i<rolelist.size();i++)
     		System.out.println("Roles Info "+ rolelist.get(i).getRoleid()+" "+rolelist.get(i).getWftypeid()+" "+rolelist.get(i).getRolename());
@@ -200,7 +195,7 @@ public class AddRole extends ActionSupport {
 			}
 			return "viewsuccess";
 		}
-	
+
 		if(submit.startsWith("Next"))
 		{
 			setroleid();
