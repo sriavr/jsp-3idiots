@@ -15,10 +15,9 @@ public class Role {
 	
 	public int update() {
 		String updateSQL = 
-			    "update role "
-				+ "set wftypeid = '" + wftypeid + "', rolename = '" + rolename + "', description = '" + roledescription + 
-				"' where id = " + roleid;
-	//	System.out.println("Updated the book");
+			    "update role set wftypeid = " + wftypeid + ", rolename = '" + rolename + "', description = '" + roledescription + 
+				"' where roleid = "+ roleid;
+		System.out.println("Updated the role");
 		return DB.update(updateSQL);
 	}
 
@@ -58,12 +57,11 @@ public class Role {
 
 	public static Role selectOne(String selectionModifier) {
 		ResultSet resultSet = null;
-		String query = "select roleid,wftypeid, rolename, description"+
-				"from role " + selectionModifier;
+		String query = "select * from role " + selectionModifier;
 		Connection connection = DB.getConnection();
 		resultSet = DB.select(query, connection);
 		try {
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				Role role = new Role();
 				role.roleid = resultSet.getInt("roleid");
 				role.wftypeid = resultSet.getInt("wftypeid");
