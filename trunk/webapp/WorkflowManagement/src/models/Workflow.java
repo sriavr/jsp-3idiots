@@ -21,6 +21,13 @@ public class Workflow {
 		return DB.update(updateSQL);
 	}
 
+	public int delete() {
+		String deleteSQL = 
+			    "delete from workflowtype where wftypeid = " + wftypeid;
+	//	System.out.println("Updated the book");
+		return DB.update(deleteSQL);
+	}
+	
 	public int insert() {
 		System.out.println("In wf insert()");
 		String insertSQL = "insert into workflowtype "
