@@ -28,6 +28,7 @@
 	</tr>
 </table>
 	<s:submit name = "submit" id="mysubmit" value="Modify" align="center" width="30"/>
+	<a href="logout" id="mysubmit">Logout</a>
 </s:form>
 </body>
 </html>

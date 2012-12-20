@@ -9,11 +9,10 @@
  
 <body>
 <center><h1>Welcome to Admin Page</h1></center>
-
+<center><h4>This is admin page..click next to continue!</h4></center>
 <s:form action="adminfunctions.action" method="post">
-	<s:submit name ="submit" id="mysubmit" value="Create Workflow" align="center" width="30" />
-	<s:submit name ="submit" id="mysubmit" value="View Workflow list" align="center" width="30" />
-	<a href="logout" id="mysubmit">Logout</a>
+	<s:submit name ="submit" id="mysubmit" value="Next" align="center" width="30" />
 </s:form>
+<a href="logout" id="mysubmit">Logout</a>
 </body>
 </html>
