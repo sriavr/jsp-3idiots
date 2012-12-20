@@ -39,6 +39,7 @@
         
         <action name="modifyworkflowtype" class="action.ModifyWorkflowType">
             <result name="modifysuccess">DisplayWorkflowType.jsp</result>
+            <result name="deletesuccess">DisplayWorkflowType.jsp</result>
             <result name="error">DisplayWorkflowType.jsp</result>
         </action>
                
@@ -58,6 +59,7 @@
         
         <action name="modifyrole" class="action.ModifyRole">
             <result name="modifysuccess">DisplayRole.jsp</result>
+            <result name="deletesuccess">DisplayRole.jsp</result>
             <result name="error">DisplayRole.jsp</result>
         </action>
         
