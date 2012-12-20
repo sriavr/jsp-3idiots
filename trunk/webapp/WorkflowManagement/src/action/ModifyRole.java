@@ -94,10 +94,35 @@ public class ModifyRole extends ActionSupport {
 		System.out.println("Role values : "+role.getRoleid()+" "+role.getWftypeid()+" "+role.getRolename()+" "+role.getRoledescription());
 		role.update();
 		System.out.println("Modified role successfully");
-		addActionError(getText("Modify Role Successful"));
+		addActionMessage(getText("Modify Role Successful"));
 		return "modifysuccess";
 		}
 
+		if(submit.startsWith("Delete")){
+			
+			Role role = new Role();
+			session = ActionContext.getContext().getSession();
+			
+			role.setRoleid(roleid);
+			role.setWftypeid(wftypeid);
+			role.setRolename(rolename);
+			role.setRoledescription(roledescription);
+			role.delete();
+			
+			System.out.println("After delete in role");
+			
+			rolelist = Role.selectall("");
+	    	for(int i=0;i<rolelist.size();i++)
+	    		System.out.println("Roles Info "+ rolelist.get(i).getRoleid()+" "+rolelist.get(i).getWftypeid()+" "+rolelist.get(i).getRolename());
+	    	session.put("rolesession", rolelist);
+			
+			addActionMessage(getText("Delete Role Successful"));
+	        return "deletesuccess";
+	}
+
+
+
+		
 		addActionError(getText("Invalid Modify Role!"));
         return "error";
 	} 

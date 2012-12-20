@@ -111,6 +111,27 @@ public class ModifyWorkflowType extends ActionSupport {
 		addActionError(getText("Modify Wf Successful"));
 		return "modifysuccess";
 		}
+		
+		if(submit.startsWith("Delete"))
+		{
+			session = ActionContext.getContext().getSession();
+			
+			wf.setWftypeid(wftypeid);
+			wf.setWfname(wfname);
+			wf.setDescription(description);
+			wf.delete();	
+			
+			workflow=Workflow.selectall("");
+			for(int i=0;i<workflow.size();i++) {
+				System.out.println(workflow.get(i).getWftypeid()+" "+workflow.get(i).getWfname());
+			}
+			session.put("workflowsession", workflow);
+		
+	        addActionError(getText("Deleted Workflow Successfully"));
+	        return "deletesuccess";
+		}   
+	    
+
 
 		addActionError(getText("Invalid Modify Role!"));
         return "error";
