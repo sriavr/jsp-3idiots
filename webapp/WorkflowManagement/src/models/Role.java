@@ -21,6 +21,14 @@ public class Role {
 		return DB.update(updateSQL);
 	}
 
+	
+	public int delete() {
+		String deleteSQL = 
+			    "delete from role where roleid = "+ roleid;
+		System.out.println("Deleted the role");
+		return DB.update(deleteSQL);
+	}
+
 	public int insert() {
 		System.out.println("In insert of role.java");
 		String insertSQL = "insert into role "
