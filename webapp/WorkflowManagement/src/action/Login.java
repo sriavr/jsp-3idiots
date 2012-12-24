@@ -18,12 +18,32 @@ public class Login extends ActionSupport {
     private String administrator="";
     private String submit="";
     private String user="";
+    private String rolename="";
     
     ArrayList<Admin> adminlist = new ArrayList<Admin>();
     ArrayList<Member> memberlist = new ArrayList<Member>();
+    ArrayList<Role> rolelist = new ArrayList<Role>();
 	ArrayList<Workflow> workflow = new ArrayList<Workflow>();
 	Map<String,Object> session;
 	
+	
+	
+	public String getRolename() {
+		return rolename;
+	}
+
+	public void setRolename(String rolename) {
+		this.rolename = rolename;
+	}
+
+	public ArrayList<Role> getRolelist() {
+		return rolelist;
+	}
+
+	public void setRolelist(ArrayList<Role> rolelist) {
+		this.rolelist = rolelist;
+	}
+
 	public String getUser() {
 		return user;
 	}
@@ -93,6 +113,10 @@ public class Login extends ActionSupport {
 	        {
 	        int flag=0;
 	        memberlist = Member.selectall("");
+	        rolelist = Role.selectall("");
+	        for(int i=0;i<rolelist.size();i++)
+	        	System.out.println(rolelist.get(i).getRolename());
+	        
 	        for(int i=0;i<memberlist.size();i++)
 	        {
 		        if (this.username.equals(memberlist.get(i).getUsername()) 
