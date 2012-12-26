@@ -13,7 +13,7 @@ public class AddMember extends ActionSupport {
     
 	private static final long serialVersionUID = 1L;
 		
-	private int memberid;
+	
 	private int roleid;
 	private String fname;
 	private String lname;
@@ -22,8 +22,43 @@ public class AddMember extends ActionSupport {
 	private String username;
 	private String password;
 	private String address;
+	private String submit;
 	
+	public String getSubmit() {
+		return submit;
+	}
+
+
+
+
+	public void setSubmit(String submit) {
+		this.submit = submit;
+	}
+
+
+
+
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+
+
+
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	private ArrayList<Member> memberlist;
+	
+	Member member =new Member();
 
 	Map<String, Object> session;
 	
@@ -35,19 +70,15 @@ public class AddMember extends ActionSupport {
 		}
 		memberlist.add(member);*/
 		memberlist = Member.selectall("");
+		for(int i=0;i<memberlist.size();i++)
+			System.out.println(memberlist.get(i).getRoleid()+"  "+memberlist.get(i).getFname());
+		
 		session.put("membersession", memberlist);
 		
 	}
 	
 	
-	public int getMemberid() {
-		return memberid;
-	}
-
-	public void setMemberid(int memberid) {
-		this.memberid = memberid;
-	}
-
+	
 
 	public int getRoleid() {
 		return roleid;
@@ -177,30 +208,64 @@ public class AddMember extends ActionSupport {
         /*MyLog.log("in Login.execute() with submit = " + 
 	        this.submit); */
 		
-			System.out.println("Execute of add member action");
-		
-			session = ActionContext.getContext().getSession();
-			Member member = new Member();
-			if(session.get("membersession")==null)
+			memberlist=new ArrayList<Member>();
+			if(this.submit.startsWith("Next"))
+				return "next";
+			if(this.submit.startsWith("View"))
 			{
-				session.put("membersession", new ArrayList<Member>());
+				
+				memberlist=member.selectall("");
+				
+				for(int i=0;i<memberlist.size();i++)
+					System.out.println(memberlist.get(i).getFname());
+					
+				return "display";
 			}
-			this.memberlist=(ArrayList<Member>)session.get("membersession");
+			if(this.submit.startsWith("Add"))
+			{
+				
+				if(this.fname.isEmpty() && this.lname.isEmpty())
+				{
+					addActionError(getText("Invalid Member Name!!"));
+					return "initial";
+				}
+				
+				System.out.println("Execute of add member action");
+				
+				session = ActionContext.getContext().getSession();
+				
+				if(session.get("membersession")==null)
+				{
+					session.put("membersession", new ArrayList<Member>());
+				}
+				this.memberlist=(ArrayList<Member>)session.get("membersession");
 
-			if(this.fname.isEmpty() && this.lname.isEmpty())
-				return "initial";
-			member.setMemberid(memberid);
-			member.setRoleid(roleid);
-			member.setFname(fname);
-			member.setLname(lname);
-			member.setEmailid(emailid);
-			member.setPhone(phone);
-			member.setUsername(username);
-			member.setPassword(password);
-			member.setAddress(address);
-			member.insert();
-			addToMember(member);
-		    return "success";
+				member.setRoleid(roleid);
+				member.setFname(fname);
+				member.setLname(lname);
+				member.setEmailid(emailid);
+				member.setPhone(phone);
+				member.setUsername(username);
+				member.setPassword(password);
+				member.setAddress(address);
+				System.out.println("roleid"+" "+roleid+" "+"fname"+" "+fname+" "+" "+"lname"+" "+lname);
+				member.insert();
+				System.out.println("successfully inserted");
+				addToMember(member);
+				addActionError(getText("Add Member Successful"));
+				this.fname="";
+				this.lname="";
+				this.emailid="";
+				//(bigDecimal.intValue)this.phone=0;
+				this.username="";
+				this.password="";
+				this.address="";
+				System.out.println("successfully member created");
+				return "success";
+			}
+			addActionError(getText("Invalid Add Member!"));
+	        return "initial";
+		    
 	} 
 
 }

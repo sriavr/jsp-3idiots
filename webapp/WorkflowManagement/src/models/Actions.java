@@ -1,10 +1,13 @@
 package models;
 import java.sql.*;
+import java.util.ArrayList;
+
 import utils.*;
 
 
 public class Actions {
 
+	
 	private int actionid;
 	public int getActionid() {
 		return actionid;
@@ -48,7 +51,7 @@ public class Actions {
 	public int update() {
 		String updateSQL = 
 			    "update actions "
-				+ "set actionid = '" + actionid + "',wftypeid = '" + wftypeid + "',"
+				+ "set wftypeid = '" + wftypeid + "',"
 				+"actionname = '" + actionname + "', actiondescription = '" + actiondescription + "',"
 				+"' where actionid = " + actionid;
 	
@@ -57,10 +60,74 @@ public class Actions {
 
 	public int insert() {
 		String insertSQL = "insert into actions "
-				+ "(actionid,wftypeid,actionname,actiondescription) " + "values('" + 
-				actionid + "', '" + wftypeid + "', '" + actionname + "', '" + actiondescription +"');";
+				+ "(wftypeid,actionname,actiondescription) " + "values('" + 
+				 wftypeid + "', '" + actionname + "', '" + actiondescription +"');";
 		return DB.update(insertSQL);
 	}
+	
+	public int delete() {
+		String deleteSQL = 
+			    "delete from actions where actionid = "+ actionid;
+		System.out.println("Deleted the action");
+		return DB.update(deleteSQL);
+	}
+
+	
+	
+	public static ArrayList<Actions> selectall(String selectionModifier) {
+		ArrayList<Actions> selection = new ArrayList<Actions>();
+		ResultSet resultSet = null;
+		String query = "select * from actions " + selectionModifier;
+		Connection connection = DB.getConnection();
+		resultSet = DB.select(query, connection);
+		try {
+			while (resultSet.next()) {
+				Actions action = new Actions();
+				action.actionid = resultSet.getInt("actionid");
+				
+				action.actionname = resultSet.getString("actionname");
+				action.actiondescription = resultSet.getString("actiondescription");
+				action.wftypeid = resultSet.getInt("wftypeid");
+				//System.out.println(member.memberid+" "+member.roleid+" "+member.fname);
+				selection.add(action);
+			}
+		} catch (SQLException e) {
+            //MyLog.myCatch("Member.java", 43, e);
+			e.printStackTrace();
+		}
+		//System.out.println("selection size :"+selection.size());
+		DB.close(resultSet);
+		DB.close(connection);
+		return selection;
+	}
+
+	public static Actions selectOne(String selectionModifier) {
+		ResultSet resultSet = null;
+		String query = "select * from actions " + selectionModifier;
+		Connection connection = DB.getConnection();
+		resultSet = DB.select(query, connection);
+		try {
+			if (resultSet.next()) {
+				Actions action = new Actions();
+				action.actionid = resultSet.getInt("actionid");
+				action.wftypeid = resultSet.getInt("wftypeidid");
+				action.actionname = resultSet.getString("actionname");
+				action.actiondescription = resultSet.getString("actiondescription");
+				DB.close(resultSet);
+				DB.close(connection);
+				System.out.println("successfully return action object");
+				return action;
+			}
+		} catch (SQLException e) {
+          //  MyLog.myCatch("Member.java", 43, e);
+			e.printStackTrace();
+		}
+		DB.close(resultSet);
+		DB.close(connection);
+		return null;
+	}
+
+
 
 		
 }

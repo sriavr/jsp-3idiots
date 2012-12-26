@@ -25,8 +25,12 @@
       align="left" />
     <s:submit name = "submit" id="mysubmit" value="View Role List"
       align="left" />
-    <s:submit name = "submit" id="mysubmit" value="Delete Role"
+
+       <s:submit name = "submit" id="mysubmit" value="Next"
       align="left" />
+
+   
+
     
 </s:form>
 </body>

@@ -1,21 +1,60 @@
 package action;
 import models.*;
+
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
 
-public class AddActions {
+public class AddActions extends ActionSupport {
 
+	private static final long serialVersionUID = 1L;
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	private int wftypeid;
 	private String actionname;
 	private String actiondescription;
+	private String submit;
 	
-	private int actionid;
-	public int getActionid() {
-		return actionid;
+	
+	ArrayList<Actions>  actionlist;
+	public ArrayList<Actions> getActionlist() {
+		return actionlist;
 	}
-	public void setActionid(int actionid) {
-		this.actionid = actionid;
+	Map<String,Object> session; 
+	public Map<String, Object> getSession() {
+		return session;
+	}
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+	public Actions getAction() {
+		return action;
+	}
+	public void setAction(Actions action) {
+		this.action = action;
+	}
+	Actions action=new Actions();
+	public void addToAction()
+	{
+		
+		actionlist = action.selectall(""); 
+		for(int i=0;i<actionlist.size();i++)
+			System.out.println("wftypeid"+" "+actionlist.get(i).getWftypeid()+" "+"actionname"+" "+actionlist.get(i).getActionname());
+		session.put("actionsession" , actionlist);
+		
+	}
+	public void setActionlist(ArrayList<Actions> actionlist) {
+		this.actionlist = actionlist;
+	}
+	public String getSubmit() {
+		return submit;
+	}
+	public void setSubmit(String submit) {
+		this.submit = submit;
 	}
 	public int getWftypeid() {
 		return wftypeid;
@@ -35,21 +74,54 @@ public class AddActions {
 	public void setActiondescription(String actiondescription) {
 		this.actiondescription = actiondescription;
 	}
+	
+	
+	
 	public String execute()
 	{
 		System.out.println("Execute of add action");
 		
 		
-		Actions action = new Actions();
 		
+		actionlist =  new ArrayList<Actions>();
 		if(this.actionname.isEmpty() && this.wftypeid==0)
 			return "initial";
-		action.setActionid(this.actionid);
+		
+		if(this.submit.startsWith("Add"))
+		{
+		session = ActionContext.getContext().getSession();
+		
+		if(session.get("actionsession")==null)
+		{
+			session.put("actionsession", new ArrayList<Actions>());
+		}
+		this.actionlist=(ArrayList<Actions>)session.get("actionsession");
 		action.setWftypeid(this.wftypeid);
 		action.setActionname(this.actionname);
 		action.setActiondescription(this.actiondescription);
+		System.out.println(wftypeid+" "+actionname+" "+actiondescription);
 		action.insert();
-		return "success";
+		System.out.println(" action successfully added");
+		
+		this.actionname =" ";
+		this.actiondescription=" ";
+	
+		return "addsuccess";
+		
+		}
+		
+		if(this.submit.startsWith("View"))
+		{
+			actionlist =action.selectall("");
+				for(int i=0;i<actionlist.size();i++)
+					System.out.println("actionid"+" "+actionlist.get(i).getActionid()+" "+"wftypeid"+" "+actionlist.get(i).getWftypeid());
+					//session.put("actionsession", actionlist);
+			return "viewsuccess";
+		}
+		
+
+		//addActionMessage(getText("Invalid ActionName!!!"));
+			return "Error";
 		
 } 
 
