@@ -42,7 +42,25 @@ public class AdminFunctions extends ActionSupport {
 				System.out.println("Admin Page");
 			    return "next";
 	        }
-	  
+
+	   
+
+			if (submit.startsWith("View")) {
+				System.out.println("In view workflow");
+				workflow = Workflow.selectall("");
+			    return "viewworkflow";
+	        }
+
+			
+			if(submit.startsWith("Display"))
+			{
+				return "display";
+			}
+			
+			if(submit.startsWith("Delete"))
+			{
+				
+			}
 			addActionError(getText("Invalid"));
 	        return "error";
 	        		

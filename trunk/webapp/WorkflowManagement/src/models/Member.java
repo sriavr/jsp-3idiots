@@ -10,6 +10,14 @@ import utils.*;
 public class Member {
 
 	private int memberid;
+	public int getMemberid() {
+		return memberid;
+	}
+
+	public void setMemberid(int memberid) {
+		this.memberid = memberid;
+	}
+
 	private int roleid;
 	private String fname;
 	private String lname;
@@ -21,14 +29,7 @@ public class Member {
 	
 	
 	
-	public int getMemberid() {
-		return memberid;
-	}
-
-	public void setMemberid(int memberid) {
-		this.memberid = memberid;
-	}
-
+	
 	public int getRoleid() {
 		return roleid;
 	}
@@ -105,11 +106,25 @@ public class Member {
 		return DB.update(updateSQL);
 	}
 
+	
+	
+	public int delete() {
+		System.out.println("memberid in MEMBER.JAVA--->>"+memberid );
+		String deleteSQL = 
+			    "delete from member where memberid = "+ memberid;
+		System.out.println("member deleted");
+		return DB.update(deleteSQL);
+	}
+	
+	
+	
 	public int insert() {
 		String insertSQL = "insert into member "
 				+ "(roleid,fname,lname,emailid,phone,username,password,address) " + "values('" + 
 				+ roleid + "', '" + fname + "', '" + lname + "', '" + emailid + "', '"+phone + "', '"+ username + "', '"+ password + "', '" + address + "');";
+		System.out.println("successfully added to db");
 		return DB.update(insertSQL);
+		
 	}
 
 	public static ArrayList<Member> selectall(String selectionModifier) {

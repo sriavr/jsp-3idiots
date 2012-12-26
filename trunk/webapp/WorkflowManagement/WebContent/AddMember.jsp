@@ -14,10 +14,9 @@
       <s:actionerror/>
    </div>
 </s:if>
-<s:form action="addmember.action" method="post">
-	<s:textfield name="memberid" label = "Member ID" id="myinput" 
-      size="15" />
-    <s:textfield name="roleid" label = "Role ID" id="myinput" 
+<s:form action="addmember" method="post">
+	
+    <s:textfield name="roleid" label = "Role ID" id="myinput" value="%{memberroleid}"
       size="15" />
     <s:textfield name="fname" label = "First Name" id="myinput" 
       size="15" />
@@ -33,8 +32,12 @@
       size="15" /> 
     <s:textfield name="address" label="Address" id="myinput"
       size="15" />
-    <s:submit name = "submit" id="mysubmit" value="AddMember"
+    <s:submit name = "submit" id="mysubmit" value="Add Member"
       align="center" />
+      <s:submit name = "submit" id="mysubmit" value="View Member List"
+      align="left" />
+       <s:submit name = "submit" id="mysubmit" value="Next"
+      align="right" />
 </s:form>
 </body>
 </html>

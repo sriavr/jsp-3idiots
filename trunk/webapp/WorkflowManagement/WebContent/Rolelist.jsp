@@ -9,6 +9,14 @@
  
 <body>
 <center><h1>Welcome to Roles list</h1></center>
+
+<table>
+<tr> 
+   <th><h3>Role Name</h3></th>
+   </tr>
+</table>
+
+
 <s:form action="displayrole" method="post">
 <table>
 		<tr>
