@@ -1,5 +1,6 @@
 package action;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -18,9 +19,77 @@ public class MemberFunctions extends ActionSupport {
     private ArrayList<String> membertype = new ArrayList<String>();
 	private ArrayList<Role> rolelist = new ArrayList<Role>();
 	private ArrayList<String> rolenames = new ArrayList<String>();
+	Map<String, Object> session;
+	private Member member;
+	private Member member_loggedin;
 	private String rolename;
+	private int memberid;
+	private String fname;
+	private String lname;
+	private String username;
+	private String emailid;
+	private BigDecimal phone;
+	private String address;
 	
 	
+	
+	
+	public int getMemberid() {
+		return memberid;
+	}
+
+	public void setMemberid(int memberid) {
+		this.memberid = memberid;
+	}
+
+	public String getFname() {
+		return fname;
+	}
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
+	public String getLname() {
+		return lname;
+	}
+
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getEmailid() {
+		return emailid;
+	}
+
+	public void setEmailid(String emailid) {
+		this.emailid = emailid;
+	}
+
+	public BigDecimal getPhone() {
+		return phone;
+	}
+
+	public void setPhone(BigDecimal phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public String getRolename() {
 		return rolename;
 	}
@@ -95,6 +164,19 @@ public class MemberFunctions extends ActionSupport {
 				}
 					
 			}
+			session = ActionContext.getContext().getSession();
+			member_loggedin = (Member)session.get("memberloggedin");
+			System.out.println("Got u "+member_loggedin.getUsername());
+			
+			member = Member.selectOne("where username='"+member_loggedin.getUsername()+"'");
+
+			this.setMemberid(member.getMemberid());
+			this.setFname(member.getFname());
+			this.setLname(member.getLname());
+			this.setUsername(member.getUsername());
+			this.setEmailid(member.getEmailid());
+			this.setPhone(member.getPhone());
+			this.setAddress(member.getAddress());
 			
 			return ret_val;
 		
