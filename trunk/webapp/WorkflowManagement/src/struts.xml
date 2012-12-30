@@ -11,14 +11,19 @@
         value="ApplicationResources" />
  
     <package name="default" extends="struts-default" namespace="/">
-        <action name="login" class="action.Login">
+                <action name="login" class="action.Login">
             <result name="initial_entry">Login.jsp</result>
             <result name="success_admin">AdminPage.jsp</result>
-            <result name="success_member">Login.jsp</result>
+            <result name="success_member">MemberPage.jsp</result>
             <result name="error">Login.jsp</result>
         </action>
         
-        <action name="adminfunctions" class="action.AdminFunctions">
+        <action name="memberfunctions" class="action.MemberFunctions">
+        <result name="ret_val"></result>
+        <result name="error">MemberPage.jsp</result>
+        </action>
+        
+       <action name="adminfunctions" class="action.AdminFunctions">
             <result name="next">CreateWorkflowType.jsp</result>
             <result name="error">Workflowlist.jsp</result>
         </action>
@@ -115,7 +120,76 @@
         	<result name="modify_success">DisplayAction.jsp</result>
         	<result name="error">DisplayAction.jsp</result>
         </action>
+
+ <action name="memberfunctions" class="action.MemberFunctions">
+            <result name="Customer">CustomerPage.jsp</result>
+            <result name="Bank Teller">BankTellerPage.jsp</result>
+            <result name="Loan Officer">LoanOfficerPage.jsp</result>
+            <result name="Loan Committee">LoanCommitteePage.jsp</result>
+            <result name="Loan Manager">LoanManagerPage.jsp</result>
+            <result name="Employee">EmployeePage.jsp</result>
+            <result name="ReportingManager">ReportingManagerPage.jsp</result>
+            <result name="ITHelpdeskEmp">ITHelpdeskEmpPage.jsp</result>
+            <result name="ITManager">ITManagerPage.jsp</result>
+            <result name="AssetManager">AssetManagerPage.jsp</result>
+            <result name="error">Login.jsp</result>
+        </action>
+        
+
+<action name="employeeaction" class="ITAssetAllocation.EmployeeAction">
+            <result name="itassetrequest">ITAssetRequest.jsp</result>
+            <result name="allocatedassets">ViewAllocatedAssets.jsp</result>
+        </action>
+       
+        <action name="assetallotment" class="ITAssetAllocation.AssetAllotment">
+            <result name="success">ITAssetRequest.jsp</result>
+            <result name="error">ITAssetRequest.jsp</result>
+        </action>
+       
+
+
+
       
        
     </package>
 </struts>
+
+
+
+
+
+
+
+
+
+        
+        
+       
+       
+		
+               
+        
+        
+       
+        
+       
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       
+        
+        
+       
+      
+        
+      
+       
+ 
