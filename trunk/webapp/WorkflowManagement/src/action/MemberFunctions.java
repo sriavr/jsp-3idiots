@@ -159,6 +159,8 @@ public class MemberFunctions extends ActionSupport {
 					if(membertype.get(i).matches(rolenames.get(j)))
 					{
 						ret_val=rolenames.get(j);
+						System.out.println("############"+ret_val);
+						
 						break;
 					}
 				}
@@ -177,8 +179,33 @@ public class MemberFunctions extends ActionSupport {
 			this.setEmailid(member.getEmailid());
 			this.setPhone(member.getPhone());
 			this.setAddress(member.getAddress());
+			System.out.println("jsut doing" +ret_val);
+			if(ret_val.matches("Customer"))
+			{	System.out.println("returned value");
+				return "Customer";
+			}
+			if(ret_val.equals("Bank Teller"))
+				return "Bank Teller";
+			if(ret_val.equals("Loan Manager"))
+				return "Loan Manager";
+			if(ret_val.equals("Loan Officer"))
+			{
+				System.out.println("returned value");
+				return "Loan Officer";
+			}
+				
+			if(ret_val.equals("Loan Committee"))
+				return "Loan Committee";
+			if(ret_val.equals("Employee"))
+				return "Employee";
+			if(ret_val.equals("ITHelpdeskEmp"))
+				return "ITHelpdeskEmp";
+			if(ret_val.equals("ITManager"))
+				return "ITManager";
+			if(ret_val.equals("AssetManager"))
+				return "AssetManager";
 			
-			return ret_val;
+			
 		
         }
 

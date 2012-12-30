@@ -18,10 +18,7 @@
             <result name="error">Login.jsp</result>
         </action>
         
-        <action name="memberfunctions" class="action.MemberFunctions">
-        <result name="ret_val"></result>
-        <result name="error">MemberPage.jsp</result>
-        </action>
+      
         
        <action name="adminfunctions" class="action.AdminFunctions">
             <result name="next">CreateWorkflowType.jsp</result>
@@ -145,7 +142,13 @@
             <result name="success">ITAssetRequest.jsp</result>
             <result name="error">ITAssetRequest.jsp</result>
         </action>
-       
+        
+       <action name="customeraction" class="action.CustomerAction">
+            <result name="itassetrequest">ITAssetRequest.jsp</result>
+            <result name="allocatedassets">ViewAllocatedAssets.jsp</result>
+            <result name="error">CustomerPage.jsp</result>
+            <result name="member_verified">BankTeller.jsp</result>
+        </action>
 
 
 
