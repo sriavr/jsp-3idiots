@@ -13,13 +13,36 @@ public class CreateWorkflowType extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 		
 	private int rolewftypeid;
+	
 	private int wftypeid;
 	private String wfname;
     private String description; 
     private String submit;
     private ArrayList<Workflow> workflow;
     private ArrayList<Workflow> viewwflist= new ArrayList<Workflow>();
-    Workflow wf = new Workflow();
+    private ArrayList<String> workflowtypelist= new ArrayList<String>();
+    public ArrayList<String> getWorkflowtypelist() {
+		return workflowtypelist;
+	}
+
+	public void setWorkflowtypelist(ArrayList<String> workflowtypelist) {
+		this.workflowtypelist = workflowtypelist;
+	}
+
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+	Workflow wf = new Workflow();
     
     Map<String,Object> session;
     
@@ -65,8 +88,20 @@ public class CreateWorkflowType extends ActionSupport {
 		workflow=Workflow.selectall("");
 		for(int i=0;i<workflow.size();i++) {
 			setRolewftypeid(workflow.get(i).getWftypeid());
+			setWftypeid(workflow.get(i).getWftypeid());
 		}
 	}
+	
+	private void settypelist()
+	{
+		workflow=Workflow.selectall("");
+		for(int i=0;i<workflow.size();i++) {
+			workflowtypelist.add(workflow.get(i).getWfname());
+			
+		}
+	}
+	
+	
 
 	public String getSubmit() {
 		return submit;
@@ -132,10 +167,11 @@ public class CreateWorkflowType extends ActionSupport {
 				return "initial";
 			
 			wf.setWftypeid(wftypeid);
+			System.out.println(" ---------------------- "+wftypeid);
 			wf.setWfname(wfname);
 			wf.setDescription(description);
 			wf.insert();	
-	        addToWorkflow(wf);
+	        
 	        addActionError(getText("Created Workflow Successfully"));
 	        return "createsuccess";
 		}   
@@ -160,6 +196,14 @@ public class CreateWorkflowType extends ActionSupport {
 	        return "next";
 		}
 		
+		if(submit.startsWith("Add"))
+		{
+			settypeid();
+			
+			System.out.println("you are in createworkflowItem  ---  in add workflow Item"+" "+wftypeid);
+			
+			return "addworkflowitem";
+		}
 	    addActionError(getText("Invalid  Create Workflow!"));
 	    return "error";
 	} 

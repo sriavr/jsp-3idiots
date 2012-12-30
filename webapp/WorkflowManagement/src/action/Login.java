@@ -119,10 +119,11 @@ public class Login extends ActionSupport {
 	        
 	        for(int i=0;i<memberlist.size();i++)
 	        {
-		        if (this.username.equals(memberlist.get(i).getUsername()) 
+		        if (this.username.equals(memberlist.get(i).getFname()) 
 		                && this.password.equals(memberlist.get(i).getPassword())) {
 		        	session=ActionContext.getContext().getSession();
 		        	session.put("memberloggedin", memberlist.get(i));
+		        	System.out.println("usrname has been selected");
 					flag=1;
 					break;
 		            

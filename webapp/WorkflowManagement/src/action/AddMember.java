@@ -256,7 +256,7 @@ public class AddMember extends ActionSupport {
 				this.fname="";
 				this.lname="";
 				this.emailid="";
-				//(bigDecimal.intValue)this.phone=0;
+				this.phone= new BigDecimal(0.00);
 				this.username="";
 				this.password="";
 				this.address="";
