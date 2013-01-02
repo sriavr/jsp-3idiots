@@ -11,14 +11,16 @@
         value="ApplicationResources" />
  
     <package name="default" extends="struts-default" namespace="/">
-        <action name="login" class="action.Login">
+                <action name="login" class="action.Login">
             <result name="initial_entry">Login.jsp</result>
             <result name="success_admin">AdminPage.jsp</result>
-            <result name="success_member">Login.jsp</result>
+            <result name="success_member">MemberPage.jsp</result>
             <result name="error">Login.jsp</result>
         </action>
         
-        <action name="adminfunctions" class="action.AdminFunctions">
+      
+        
+       <action name="adminfunctions" class="action.AdminFunctions">
             <result name="next">CreateWorkflowType.jsp</result>
             <result name="error">Workflowlist.jsp</result>
         </action>
@@ -29,7 +31,30 @@
             <result name="viewsuccess">Workflowlist.jsp</result>
             <result name="next">AddRole.jsp</result>
             <result name="error">CreateWorkflowType.jsp</result>
+            <result name="addsuccess">WorkflowItem.jsp</result>
         </action>
+        
+        <action name="workflowitem"  class="action.WorkflowItem">
+        	<result name="success_item">WorkflowItem.jsp</result>
+        	<result name="initial">WorkflowItem.jsp</result>
+        	<result name="next">AddRole.jsp</result>
+        	<result name="viewsuccess">WorkflowItemList.jsp</result>
+        </action>
+       
+       <action name="displayworkflowitem"  class="action.DisplayWorkflowItem">
+       	<result name=" display_success" >DisplayWorkflowItem.jsp</result>
+       	<result name=" delete_success" >WorkflowItemList.jsp</result>
+       	
+        </action>
+        
+        <action name="modifyworkflowitem" class="action.ModifyWorkflowItem">
+            <result name="modifysuccess">DisplayWorkflowType.jsp</result>
+            <result name="deletesuccess">DisplayWorkflowType.jsp</result>
+            <result name="error">DisplayWorkflowType.jsp</result>
+        </action>
+               
+       
+       
        
 		<action name="displayworkflowtype" class="action.DisplayWorkflowType">
             <result name="displaysuccess">DisplayWorkflowType.jsp</result>
@@ -115,7 +140,91 @@
         	<result name="modify_success">DisplayAction.jsp</result>
         	<result name="error">DisplayAction.jsp</result>
         </action>
+
+
+		 <action name="reportingmanager"   class="ITAssetAllocation.ReportingManager">
+        	
+        	<result name="view_success">DisplayReportingManager.jsp</result>
+        	<result name="error">ReportingManagerPage.jsp</result>
+        </action>
+		
+
+
+ <action name="memberfunctions" class="action.MemberFunctions">
+            <result name="Customer">CustomerPage.jsp</result>
+            <result name="Bank Teller">BankTellerPage.jsp</result>
+            <result name="Loan Officer">LoanOfficerPage.jsp</result>
+            <result name="Loan Committee">LoanCommitteePage.jsp</result>
+            <result name="Loan Manager">LoanManagerPage.jsp</result>
+            <result name="Employee">EmployeePage.jsp</result>
+            <result name="ReportingManager">ReportingManagerPage.jsp</result>
+            <result name="ITHelpdeskEmp">ITHelpdeskEmpPage.jsp</result>
+            <result name="ITManager">ITManagerPage.jsp</result>
+            <result name="AssetManager">AssetManagerPage.jsp</result>
+            <result name="error">Login.jsp</result>
+        </action>
+        
+
+<action name="employeeaction" class="ITAssetAllocation.EmployeeAction">
+            <result name="itassetrequest">ITAssetRequest.jsp</result>
+            <result name="allocatedassets">ViewAllocatedAssets.jsp</result>
+        </action>
+       
+        <action name="assetallotment" class="ITAssetAllocation.AssetAllotment">
+            <result name="success">ITAssetRequest.jsp</result>
+            <result name="error">ITAssetRequest.jsp</result>
+        </action>
+        
+       <action name="customeraction" class="action.CustomerAction">
+            <result name="itassetrequest">ITAssetRequest.jsp</result>
+            <result name="allocatedassets">ViewAllocatedAssets.jsp</result>
+            <result name="error">CustomerPage.jsp</result>
+            <result name="member_verified">BankTeller.jsp</result>
+        </action>
+
+
+
       
        
     </package>
 </struts>
+
+
+
+
+
+
+
+
+
+        
+        
+       
+       
+		
+               
+        
+        
+       
+        
+       
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       
+        
+        
+       
+      
+        
+      
+       
+ 

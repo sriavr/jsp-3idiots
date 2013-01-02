@@ -30,10 +30,55 @@ public class MemberFunctions extends ActionSupport {
 	private String emailid;
 	private BigDecimal phone;
 	private String address;
+	private int membermanagerid;
 	
 	
 	
 	
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	public Member getMember_loggedin() {
+		return member_loggedin;
+	}
+
+	public void setMember_loggedin(Member member_loggedin) {
+		this.member_loggedin = member_loggedin;
+	}
+
+	public int getMembermanagerid() {
+		return membermanagerid;
+	}
+
+	public void setMembermanagerid(int membermanagerid) {
+		this.membermanagerid = membermanagerid;
+	}
+
+	public String getRet_val() {
+		return ret_val;
+	}
+
+	public void setRet_val(String ret_val) {
+		this.ret_val = ret_val;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public int getMemberid() {
 		return memberid;
 	}
@@ -180,32 +225,8 @@ public class MemberFunctions extends ActionSupport {
 			this.setPhone(member.getPhone());
 			this.setAddress(member.getAddress());
 			System.out.println("jsut doing" +ret_val);
-			if(ret_val.matches("Customer"))
-			{	System.out.println("returned value");
-				return "Customer";
-			}
-			if(ret_val.equals("Bank Teller"))
-				return "Bank Teller";
-			if(ret_val.equals("Loan Manager"))
-				return "Loan Manager";
-			if(ret_val.equals("Loan Officer"))
-			{
-				System.out.println("returned value");
-				return "Loan Officer";
-			}
-				
-			if(ret_val.equals("Loan Committee"))
-				return "Loan Committee";
-			if(ret_val.equals("Employee"))
-				return "Employee";
-			if(ret_val.equals("ITHelpdeskEmp"))
-				return "ITHelpdeskEmp";
-			if(ret_val.equals("ITManager"))
-				return "ITManager";
-			if(ret_val.equals("AssetManager"))
-				return "AssetManager";
 			
-			
+			return ret_val;
 		
         }
 
