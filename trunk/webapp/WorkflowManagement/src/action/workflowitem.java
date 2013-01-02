@@ -80,6 +80,20 @@ public class workflowitem  extends ActionSupport{
     	session.put("itemsession", workflowitemlist);
 		
 	}
+	
+	WorkflowDataDef wfdatadef = new WorkflowDataDef();
+	public ArrayList<WorkflowItem> getWorkflowitemlist() {
+		return workflowitemlist;
+	}
+	public void setWorkflowitemlist(ArrayList<WorkflowItem> workflowitemlist) {
+		this.workflowitemlist = workflowitemlist;
+	}
+	public WorkflowDataDef getWfdatadef() {
+		return wfdatadef;
+	}
+	public void setWfdatadef(WorkflowDataDef wfdatadef) {
+		this.wfdatadef = wfdatadef;
+	}
 	public String execute()
 	{
 		
@@ -112,6 +126,7 @@ public class workflowitem  extends ActionSupport{
 			
 			System.out.println("wftypeid"+" "+wftypeid+" "+"wfitemname"+" "+wfitemname+" ");
 			wfitem.insert();
+			wfdatadef.selectname("");
 			System.out.println("successfully inserted");
 			addToWorkflowItem(wfitem);
 			addActionError(getText("Add Item Successful"));
