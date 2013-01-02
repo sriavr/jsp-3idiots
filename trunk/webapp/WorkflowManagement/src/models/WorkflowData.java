@@ -20,10 +20,16 @@ public class WorkflowData {
 				+ "set wfdatadefid = '" + wfdatadefid + "', wfinstanceid = '" + wfinstanceid
 				+ "', value = '" + value+
 				"' where wfdataid = " + wfdataid;
-	//	System.out.println("Updated the book");
 		return DB.update(updateSQL);
 	}
 
+	public int updatevalue() {
+		String updateSQL = 
+			    "update workflowdata "
+				+ "set value = '" + value+
+				"' where wfdatadefid = " + wfdatadefid;
+		return DB.update(updateSQL);
+	}
 	public int deletedef() {
 		String deleteSQL = 
 			    "delete from workflowdata where wfdataid = " + wfdataid;
