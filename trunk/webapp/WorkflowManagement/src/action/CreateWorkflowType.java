@@ -187,6 +187,12 @@ public class CreateWorkflowType extends ActionSupport {
 			}
 			return "viewsuccess";
 		}
+		
+		
+		if(submit.startsWith("Add")){
+			
+			return "addsuccess";
+		}
 	
 				
 		if(submit.startsWith("Next"))
