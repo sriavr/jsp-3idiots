@@ -31,7 +31,30 @@
             <result name="viewsuccess">Workflowlist.jsp</result>
             <result name="next">AddRole.jsp</result>
             <result name="error">CreateWorkflowType.jsp</result>
+            <result name="addsuccess">WorkflowItem.jsp</result>
         </action>
+        
+        <action name="workflowitem"  class="action.WorkflowItem">
+        	<result name="success_item">WorkflowItem.jsp</result>
+        	<result name="initial">WorkflowItem.jsp</result>
+        	<result name="next">AddRole.jsp</result>
+        	<result name="viewsuccess">WorkflowItemList.jsp</result>
+        </action>
+       
+       <action name="displayworkflowitem"  class="action.DisplayWorkflowItem">
+       	<result name=" display_success" >DisplayWorkflowItem.jsp</result>
+       	<result name=" delete_success" >WorkflowItemList.jsp</result>
+       	
+        </action>
+        
+        <action name="modifyworkflowitem" class="action.ModifyWorkflowItem">
+            <result name="modifysuccess">DisplayWorkflowType.jsp</result>
+            <result name="deletesuccess">DisplayWorkflowType.jsp</result>
+            <result name="error">DisplayWorkflowType.jsp</result>
+        </action>
+               
+       
+       
        
 		<action name="displayworkflowtype" class="action.DisplayWorkflowType">
             <result name="displaysuccess">DisplayWorkflowType.jsp</result>
