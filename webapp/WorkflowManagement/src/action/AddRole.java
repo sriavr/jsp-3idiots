@@ -19,7 +19,7 @@ public class AddRole extends ActionSupport {
     private String roledescription; 
     private String submit;
     
-    private ArrayList<Role> rolelist;
+    
     private ArrayList<Role> viewrolelist=new ArrayList<Role>();
     Role role=new Role();
     Map<String, Object> session;
@@ -28,12 +28,12 @@ public class AddRole extends ActionSupport {
 		return role;
 	}
 
-
+    
 	public void setRole(Role role) {
 		this.role = role;
 	}
 
-
+	private ArrayList<Role> rolelist;
 	private void addToRole(Role role)
 	{ 
 		
