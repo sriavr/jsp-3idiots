@@ -9,6 +9,11 @@ public class Actions {
 
 	
 	private int actionid;
+	private int wftypeid;
+	private String actionname;
+	private String actiondescription;
+	
+	
 	public int getActionid() {
 		return actionid;
 	}
@@ -41,9 +46,7 @@ public class Actions {
 		this.actiondescription = actiondescription;
 	}
 
-	private int wftypeid;
-	private String actionname;
-	private String actiondescription;
+	
 	
 	
 	
@@ -110,7 +113,7 @@ public class Actions {
 			if (resultSet.next()) {
 				Actions action = new Actions();
 				action.actionid = resultSet.getInt("actionid");
-				action.wftypeid = resultSet.getInt("wftypeidid");
+				action.wftypeid = resultSet.getInt("wftypeid");
 				action.actionname = resultSet.getString("actionname");
 				action.actiondescription = resultSet.getString("actiondescription");
 				DB.close(resultSet);
@@ -127,7 +130,4 @@ public class Actions {
 		return null;
 	}
 
-
-
-		
 }
