@@ -90,27 +90,7 @@ public class WorkflowDataDef {
 		return null;
 	}
 	
-	public static ArrayList<String> selectname(String selectionModifier) {
-		ArrayList<String> selection = new ArrayList<String>();
-		ResultSet resultSet=null;
-		String query = "select name from workflowdatadef " + selectionModifier;
-		Connection connection = DB.getConnection();
-		resultSet = DB.select(query, connection);
-		try {
-			while (resultSet.next()) {
-				String name = new String();
-				name = resultSet.getString("name");
-				selection.add(name);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		DB.close(resultSet);
-		DB.close(connection);
-		return selection;
-	}
 
-	
 	public int getWfdatadefid() {
 		return wfdatadefid;
 	}

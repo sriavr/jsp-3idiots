@@ -141,15 +141,6 @@
         	<result name="error">DisplayAction.jsp</result>
         </action>
 
-
-		 <action name="reportingmanager"   class="ITAssetAllocation.ReportingManager">
-        	
-        	<result name="view_success">DisplayReportingManager.jsp</result>
-        	<result name="error">ReportingManagerPage.jsp</result>
-        </action>
-		
-
-
  <action name="memberfunctions" class="action.MemberFunctions">
             <result name="Customer">CustomerPage.jsp</result>
             <result name="Bank Teller">BankTellerPage.jsp</result>
