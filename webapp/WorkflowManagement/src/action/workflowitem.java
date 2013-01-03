@@ -11,6 +11,31 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class workflowitem  extends ActionSupport{
 	
+	 private ArrayList<Integer> workflow_instances = new ArrayList<Integer>();
+	 private ArrayList<String> workflow_names = new ArrayList<String>();
+
+	 private ArrayList <Workflow> workflowtypes = new ArrayList<Workflow>();
+	 private ArrayList <WorkflowInstance> workflowinstances = new ArrayList<WorkflowInstance>();
+	 
+	 
+	public ArrayList<Integer> getWorkflow_instances() {
+		return workflow_instances;
+	}
+	public void setWorkflow_instances(ArrayList<Integer> workflow_instances) {
+		this.workflow_instances = workflow_instances;
+	}
+	public ArrayList<String> getWorkflow_names() {
+		return workflow_names;
+	}
+	public void setWorkflow_names(ArrayList<String> workflow_names) {
+		this.workflow_names = workflow_names;
+	}
+	public ArrayList<WorkflowItem> getWorkflowitemlist() {
+		return workflowitemlist;
+	}
+	public void setWorkflowitemlist(ArrayList<WorkflowItem> workflowitemlist) {
+		this.workflowitemlist = workflowitemlist;
+	}
 	private String wfitemname;
 	public String getWfitemname() {
 		return wfitemname;
@@ -153,8 +178,20 @@ public class workflowitem  extends ActionSupport{
 		}
 
 		if(this.submit.startsWith("Next"))
+		{
+			workflowtypes  = Workflow.selectall("");
+			workflowinstances = WorkflowInstance.selectall("where wftypeid="+wftypeid);
+			for(int i=0;i<workflowtypes.size();i++)
+			{
+				workflow_names.add(workflowtypes.get(i).getWfname());
+			}
+			for(int i=0;i<workflowinstances.size();i++)
+			{
+				workflow_instances.add(workflowinstances.get(i).getWfinstanceid());
+			}
 			return "next";
-		addActionError(getText("Invalid Add Member!"));
+		}
+		addActionError(getText("Invalid Add WorkflowItem!"));
         return "initial";
 	    
 			

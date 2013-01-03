@@ -24,14 +24,14 @@ public class WorkflowData {
 		return DB.update(updateSQL);
 	}
 
-	public int deletedef() {
+	public int delete() {
 		String deleteSQL = 
 			    "delete from workflowdata where wfdataid = " + wfdataid;
 	//	System.out.println("Updated the book");
 		return DB.update(deleteSQL);
 	}
 	
-	public int insertdef() {
+	public int insert() {
 		System.out.println("In wf insert()");
 		String insertSQL = "insert into workflowdata "
 				+ "(wfdataid,wfdatadefid,wfinstanceid,value ) " + "values('" + wfdataid + "', '" + wfdatadefid + "', '" + wfinstanceid + "', '" + value+ "');";

@@ -165,6 +165,7 @@ public class Member {
 		resultSet = DB.select(query, connection);
 		try {
 			if (resultSet.next()) {
+				System.out.println("Member selectone func----11:35");
 				Member member = new Member();
 				member.memberid = resultSet.getInt("memberid");
 				member.roleid = resultSet.getInt("roleid");
