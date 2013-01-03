@@ -9,7 +9,7 @@ import models.*;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class workflowitem  extends ActionSupport{
+public class CreateWorkflowItem  extends ActionSupport{
 	
 	private String wfitemname;
 	public String getWfitemname() {
