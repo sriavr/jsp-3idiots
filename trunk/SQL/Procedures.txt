@@ -1,0 +1,24 @@
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_workflow_instance_details`(
+IN wfinstanceid INT
+)
+BEGIN
+
+select 
+i.wfinstanceid,i.memberid as ownerid,
+concat(m.fname,' ',m.lname) as ownername, 
+w.wfname,wi.wfitemcategory,wi.wfitemname,
+s.statename as state,s.statedescription,
+i.creationdatetime from workflowinstance i, 
+workflowtype w, member m, 
+workflowitem wi, states s
+ where 
+i.wftypeid = w.wftypeid and 
+i.memberid=m.memberid and 
+wi.wfitemid=i.wfitemid and 
+s.stateid=i.currentstate and 
+i.wfinstanceid = wfinstanceid;
+
+END$$
+
