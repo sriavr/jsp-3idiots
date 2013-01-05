@@ -1,12 +1,12 @@
 
------------------------------------------------------
+#######################################################
  create table WorkFlowType(
  WFTypeID int primary key auto_increment,
  WFName varchar(30) not null unique,
  Description varchar(70));
 
 
------------------------------------------------------
+#######################################################
  create table Role(
  RoleID int primary key auto_increment,
  WFTypeID int ,
@@ -16,7 +16,7 @@
 alter table Role add constraint foreign key(WFTypeID) references WorkFlowType(WFTypeID);
 
 
------------------------------------------------------
+#######################################################
 create table States(
 StateID int primary key auto_increment,
 WFTypeID int ,
@@ -27,7 +27,7 @@ alter table States add constraint foreign key(WFTypeID)references WorkFlowType(W
 
 
 
-------------------------------------------------------
+#######################################################
  create table Actions(
  ActionId int primary key auto_increment,
  WFTypeID int ,
@@ -37,7 +37,7 @@ alter table States add constraint foreign key(WFTypeID)references WorkFlowType(W
  alter table Actions add constraint foreign key(WFTypeID) references WorkFlowType(WFTypeID);
 
 
-------------------------------------------------------
+#######################################################
 create table Member(
 MemberID int primary key auto_increment,
 RoleId int ,
@@ -54,7 +54,7 @@ alter table Member add constraint foreign key(RoleID) references Role(RoleID);
 
 
 
----------------------------------------------------------
+#######################################################
 
 
 create table StateSequenceTable(
@@ -77,7 +77,7 @@ alter table StateSequenceTable add constraint foreign key( PreviousStateID) refe
 alter table StateSequenceTable add constraint foreign key(NextStateID) references States(StateID);
 
 
-------------------------------------------------------------
+#######################################################
 
 create table WorkFlowInstance(
 
@@ -100,7 +100,7 @@ alter table WorkFlowInstance add constraint foreign key(CurrentState)references 
 alter table WorkFlowInstance add constraint foreign key(WFTypeID)references WorkFlowType(WFTypeID);
 
 
------------------------------------------------------------------
+#######################################################
 create table EventHistory(
 
 EventHistoryID int primary key auto_increment,
@@ -126,3 +126,26 @@ alter table EventHistory add constraint foreign key(SeqID)references StateSequen
 alter table EventHistory add constraint foreign key(CreatorMemberID)references Member(MemberID);
 
 alter table EventHistory add constraint foreign key(ActorMemberID)references Member(MemberID);
+
+
+#######################################################
+
+create table Admin (AdminID int primary key auto_increment, Username varchar(25),Password varchar(20));
+################create table workflowitem (WFItemID int auto_increment primary key, WFTypeID int, WFItemType varchar(30), WFItemCategory varchar(30),WFItemName varchar(30), QuantityAvail int);
+alter table workflowitem add constraint foreign key(WFTypeID) references WorkFlowType(WFTypeID);
+
+######################create table WorkFlowDataDef(WFDataDefID int auto_increment primary key, WFTypeID int, Name varchar(30), Description varchar(100), isreadonly int);
+alter table WorkFlowDataDef add constraint foreign key(WFTypeID) references workflowtype(WFTypeID);
+###############create table WorkFlowData(WFDataID int auto_increment primary key,WFDataDefID int, WFInstanceID int, Value varchar(30));
+alter table WorkFlowData add constraint foreign key(WFDataDefID) references workflowdatadef(WFdatadefID);
+
+alter table WorkFlowData add constraint foreign key(WFInstanceID) references workflowinstance(WFInstanceID);
+
+alter table member add column ManagerMemberid int;
+
+alter table member add constraint foreign key(ManagerMemberid) references member(memberid);
+
+
+alter table workflowinstance add column WFItemID int;
+
+alter table workflowinstance add constraint foreign key (wfitemid) references workflowitem(wfitemid);

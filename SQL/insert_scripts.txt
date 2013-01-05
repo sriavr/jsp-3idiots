@@ -1,3 +1,6 @@
+-- admin
+insert into Admin values(1,'wfadmin','wfadmin');
+
 -- workflowtype
 
 insert into WorkFlowType values (1,'Bank Loan Processing', 'This workflow deals with bank loan processing'); 
@@ -206,6 +209,86 @@ insert into EventHistory values(320,2,14,517,'2012-12-22 15:15:06',1009,1014);
 
 insert into EventHistory values(321,2,14,513,'2012-12-22 17:30:06',1009,1012);
 
+--workflowitem
+insert into WorkFlowItem values (901,1,'Bank Loan','Education Loan','Shiksha',10); 
 
+insert into WorkFlowItem values (902,1,'Bank Loan','Vehicle Loan','Aapka Gaadi',5); 
+
+insert into WorkFlowItem values (903,1,'Bank Loan','House Loan','Ghar ke liye',15);
+
+insert into WorkFlowItem values (904,1,'Bank Loan','Gold Loan','Sona',10); 
+
+insert into WorkFlowItem values (905,2,'Asset','Hardware','Headphone',20);
+
+insert into WorkFlowItem values (906,2,'Asset','Hardware','Laptop',5);
+
+insert into WorkFlowItem values (907,2,'Asset','Hardware','Speaker',15); 
+
+insert into WorkFlowItem values (908,2,'Asset','Hardware','Keyboard',20);
+
+insert into WorkFlowItem values (909,2,'Asset','Hardware','Mouse',10); 
+
+insert into WorkFlowItem values (910,2,'Asset','Hardware','RAM',3);
+
+insert into WorkFlowItem values (911,2,'Asset','Software','OS',5); 
+
+insert into WorkFlowItem values (912,2,'Asset','Software','Trend Micro Antivirus',10); 
+
+insert into WorkFlowItem values (913,2,'Asset','Software','MS Office',4); 
+
+insert into WorkFlowItem values (914,2,'Asset','Software','Oracle 11g',3); 
+
+insert into WorkFlowItem values (915,2,'Asset','Software','Tortoise SVN',2);
+
+
+
+--workflowdatadef
+insert into workflowdatadef values (1101,1,'Salary','Salary of the person applying loan',0);
+
+insert into workflowdatadef values (1102,1,'Profession','Profession of the person applying loan',0);
+
+insert into workflowdatadef values (1103,1,'Age','Age of the person applying loan',0);
+
+insert into workflowdatadef values (1104,1,'Loan Amount','Loan amount for which the customer is applying',0);
+
+insert into workflowdatadef values (1105,1,'Loan Lower Limit','Lower limit for loan amount',1);
+
+insert into workflowdatadef values (1106,1,'Loan Upper Limit','Upper limit for loan amount',1);
+
+insert into workflowdatadef values (1107,2,'Designation','Designation of the employee applying for the asset',0);
+
+
+
+--workflowdata
+insert into workflowdata values (1201,1101,11,'50000');
+
+insert into workflowdata values (1202,1102,11,'Asst Professor');
+
+insert into workflowdata values (1203,1103,11,'33');
+
+insert into workflowdata values (1204,1104,11,'600000');
+
+insert into workflowdata values (1205,1105,11,'100000');
+
+insert into workflowdata values (1206,1106,11,'800000');
+
+insert into workflowdata values (1207,1105,14,'Software Engineer');
+
+insert into workflowdata values (1208,1105,16,'Database Administrator');
+
+
+update workflowinstance set wfitemid=902 where wfinstanceid=11;
+
+
+update workflowinstance set wfitemid=902 where wfinstanceid=12;
+
+
+update workflowinstance set wfitemid=904 where wfinstanceid=13;
+
+
+update workflowinstance set wfitemid=905 where wfinstanceid=14;
+
+
+update workflowinstance set wfitemid=914 where wfinstanceid=15;
 
 commit;
