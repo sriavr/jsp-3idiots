@@ -1,5 +1,23 @@
 delimiter $$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_workflow_type_details`(
+IN wftypeid INT
+)
+BEGIN
+
+select 
+w.wftypeid, w.wfname, w.description
+from  
+workflowtype w
+where 
+w.wftypeid = wftypeid;
+
+END$$
+
+--
+
+delimiter $$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `display_workflow_instance_details`(
 IN wfinstanceid INT
 )
@@ -27,22 +45,62 @@ i.wfinstanceid = wfinstanceid;
 
 END$$
 
+--
 
 delimiter $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `display_workflow_type_details`(
-IN wftypeid INT
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_member_details`(
+IN wftypeid INT, IN memberid INT
 )
 BEGIN
 
 select 
-w.wftypeid, w.wfname, w.description
+m.memberid, m.fname, m.lname, m.emailid, m.phone, m.username, m.password, m.address
 from  
-workflowtype w
+member m, role r
 where 
-w.wftypeid = wftypeid;
-
+m.roleid = r.roleid
+and r.wftypeid = wftypeid
+and m.memberid = memberid;
 END$$
+
+--
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_role_details`(
+IN wftypeid INT, IN roleid INT
+)
+BEGIN
+
+select 
+r.roleid, r.rolename, r.description as roledescription
+from  
+role r, workflowtype w
+where 
+r.wftypeid = w.wftypeid
+and r.wftypeid = wftypeid
+and r.roleid = roleid;
+END$$
+
+--
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_state_details`(
+IN wftypeid INT, IN stateid INT
+)
+BEGIN
+select s.stateid, s.statename, s.statedescription, 
+w.wftypeid, w.wfname, w.description as wfdescription
+from states s,workflowtype w
+where 
+s.wftypeid = w.wftypeid
+and s.wftypeid = wftypeid
+and s.stateid = stateid;
+END$$
+
+--
 
 delimiter $$
 
@@ -67,4 +125,158 @@ and w.wftypeid = e.wftypeid
 and e.wfinstanceid=wfinstanceid;
 END$$
 
+--
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_workflow_data_def`(
+IN wftypeid INT
+)
+BEGIN
+
+select 
+w.wftypeid,wd.wfinstanceid, w.wfdatadefid, wd.wfdataid, w.name, w.description, wd.value
+from  
+workflowdatadef w, workflowdata wd
+where 
+w.wfdatadefid = wd.wfdatadefid
+and w.wftypeid = wftypeid;
+
+END$$
+
+--
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_members`(
+IN wftypeid INT
+)
+BEGIN
+
+select 
+m.memberid, m.fname, m.lname, m.emailid, m.phone, m.username, m.password, m.address
+from  
+member m, role r
+where 
+m.roleid = r.roleid
+and r.wftypeid = wftypeid;
+
+END$$
+
+--
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_roles`(
+IN wftypeid INT
+)
+BEGIN
+
+select 
+r.roleid, r.rolename, r.description as roledescription
+from  
+role r, workflowtype w
+where 
+r.wftypeid = w.wftypeid
+and r.wftypeid = wftypeid;
+
+END$$
+
+--
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_state_sequences`(
+IN wftypeid INT
+)
+BEGIN
+select s.seqid, s.roleid, r.rolename, r.description as roledescription, 
+s.previousstateid as prevstateid, pst.statename as prevstatename, pst.statedescription as prevstatedescription,
+s.nextstateid, nst.statename as nextstatename, nst.statedescription as nextstatedescription,
+a.actionid, a.actionname, a.actiondescription, w.wftypeid, w.wfname, w.description as wfdescription
+from statesequencetable s, role r, states pst, states nst,
+actions a, workflowtype w
+where 
+s.previousstateid = pst.stateid
+and s.nextstateid = nst.stateid
+and s.roleid = r.roleid
+and s.actionid = a.actionid
+and s.wftypeid = w.wftypeid
+and s.wftypeid = wftypeid;
+END$$
+
+--
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_states`(
+IN wftypeid INT
+)
+BEGIN
+select s.stateid, s.statename, s.statedescription, 
+w.wftypeid, w.wfname, w.description as wfdescription
+from states s,workflowtype w
+where 
+s.wftypeid = w.wftypeid
+and s.wftypeid = wftypeid;
+END$$
+
+--
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_actions`(
+IN wftypeid INT
+)
+BEGIN
+select a.actionid, a.actionname, a.actiondescription,
+w.wftypeid, w.wfname, w.description as wfdescription
+from actions a,workflowtype w
+where 
+a.wftypeid = w.wftypeid
+and a.wftypeid = wftypeid;
+END$$
+
+--
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_workflow_types`(
+IN wftypeid INT
+)
+BEGIN
+
+select 
+w.wftypeid, w.wfname, w.description
+from  
+workflowtype w;
+END$$
+
+--
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_workflow_instances`(
+)
+BEGIN
+
+select 
+i.wfinstanceid,i.creationdatetime,i.memberid as ownerid,
+m.fname as ownerfname, m.lname as ownerlname, 
+m.emailid as owneremailid, m.phone as ownerphone, 
+m.address as owneraddress, m.roleid as ownerroleid,
+r.rolename as ownerrolename, r.description as ownerroledescription,
+wi.wfitemid,wi.wfitemname,wi.wfitemtype,
+s.stateid, s.statename as statename,s.statedescription,
+w.wftypeid,w.wfname, w.description as wfdescription
+from workflowinstance i, 
+workflowtype w, member m, role r,
+workflowitem wi, states s
+ where 
+i.wftypeid = w.wftypeid and 
+i.memberid=m.memberid and 
+m.roleid=r.roleid and
+wi.wfitemid=i.wfitemid and 
+s.stateid=i.currentstate;
+END$$
 
