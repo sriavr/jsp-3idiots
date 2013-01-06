@@ -27,3 +27,44 @@ i.wfinstanceid = wfinstanceid;
 
 END$$
 
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_workflow_type_details`(
+IN wftypeid INT
+)
+BEGIN
+
+select 
+w.wftypeid, w.wfname, w.description
+from  
+workflowtype w
+where 
+w.wftypeid = wftypeid;
+
+END$$
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_event_history`(
+IN wfinstanceid INT
+)
+BEGIN
+select e.eventhistoryid as eventid, e.seqid, s.previousstateid as prevstateid,pst.statename as prevstatename,
+pst.statedescription as prevstatedescription,s.nextstateid,nst.statename as nextstatename,
+nst.statedescription as nextstatedescription, m.memberid as ownerid, m.fname as ownerfname,m.lname as ownerlname,
+m.emailid as owneremailid,m.phone as ownerphone,m.address as owneraddress, r.roleid, r.rolename, r.description as roledescription,
+e.eventdatetime, a.actionid, a.actionname, a.actiondescription,
+w.wftypeid, w.wfname, w.description
+from eventhistory e, statesequencetable s, states pst, states nst, actions a, member m, role r, workflowtype w
+where e.seqid = s.seqid 
+and s.previousstateid = pst.stateid
+and s.nextstateid = nst.stateid
+and s.actionid = a.actionid
+and e.creatormemberid = m.memberid
+and m.roleid = r.roleid
+and w.wftypeid = e.wftypeid
+and e.wfinstanceid=wfinstanceid;
+END$$
+
+
