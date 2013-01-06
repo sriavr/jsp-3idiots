@@ -6,16 +6,21 @@ IN wfinstanceid INT
 BEGIN
 
 select 
-i.wfinstanceid,i.memberid as ownerid,
-concat(m.fname,' ',m.lname) as ownername, 
-w.wfname,wi.wfitemcategory,wi.wfitemname,
-s.statename as state,s.statedescription,
-i.creationdatetime from workflowinstance i, 
-workflowtype w, member m, 
+i.wfinstanceid,i.creationdatetime,i.memberid as ownerid,
+m.fname as ownerfname, m.lname as ownerlname, 
+m.emailid as owneremailid, m.phone as ownerphone, 
+m.address as owneraddress, m.roleid as ownerroleid,
+r.rolename as ownerrolename, r.description as ownerroledescription,
+wi.wfitemid,wi.wfitemname,wi.wfitemtype,
+s.stateid, s.statename as statename,s.statedescription,
+w.wftypeid,w.wfname, w.description as wfdescription
+from workflowinstance i, 
+workflowtype w, member m, role r,
 workflowitem wi, states s
  where 
 i.wftypeid = w.wftypeid and 
 i.memberid=m.memberid and 
+m.roleid=r.roleid and
 wi.wfitemid=i.wfitemid and 
 s.stateid=i.currentstate and 
 i.wfinstanceid = wfinstanceid;
