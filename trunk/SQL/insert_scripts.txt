@@ -272,9 +272,9 @@ insert into workflowdata values (1205,1105,11,'100000');
 
 insert into workflowdata values (1206,1106,11,'800000');
 
-insert into workflowdata values (1207,1105,14,'Software Engineer');
+insert into workflowdata values (1207,1107,14,'Software Engineer');
 
-insert into workflowdata values (1208,1105,16,'Database Administrator');
+insert into workflowdata values (1208,1107,16,'Database Administrator');
 
 
 update workflowinstance set wfitemid=902 where wfinstanceid=11;
