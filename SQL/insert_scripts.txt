@@ -1,3 +1,4 @@
+
 -- admin
 insert into Admin values(1,'wfadmin','wfadmin');
 
@@ -34,33 +35,33 @@ insert into Role values (410,2,'AssetManager','Asset Dept head');
 -- member
 
 
-insert into Member values (1001,401,'Appula','Apparao','apparao.appu@gmail.com',9190002002,'Apparao','Password1','Flat 301, Appu Apts, Koramangala');
+insert into Member (memberid,roleid,fname,lname,emailid,phone,username,password,address) values (1001,401,'Appula','Apparao','apparao.appu@gmail.com',9190002002,'Apparao','Password1','Flat 301, Appu Apts, Koramangala');
 
-insert into Member values (1002,401,'Kharchula','Kantha Reddy','kharchula@yahoo.com',9880988080,'Kantha Reddy','Password2','Phase 1, E.City');
+insert into Member (memberid,roleid,fname,lname,emailid,phone,username,password,address) values (1002,401,'Kharchula','Kantha Reddy','kharchula@yahoo.com',9880988080,'Kantha Reddy','Password2','Phase 1, E.City');
 
-insert into Member values (1003,401,'UltaPulta','Udhaar','ultapulta@yahoo.co.in',9716789023,'Udhaar','Password3','7th cross, Indira Nagar');
+insert into Member (memberid,roleid,fname,lname,emailid,phone,username,password,address) values (1003,401,'UltaPulta','Udhaar','ultapulta@yahoo.co.in',9716789023,'Udhaar','Password3','7th cross, Indira Nagar');
 
-insert into Member values (1004,402,'Gundu','Gumaastha','nenu.gunduboss@gmail.com',8090706050,'Gumaastha','Password4','4th Block, Jaya Nagar');
+insert into Member (memberid,roleid,fname,lname,emailid,phone,username,password,address) values (1004,402,'Gundu','Gumaastha','nenu.gunduboss@gmail.com',8090706050,'Gumaastha','Password4','4th Block, Jaya Nagar');
 
-insert into Member values (1005,402,'Rathnala','Rathaiah','rathnalu.ivvanu@gmail.com',9869058704,'Rathaiah','Password5','8th Main, Richmond Circle');
+insert into Member (memberid,roleid,fname,lname,emailid,phone,username,password,address) values (1005,402,'Rathnala','Rathaiah','rathnalu.ivvanu@gmail.com',9869058704,'Rathaiah','Password5','8th Main, Richmond Circle');
 
-insert into Member values (1006,403,'Khulla','Khullam','khullam.khulla@gmail.com',9776045673,'Khullam','Password6','9th Street, Cubbon Road');
+insert into Member (memberid,roleid,fname,lname,emailid,phone,username,password,address) values (1006,403,'Khulla','Khullam','khullam.khulla@gmail.com',9776045673,'Khullam','Password6','9th Street, Cubbon Road');
 
-insert into Member values (1007,404,'Sollu','Kamitee','idi_sollu@yahoo.com',8990123456,'Kamitee','Password7','18th Block, Jaya Nagar');
+insert into Member (memberid,roleid,fname,lname,emailid,phone,username,password,address) values (1007,404,'Sollu','Kamitee','idi_sollu@yahoo.com',8990123456,'Kamitee','Password7','18th Block, Jaya Nagar');
 
-insert into Member values (1008,405,'Manjooru','Mallanna','na_peru_mallanna@yahoo.com',9786954923,'Mallanna','Password8','H.No-12, Singasandra');
+insert into Member (memberid,roleid,fname,lname,emailid,phone,username,password,address) values (1008,405,'Manjooru','Mallanna','na_peru_mallanna@yahoo.com',9786954923,'Mallanna','Password8','H.No-12, Singasandra');
 
-insert into Member values (1009,406,'ManchiPanodu','Satthi','o.manchipanodu@gmail.com',9999988888,'Satthi','Password9','33rd cross, WhiteField');
+insert into Member (memberid,roleid,fname,lname,emailid,phone,username,password,address) values (1009,406,'ManchiPanodu','Satthi','o.manchipanodu@gmail.com',9999988888,'Satthi','Password9','33rd cross, WhiteField');
 
-insert into Member values (1010,406,'Katthi','Karmikudu','nenu_Katthi@yahoo.co.in',9786453120,'Karmikudu','Password10','12th Main, Marathahalli');
+insert into Member (memberid,roleid,fname,lname,emailid,phone,username,password,address) values (1010,406,'Katthi','Karmikudu','nenu_Katthi@yahoo.co.in',9786453120,'Karmikudu','Password10','12th Main, Marathahalli');
 
-insert into Member values (1011,407,'Yejamani','Yenkaiah','Yenkaiah007@yahoo.com',8795462130,'Yenkaiah','Password11','Phase 2, BTM Layout');
+insert into Member (memberid,roleid,fname,lname,emailid,phone,username,password,address) values (1011,407,'Yejamani','Yenkaiah','Yenkaiah007@yahoo.com',8795462130,'Yenkaiah','Password11','Phase 2, BTM Layout');
 
-insert into Member values (1012,408,'Saha','Sahayakudu','Saha12345@gmail.com',9080701234,'Sahayakudu','Password12','3rd block, J P Nagar');
+insert into Member (memberid,roleid,fname,lname,emailid,phone,username,password,address) values (1012,408,'Saha','Sahayakudu','Saha12345@gmail.com',9080701234,'Sahayakudu','Password12','3rd block, J P Nagar');
 
-insert into Member values (1013,409,'Alajadi','Adhikari','Alajadi_000@yahoo.com',9848082919,'Adhikari','Password13','11th Main, 3rd street, Rajaji Nagar');
+insert into Member (memberid,roleid,fname,lname,emailid,phone,username,password,address) values (1013,409,'Alajadi','Adhikari','Alajadi_000@yahoo.com',9848082919,'Adhikari','Password13','11th Main, 3rd street, Rajaji Nagar');
 
-insert into Member values (1014,410,'Jambalakadi','Pamba Rao','jumbo.jamba@gmail.com',9887766554,'Pamba Rao','Password14','10th Cross, Bannerghatta');
+insert into Member (memberid,roleid,fname,lname,emailid,phone,username,password,address) values (1014,410,'Jambalakadi','Pamba Rao','jumbo.jamba@gmail.com',9887766554,'Pamba Rao','Password14','10th Cross, Bannerghatta');
 
 
 -- states
@@ -92,19 +93,58 @@ insert into States values (122,2,'asset rejected', 'asset rejected');
 
 insert into States values (123,2,'asset issued', 'asset issued');
 
+-- workflowitem
+
+insert into WorkFlowItem values (901,1,'Bank Loan','Education Loan','Shiksha',10); 
+
+insert into WorkFlowItem values (902,1,'Bank Loan','Vehicle Loan','Aapka Gaadi',5); 
+
+insert into WorkFlowItem values (903,1,'Bank Loan','House Loan','Ghar ke liye',15);
+
+insert into WorkFlowItem values (904,1,'Bank Loan','Gold Loan','Sona',10); 
+
+insert into WorkFlowItem values (905,2,'Asset','Hardware','Headphone',20);
+
+insert into WorkFlowItem values (906,2,'Asset','Hardware','Laptop',5);
+
+insert into WorkFlowItem values (907,2,'Asset','Hardware','Speaker',15); 
+
+insert into WorkFlowItem values (908,2,'Asset','Hardware','Keyboard',20);
+
+insert into WorkFlowItem values (909,2,'Asset','Hardware','Mouse',10); 
+
+insert into WorkFlowItem values (910,2,'Asset','Hardware','RAM',3);
+
+insert into WorkFlowItem values (911,2,'Asset','Software','OS',5); 
+
+insert into WorkFlowItem values (912,2,'Asset','Software','Trend Micro Antivirus',10); 
+
+insert into WorkFlowItem values (913,2,'Asset','Software','MS Office',4); 
+
+insert into WorkFlowItem values (914,2,'Asset','Software','Oracle 11g',3); 
+
+insert into WorkFlowItem values (915,2,'Asset','Software','Tortoise SVN',2);
+
+
 
 -- workflowinstance
+desc workflowinstance;
+
+insert into WorkFlowInstance values (11,1001,1,'2012-12-12 12:12:12',116,902);
+
+insert into WorkFlowInstance values (12,1002,1,'2012-12-14 10:15:00',116,904);
+
+insert into WorkFlowInstance values (13,1003,1,'2012-12-20 12:39:49',116,905);
+
+insert into WorkFlowInstance values (14,1009,2,'2012-12-22 15:30:25',123,905);
+
+insert into WorkFlowInstance values (15,1010,2,'2012-12-22 17:30:12',123,914);
+
+insert into WorkFlowInstance values (16,1009,2,'2012-12-28 15:30:25',118,914);
+
+insert into WorkFlowInstance values (17,1009,2,'2013-01-01 17:30:12',118,915);
 
 
-insert into WorkFlowInstance values (11,1001,1,'2012-12-12 12:12:12',116);
-
-insert into WorkFlowInstance values (12,1002,1,'2012-12-14 10:15:00',116);
-
-insert into WorkFlowInstance values (13,1003,1,'2012-12-20 12:39:49',116);
-
-insert into WorkFlowInstance values (14,1009,2,'2012-12-22 15:30:25',123);
-
-insert into WorkFlowInstance values (15,1010,2,'2012-12-22 17:30:12',123);
 
 
 -- actions
@@ -209,36 +249,6 @@ insert into EventHistory values(320,2,14,517,'2012-12-22 15:15:06',1009,1014);
 
 insert into EventHistory values(321,2,14,513,'2012-12-22 17:30:06',1009,1012);
 
---workflowitem
-insert into WorkFlowItem values (901,1,'Bank Loan','Education Loan','Shiksha',10); 
-
-insert into WorkFlowItem values (902,1,'Bank Loan','Vehicle Loan','Aapka Gaadi',5); 
-
-insert into WorkFlowItem values (903,1,'Bank Loan','House Loan','Ghar ke liye',15);
-
-insert into WorkFlowItem values (904,1,'Bank Loan','Gold Loan','Sona',10); 
-
-insert into WorkFlowItem values (905,2,'Asset','Hardware','Headphone',20);
-
-insert into WorkFlowItem values (906,2,'Asset','Hardware','Laptop',5);
-
-insert into WorkFlowItem values (907,2,'Asset','Hardware','Speaker',15); 
-
-insert into WorkFlowItem values (908,2,'Asset','Hardware','Keyboard',20);
-
-insert into WorkFlowItem values (909,2,'Asset','Hardware','Mouse',10); 
-
-insert into WorkFlowItem values (910,2,'Asset','Hardware','RAM',3);
-
-insert into WorkFlowItem values (911,2,'Asset','Software','OS',5); 
-
-insert into WorkFlowItem values (912,2,'Asset','Software','Trend Micro Antivirus',10); 
-
-insert into WorkFlowItem values (913,2,'Asset','Software','MS Office',4); 
-
-insert into WorkFlowItem values (914,2,'Asset','Software','Oracle 11g',3); 
-
-insert into WorkFlowItem values (915,2,'Asset','Software','Tortoise SVN',2);
 
 
 
@@ -275,20 +285,5 @@ insert into workflowdata values (1206,1106,11,'800000');
 insert into workflowdata values (1207,1107,14,'Software Engineer');
 
 insert into workflowdata values (1208,1107,16,'Database Administrator');
-
-
-update workflowinstance set wfitemid=902 where wfinstanceid=11;
-
-
-update workflowinstance set wfitemid=902 where wfinstanceid=12;
-
-
-update workflowinstance set wfitemid=904 where wfinstanceid=13;
-
-
-update workflowinstance set wfitemid=905 where wfinstanceid=14;
-
-
-update workflowinstance set wfitemid=914 where wfinstanceid=15;
 
 commit;
