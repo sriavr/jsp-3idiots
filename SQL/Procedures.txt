@@ -185,14 +185,14 @@ IN wftypeid INT
 BEGIN
 
 select 
-w.wftypeid,wd.wfinstanceid, w.wfdatadefid, wd.wfdataid, w.name, w.description, wd.value
+w.wftypeid,w.wfdatadefid, w.name, w.description, w.isreadonly, w.constantvalue
 from  
-workflowdatadef w, workflowdata wd
-where 
-w.wfdatadefid = wd.wfdatadefid
-and w.wftypeid = wftypeid;
+workflowdatadef w
+where w.wftypeid = wftypeid;
 
 END$$
+
+
 
 --
 
