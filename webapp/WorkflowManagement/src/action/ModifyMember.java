@@ -4,8 +4,8 @@ import java.util.*;
 
 //import com.opensymphony.xwork2.ActionContext;
 
-import models.Member;
-import models.Role;
+import model.Member;
+import model.Role;
 
 public class ModifyMember {
 	

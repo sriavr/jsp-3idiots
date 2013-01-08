@@ -1,5 +1,5 @@
 package action;
-import models.*;
+import model.*;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.config.entities.ActionConfig;

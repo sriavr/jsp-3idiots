@@ -2,8 +2,8 @@ package action;
 
 import java.util.*;
 
-import models.*;
-import utils.*;
+import model.*;
+import util.*;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -17,9 +17,9 @@ public class ModifyWorkflowType extends ActionSupport {
     private String description; 
     private String submit;
     
-    Workflow wf =  new Workflow();	
+    WorkflowType wf =  new WorkflowType();	
     
-    private ArrayList<Workflow> workflow;
+    private ArrayList<WorkflowType> workflow;
     Map<String, Object> session;
     
     
@@ -72,25 +72,25 @@ public class ModifyWorkflowType extends ActionSupport {
 
 
 
-	public Workflow getWf() {
+	public WorkflowType getWf() {
 		return wf;
 	}
 
 
 
-	public void setWf(Workflow wf) {
+	public void setWf(WorkflowType wf) {
 		this.wf = wf;
 	}
 
 
 
-	public ArrayList<Workflow> getWorkflow() {
+	public ArrayList<WorkflowType> getWorkflow() {
 		return workflow;
 	}
 
 
 
-	public void setWorkflow(ArrayList<Workflow> workflow) {
+	public void setWorkflow(ArrayList<WorkflowType> workflow) {
 		this.workflow = workflow;
 	}
 
@@ -121,7 +121,7 @@ public class ModifyWorkflowType extends ActionSupport {
 			wf.setDescription(description);
 			wf.delete();	
 			
-			workflow=Workflow.selectall("");
+			workflow=WorkflowType.selectall("");
 			for(int i=0;i<workflow.size();i++) {
 				System.out.println(workflow.get(i).getWftypeid()+" "+workflow.get(i).getWfname());
 			}

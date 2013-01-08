@@ -2,8 +2,8 @@ package action;
 
 import java.util.*;
 
-import models.*;
-import utils.*;
+import model.*;
+import util.*;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -17,8 +17,8 @@ public class DisplayWorkflowType extends ActionSupport {
 	private String wfname;
     private String description; 
     private String submit;
-    private ArrayList<Workflow> workflow;
-    Workflow wf=new Workflow();
+    private ArrayList<WorkflowType> workflow;
+    WorkflowType wf=new WorkflowType();
 
     Map<String, Object> session;
 
@@ -84,25 +84,25 @@ public class DisplayWorkflowType extends ActionSupport {
 
 
 
-	public ArrayList<Workflow> getWorkflow() {
+	public ArrayList<WorkflowType> getWorkflow() {
 		return workflow;
 	}
 
 
 
-	public void setWorkflow(ArrayList<Workflow> workflow) {
+	public void setWorkflow(ArrayList<WorkflowType> workflow) {
 		this.workflow = workflow;
 	}
 
 
 
-	public Workflow getWf() {
+	public WorkflowType getWf() {
 		return wf;
 	}
 
 
 
-	public void setWf(Workflow wf) {
+	public void setWf(WorkflowType wf) {
 		this.wf = wf;
 	}
 
@@ -114,7 +114,7 @@ public class DisplayWorkflowType extends ActionSupport {
 		
 		if(submit.startsWith("Display")){
 		System.out.println("radiowftypeid "+radiowftypeid);
-		wf=Workflow.selectOne("where wftypeid="+radiowftypeid);
+		wf=WorkflowType.selectOne("where wftypeid="+radiowftypeid);
 		System.out.println("wf info fetched");
 		this.setWftypeid(Integer.parseInt(radiowftypeid));
 		this.setWfname(wf.getWfname());

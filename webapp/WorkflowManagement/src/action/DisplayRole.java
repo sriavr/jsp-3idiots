@@ -2,8 +2,8 @@ package action;
 
 import java.util.*;
 
-import models.*;
-import utils.*;
+import model.*;
+import util.*;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
