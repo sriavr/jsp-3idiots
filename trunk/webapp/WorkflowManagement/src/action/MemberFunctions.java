@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Map;
 
-import models.*;
-import utils.*;
+import model.*;
+import util.*;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -15,7 +15,7 @@ public class MemberFunctions extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 		
 	private String submit; 
-    private ArrayList<Workflow> workflow = new ArrayList<Workflow>();
+    private ArrayList<WorkflowType> workflow = new ArrayList<WorkflowType>();
     private ArrayList<String> membertype = new ArrayList<String>();
 	private ArrayList<Role> rolelist = new ArrayList<Role>();
 	private ArrayList<String> rolenames = new ArrayList<String>();
@@ -168,11 +168,11 @@ public class MemberFunctions extends ActionSupport {
 		this.membertype = membertype;
 	}
 
-	public ArrayList<Workflow> getWorkflow() {
+	public ArrayList<WorkflowType> getWorkflow() {
 		return workflow;
 	}
 
-	public void setWorkflow(ArrayList<Workflow> workflow) {
+	public void setWorkflow(ArrayList<WorkflowType> workflow) {
 		this.workflow = workflow;
 	}
 

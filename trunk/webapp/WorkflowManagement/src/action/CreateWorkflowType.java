@@ -2,8 +2,8 @@ package action;
 
 import java.util.*;
 
-import models.*;
-import utils.*;
+import model.*;
+import util.*;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -18,8 +18,8 @@ public class CreateWorkflowType extends ActionSupport {
 	private String wfname;
     private String description; 
     private String submit;
-    private ArrayList<Workflow> workflow;
-    private ArrayList<Workflow> viewwflist= new ArrayList<Workflow>();
+    private ArrayList<WorkflowType> workflow;
+    private ArrayList<WorkflowType> viewwflist= new ArrayList<WorkflowType>();
     private ArrayList<String> workflowtypelist= new ArrayList<String>();
     public ArrayList<String> getWorkflowtypelist() {
 		return workflowtypelist;
@@ -42,40 +42,40 @@ public class CreateWorkflowType extends ActionSupport {
 	}
 
 
-	Workflow wf = new Workflow();
+	WorkflowType wf = new WorkflowType();
     
     Map<String,Object> session;
     
     
-	public ArrayList<Workflow> getViewwflist() {
+	public ArrayList<WorkflowType> getViewwflist() {
 		return viewwflist;
 	}
 
-	public void setViewwflist(ArrayList<Workflow> viewwflist) {
+	public void setViewwflist(ArrayList<WorkflowType> viewwflist) {
 		this.viewwflist = viewwflist;
 	}
 
-	public Workflow getWf() {
+	public WorkflowType getWf() {
 		return wf;
 	}
 
-	public void setWf(Workflow wf) {
+	public void setWf(WorkflowType wf) {
 		this.wf = wf;
 	}
 
-	public ArrayList<Workflow> getWorkflow() {
+	public ArrayList<WorkflowType> getWorkflow() {
 		return workflow;
 	}
 
-	public void setWorkflow(ArrayList<Workflow> workflow) {
+	public void setWorkflow(ArrayList<WorkflowType> workflow) {
 		
 		this.workflow = workflow;
 	}
 
 	
-	private void addToWorkflow(Workflow wf)
+	private void addToWorkflow(WorkflowType wf)
 	{
-		workflow=Workflow.selectall("");
+		workflow=WorkflowType.selectall("");
 		for(int i=0;i<workflow.size();i++) {
 			System.out.println(workflow.get(i).getWftypeid()+" "+workflow.get(i).getWfname());
 		}
@@ -85,7 +85,7 @@ public class CreateWorkflowType extends ActionSupport {
 	
 	private void settypeid()
 	{
-		workflow=Workflow.selectall("");
+		workflow=WorkflowType.selectall("");
 		for(int i=0;i<workflow.size();i++) {
 			setRolewftypeid(workflow.get(i).getWftypeid());
 			setWftypeid(workflow.get(i).getWftypeid());
@@ -94,7 +94,7 @@ public class CreateWorkflowType extends ActionSupport {
 	
 	private void settypelist()
 	{
-		workflow=Workflow.selectall("");
+		workflow=WorkflowType.selectall("");
 		for(int i=0;i<workflow.size();i++) {
 			workflowtypelist.add(workflow.get(i).getWfname());
 			
@@ -155,13 +155,13 @@ public class CreateWorkflowType extends ActionSupport {
 			
 		if(submit.startsWith("Create"))
 		{
-			Workflow wf = new Workflow();
+			WorkflowType wf = new WorkflowType();
 			session = ActionContext.getContext().getSession();
 			if(session.get("workflowsession")==null)
 			{
-				session.put("workflowsession", new ArrayList<Workflow>());
+				session.put("workflowsession", new ArrayList<WorkflowType>());
 			}
-			this.workflow=(ArrayList<Workflow>)session.get("workflowsession");
+			this.workflow=(ArrayList<WorkflowType>)session.get("workflowsession");
 			
 			if(this.wfname.isEmpty())
 				return "initial";
@@ -177,8 +177,8 @@ public class CreateWorkflowType extends ActionSupport {
 		}   
 	        
 		if(submit.startsWith("View")){
-			workflow=new ArrayList<Workflow>();
-			workflow=Workflow.selectall("");
+			workflow=new ArrayList<WorkflowType>();
+			workflow=WorkflowType.selectall("");
 			for(int i=0;i<workflow.size();i++)
 			{
 				wf=workflow.get(i);
@@ -202,15 +202,7 @@ public class CreateWorkflowType extends ActionSupport {
 	        return "next";
 		}
 		
-		if(submit.startsWith("Add"))
-		{
-			settypeid();
-			
-			System.out.println("you are in createworkflowItem  ---  in add workflow Item"+" "+wftypeid);
-			
-			return "addworkflowitem";
-		}
-	    addActionError(getText("Invalid  Create Workflow!"));
+		addActionError(getText("Invalid  Create Workflow!"));
 	    return "error";
 	} 
 

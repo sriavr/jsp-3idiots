@@ -4,8 +4,8 @@ import java.util.*;
 
 import com.opensymphony.xwork2.ActionContext;
 
-import models.Member;
-import models.Role;
+import model.Member;
+import model.Role;
 
 public class DisplayMember {
 	
@@ -121,7 +121,8 @@ public class DisplayMember {
 	public  String execute()
 	{
 		
-		
+		if(this.submit.startsWith("Back"))
+			return "back";
 				 
 		if(this.submit.startsWith("Delete"))
 		{
@@ -179,6 +180,6 @@ public class DisplayMember {
 		return "back";
 */		
 	
-        	return "null";
+        	return "error";
 	}
 }

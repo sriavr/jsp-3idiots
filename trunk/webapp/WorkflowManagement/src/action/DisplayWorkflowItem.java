@@ -5,9 +5,9 @@ import java.util.*;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-import models.Member;
-import models.Role;
-import models.WorkflowItem;
+import model.Member;
+import model.Role;
+import model.WorkflowItem;
 
 public class DisplayWorkflowItem extends ActionSupport {
 	

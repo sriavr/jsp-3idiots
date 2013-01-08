@@ -1,5 +1,5 @@
 package action;
-import models.*;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -20,8 +20,8 @@ public class AddActions extends ActionSupport {
 	private String submit;
 	
 	
-	ArrayList<Actions>  actionlist;
-	public ArrayList<Actions> getActionlist() {
+	ArrayList<Action>  actionlist;
+	public ArrayList<Action> getActionlist() {
 		return actionlist;
 	}
 	Map<String,Object> session; 
@@ -31,13 +31,13 @@ public class AddActions extends ActionSupport {
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-	public Actions getAction() {
+	public Action getAction() {
 		return action;
 	}
-	public void setAction(Actions action) {
+	public void setAction(Action action) {
 		this.action = action;
 	}
-	Actions action=new Actions();
+	Action action=new Action();
 	public void addToAction()
 	{
 		
@@ -47,7 +47,7 @@ public class AddActions extends ActionSupport {
 		session.put("actionsession" , actionlist);
 		
 	}
-	public void setActionlist(ArrayList<Actions> actionlist) {
+	public void setActionlist(ArrayList<Action> actionlist) {
 		this.actionlist = actionlist;
 	}
 	public String getSubmit() {
@@ -83,7 +83,7 @@ public class AddActions extends ActionSupport {
 		
 		
 		
-		actionlist =  new ArrayList<Actions>();
+		actionlist =  new ArrayList<Action>();
 		if(this.actionname.isEmpty() && this.wftypeid==0)
 			return "initial";
 		
@@ -93,9 +93,9 @@ public class AddActions extends ActionSupport {
 		
 		if(session.get("actionsession")==null)
 		{
-			session.put("actionsession", new ArrayList<Actions>());
+			session.put("actionsession", new ArrayList<Action>());
 		}
-		this.actionlist=(ArrayList<Actions>)session.get("actionsession");
+		this.actionlist=(ArrayList<Action>)session.get("actionsession");
 		action.setWftypeid(this.wftypeid);
 		action.setActionname(this.actionname);
 		action.setActiondescription(this.actiondescription);

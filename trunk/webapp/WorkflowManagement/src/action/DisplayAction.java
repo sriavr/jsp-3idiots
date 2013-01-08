@@ -2,8 +2,8 @@ package action;
 
 import java.util.*;
 
-import models.*;
-import utils.*;
+import model.*;
+import util.*;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -52,19 +52,19 @@ public class DisplayAction extends ActionSupport {
 		this.submit = submit;
 	}
 
-	public Actions getAction() {
+	public Action getAction() {
 		return action;
 	}
 
-	public void setAction(Actions action) {
+	public void setAction(Action action) {
 		this.action = action;
 	}
 
-	public ArrayList<Actions> getActionlist() {
+	public ArrayList<Action> getActionlist() {
 		return actionlist;
 	}
 
-	public void setActionlist(ArrayList<Actions> actionlist) {
+	public void setActionlist(ArrayList<Action> actionlist) {
 		this.actionlist = actionlist;
 	}
 
@@ -95,10 +95,10 @@ public class DisplayAction extends ActionSupport {
 	private String actionname;
     private String actiondescription; 
     private String submit;
-    Actions action=new Actions();
+    Action action=new Action();
     
 
-	private ArrayList<Actions> actionlist;
+	private ArrayList<Action> actionlist;
     Map<String, Object> session;
 
 	public String execute() {
@@ -107,7 +107,7 @@ public class DisplayAction extends ActionSupport {
 		
 		if(submit.startsWith("Display")){
 		System.out.println("radioactionid "+radioactionid);
-		action=Actions.selectOne("where actionid="+radioactionid);
+		action=Action.selectOne("where actionid="+radioactionid);
 		System.out.println("action info fetched");
 		//System.out.println(action.getActionname());
 		this.setActionid(Integer.parseInt(radioactionid));

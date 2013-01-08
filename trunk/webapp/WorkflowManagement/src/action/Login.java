@@ -2,8 +2,8 @@ package action;
 
 import java.util.*;
 
-import models.*;
-import utils.*;
+import model.*;
+import util.*;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -23,7 +23,7 @@ public class Login extends ActionSupport {
     ArrayList<Admin> adminlist = new ArrayList<Admin>();
     ArrayList<Member> memberlist = new ArrayList<Member>();
     ArrayList<Role> rolelist = new ArrayList<Role>();
-	ArrayList<Workflow> workflow = new ArrayList<Workflow>();
+	ArrayList<WorkflowType> workflow = new ArrayList<WorkflowType>();
 	Map<String,Object> session;
 	
 	
@@ -68,11 +68,11 @@ public class Login extends ActionSupport {
 		this.memberlist = memberlist;
 	}
 
-	public ArrayList<Workflow> getWorkflow() {
+	public ArrayList<WorkflowType> getWorkflow() {
 		return workflow;
 	}
 
-	public void setWorkflow(ArrayList<Workflow> workflow) {
+	public void setWorkflow(ArrayList<WorkflowType> workflow) {
 		this.workflow = workflow;
 	}
 
@@ -119,7 +119,7 @@ public class Login extends ActionSupport {
 	        
 	        for(int i=0;i<memberlist.size();i++)
 	        {
-		        if (this.username.equals(memberlist.get(i).getFname()) 
+		        if (this.username.equals(memberlist.get(i).getLname()) 
 		                && this.password.equals(memberlist.get(i).getPassword())) {
 		        	session=ActionContext.getContext().getSession();
 		        	session.put("memberloggedin", memberlist.get(i));

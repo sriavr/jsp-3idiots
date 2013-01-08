@@ -3,8 +3,8 @@ package action;
 import java.util.ArrayList;
 import java.util.Map;
 
-import models.*;
-import utils.*;
+import model.*;
+import util.*;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -14,14 +14,14 @@ public class AdminFunctions extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 		
 	private String submit; 
-    private ArrayList<Workflow> workflow = new ArrayList<Workflow>();   
+    private ArrayList<WorkflowType> workflow = new ArrayList<WorkflowType>();   
 	
     
-	public ArrayList<Workflow> getWorkflow() {
+	public ArrayList<WorkflowType> getWorkflow() {
 		return workflow;
 	}
 
-	public void setWorkflow(ArrayList<Workflow> workflow) {
+	public void setWorkflow(ArrayList<WorkflowType> workflow) {
 		this.workflow = workflow;
 	}
 
@@ -47,7 +47,7 @@ public class AdminFunctions extends ActionSupport {
 
 			if (submit.startsWith("View")) {
 				System.out.println("In view workflow");
-				workflow = Workflow.selectall("");
+				workflow = WorkflowType.selectall("");
 			    return "viewworkflow";
 	        }
 

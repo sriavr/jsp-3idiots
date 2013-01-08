@@ -3,8 +3,8 @@ package action;
 import java.math.BigDecimal;
 import java.util.*;
 
-import models.*;
-import utils.*;
+import model.*;
+import util.*;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -71,7 +71,7 @@ public class AddMember extends ActionSupport {
 		memberlist.add(member);*/
 		memberlist = Member.selectall("");
 		for(int i=0;i<memberlist.size();i++)
-			System.out.println(memberlist.get(i).getRoleid()+"  "+memberlist.get(i).getFname());
+			System.out.println(memberlist.get(i).getRole().getRoleid()+"  "+memberlist.get(i).getFname());
 		
 		session.put("membersession", memberlist);
 		
@@ -240,7 +240,7 @@ public class AddMember extends ActionSupport {
 				}
 				this.memberlist=(ArrayList<Member>)session.get("membersession");
 
-				member.setRoleid(roleid);
+				member.getRole().setRoleid(roleid);
 				member.setFname(fname);
 				member.setLname(lname);
 				member.setEmailid(emailid);

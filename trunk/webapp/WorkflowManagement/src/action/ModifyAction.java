@@ -2,8 +2,8 @@ package action;
 
 import java.util.*;
 
-import models.*;
-import utils.*;
+import model.*;
+import util.*;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -53,11 +53,11 @@ public class ModifyAction extends ActionSupport {
 		this.submit = submit;
 	}
 
-	public Actions getAction() {
+	public Action getAction() {
 		return action;
 	}
 
-	public void setAction(Actions action) {
+	public void setAction(Action action) {
 		this.action = action;
 	}
 
@@ -78,19 +78,19 @@ public class ModifyAction extends ActionSupport {
     private String actiondescription; 
     private String submit;
     
-    Actions action =  new Actions();	
+    Action action =  new Action();	
     
     
     
-    	public ArrayList<Actions> getActionlist() {
+    	public ArrayList<Action> getActionlist() {
 		return actionlist;
 	}
 
-	public void setActionlist(ArrayList<Actions> actionlist) {
+	public void setActionlist(ArrayList<Action> actionlist) {
 		this.actionlist = actionlist;
 	}
 
-	private ArrayList<Actions> actionlist;
+	private ArrayList<Action> actionlist;
     Map<String, Object> session;
     
 	public String execute() {
@@ -112,7 +112,7 @@ public class ModifyAction extends ActionSupport {
 
 		if(submit.startsWith("Delete")){
 			
-			Actions action = new Actions();
+			Action action = new Action();
 			session = ActionContext.getContext().getSession();
 			
 			action.setActionid(actionid);
@@ -123,7 +123,7 @@ public class ModifyAction extends ActionSupport {
 			
 			System.out.println("After delete in action");
 			
-			actionlist = Actions.selectall("");
+			actionlist = Action.selectall("");
 	    	for(int i=0;i<actionlist.size();i++)
 	    		System.out.println("Action Info "+ actionlist.get(i).getActionid()+" "+actionlist.get(i).getWftypeid()+" "+actionlist.get(i).getActionname());
 	    	session.put("rolesession", actionlist);
