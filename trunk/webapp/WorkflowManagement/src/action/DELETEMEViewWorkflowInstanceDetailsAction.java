@@ -1,12 +1,10 @@
 package action;
 
-import java.util.ArrayList;
-
-import models.WorkflowInstanceDetails;
+import model.WorkflowInstanceDetails;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ViewWorkflowInstanceDetailsAction extends ActionSupport {
+public class DELETEMEViewWorkflowInstanceDetailsAction extends ActionSupport {
 
 	private static final long serialVersionUID = 420895073712746467L;
 
@@ -32,8 +30,7 @@ public class ViewWorkflowInstanceDetailsAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		if(wfinstanceid == 0)
-		{
+		if (wfinstanceid == 0) {
 			addActionError(getText("No instance selected"));
 			return ERROR;
 		}
