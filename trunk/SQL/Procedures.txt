@@ -341,5 +341,20 @@ and wd.wfinstanceid = wfinstanceid;
 END$$
 
 
+--
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_workflow_categories`(
+IN wftypeid INT
+)
+BEGIN
+
+select wc.* from workflowcategory wc, workflowtype wt
+where 
+wc.wftypeid = wt.wftypeid;
+
+END$$
+
 
 
