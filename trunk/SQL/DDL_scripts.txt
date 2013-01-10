@@ -149,3 +149,19 @@ alter table member add constraint foreign key(ManagerMemberid) references member
 alter table workflowinstance add column WFItemID int;
 
 alter table workflowinstance add constraint foreign key (wfitemid) references workflowitem(wfitemid);
+
+
+
+--CHANGED
+
+delimiter $$
+
+CREATE TABLE `workflowcategory` (
+  `WFCategoryID` int(11) NOT NULL AUTO_INCREMENT,
+  `WFCategoryName` varchar(30) DEFAULT NULL,
+  `WFTypeID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`WFCategoryID`),
+  KEY `WFTypeID` (`WFTypeID`),
+  CONSTRAINT `workflowcategory_ibfk_1` FOREIGN KEY (`WFTypeID`) REFERENCES `workflowtype` (`WFTypeID`)
+) ENGINE=InnoDB AUTO_INCREMENT=922 DEFAULT CHARSET=latin1$$
+
