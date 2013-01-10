@@ -357,4 +357,108 @@ wc.wftypeid = wt.wftypeid;
 END$$
 
 
+--
+
+
+-- CHANGED
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_workflow_instances_member`(
+IN memid INT)
+BEGIN
+select i.wfinstanceid,i.memberid as ownerid,concat(m.fname,' ',m.lname) as ownername, w.wfname,wi.wfitemcategory,wi.wfitemname,s.statename as state,s.statedescription,i.creationdatetime from workflowinstance i, workflowtype w, member m, workflowitem wi, states s
+ where i.wftypeid = w.wftypeid and i.memberid=m.memberid and wi.wfitemid=i.wfitemid and s.stateid=i.currentstate and exists 
+(
+	select memberid from member where roleid in
+		(select roleid from statesequencetable where 
+		previousstateid in (select stateid from states where statename = 'default')
+		)
+	and memberid = memid
+)
+and i.memberid = memid
+
+union all
+
+select i.wfinstanceid,i.memberid as ownerid,concat(m.fname,' ',m.lname) as ownername, w.wfname,wi.wfitemcategory,wi.wfitemname,s.statename as state,s.statedescription,i.creationdatetime from workflowinstance i, workflowtype w, member m, workflowitem wi, states s
+ where i.wftypeid = w.wftypeid and i.memberid=m.memberid and wi.wfitemid=i.wfitemid and s.stateid=i.currentstate
+ and w.wftypeid in 
+(
+	select wftypeid from role r, member m where m.roleid = r.roleid and m.memberid = memid
+)
+ and not exists 
+(
+	select memberid from member where roleid in
+		(select roleid from statesequencetable where 
+		previousstateid in (select stateid from states where statename = 'default')
+		)
+	and memberid = memid 
+);
+END$$
+
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_workflow_instance_details`(
+IN wfinstanceid INT
+)
+BEGIN
+
+select 
+i.wfinstanceid,i.creationdatetime,i.memberid as ownerid,
+m.fname as ownerfname, m.lname as ownerlname, 
+m.emailid as owneremailid, m.phone as ownerphone, 
+m.address as owneraddress, m.roleid as ownerroleid,
+r.rolename as ownerrolename, r.description as ownerroledescription,
+wi.wfitemid,wi.wfitemname,wi.wfitemtype,
+s.stateid, s.statename as statename,s.statedescription,
+w.wftypeid,w.wfname, w.description as wfdescription,
+c.wfcategoryid, c.wfcategoryname
+from workflowinstance i, 
+workflowtype w, member m, role r,
+workflowitem wi, states s, workflowcategory c
+ where 
+i.wftypeid = w.wftypeid and 
+i.memberid=m.memberid and 
+m.roleid=r.roleid and
+wi.wfitemid=i.wfitemid and 
+s.stateid=i.currentstate and 
+i.wfinstanceid = wfinstanceid and
+c.wftypeid = w.wftypeid and
+c.wfcategoryid = i.wfcategoryid;
+
+END$$
+
+--
+
+delimiter $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `display_workflow_instances`(
+IN wftypeid INT)
+BEGIN
+
+select 
+i.wfinstanceid,i.creationdatetime,i.memberid as ownerid,
+m.fname as ownerfname, m.lname as ownerlname, 
+m.emailid as owneremailid, m.phone as ownerphone, 
+m.address as owneraddress, m.roleid as ownerroleid,
+r.rolename as ownerrolename, r.description as ownerroledescription,
+wi.wfitemid,wi.wfitemname,wi.wfitemtype,
+s.stateid, s.statename as statename,s.statedescription,
+w.wftypeid,w.wfname, w.description as wfdescription,
+c.wfcategoryid, c.wfcategoryname
+from workflowinstance i, 
+workflowtype w, member m, role r,
+workflowitem wi, states s, workflowcategory c
+ where 
+i.wftypeid = w.wftypeid and 
+i.memberid=m.memberid and 
+m.roleid=r.roleid and
+wi.wfitemid=i.wfitemid and 
+s.stateid=i.currentstate
+and i.wftypeid=wftypeid and
+c.wftypeid = w.wftypeid and
+c.wfcategoryid = i.wfcategoryid;
+END$$
+
 
