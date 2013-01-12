@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="baseLayout" template="/baseLayout.jsp">
+		<put-attribute name="myleft" value="/leftmenu.jsp" />
+		<put-attribute name="myHeader" value="/header.jsp" />
+		<put-attribute name="myBody" value="" />
+		<put-attribute name="myFooter" value="/footer.jsp" />
+	</definition>
+
+	<definition name="loggedoutLayout" template="/loggedoutlayout.jsp">
+		<put-attribute name="myHeader" value="/header.jsp" />
+		<put-attribute name="myBody" value="" />
+		<put-attribute name="myFooter" value="/footer.jsp" />
+	</definition>
+
+	<definition name="baseLayout_member" template="/baseLayout_member.jsp">
+		<put-attribute name="myleft" value="/leftmenu_member.jsp" />
+		<put-attribute name="myHeader" value="/header.jsp" />
+		<put-attribute name="myBody" value="" />
+		<put-attribute name="myFooter" value="/footer.jsp" />
+	</definition>
+
+	<definition name="Login" extends="loggedoutLayout">
+		<put-attribute name="myBody" value="/Login.jsp" />
+	</definition>
+
+	<definition name="Logout" extends="loggedoutLayout">
+		<put-attribute name="myBody" value="/Login.jsp" />
+	</definition>
+
+	<definition name="AdminPage" extends="baseLayout">
+		<put-attribute name="myBody" value="/AdminPage.jsp" />
+	</definition>
+
+	<definition name="DisplayEventHistory" extends="baseLayout">
+		<put-attribute name="myBody" value="/DisplayEventHistory.jsp" />
+	</definition>
+
+	<definition name="DisplayEventHistory" extends="baseLayout_member">
+		<put-attribute name="myBody" value="/DisplayEventHistory.jsp" />
+	</definition>
+
+	<definition name="DisplayRoleList" extends="baseLayout">
+		<put-attribute name="myBody" value="/DisplayRoleList.jsp" />
+	</definition>
+
+	<definition name="DisplayActions" extends="baseLayout">
+		<put-attribute name="myBody" value="/DisplayActions.jsp" />
+	</definition>
+
+	<definition name="DisplayStates" extends="baseLayout">
+		<put-attribute name="myBody" value="/DisplayStates.jsp" />
+	</definition>
+
+	<definition name="DisplayStateSequence" extends="baseLayout">
+		<put-attribute name="myBody" value="/DisplayStateSequence.jsp" />
+	</definition>
+
+	<definition name="DisplayMemberDetails" extends="baseLayout">
+		<put-attribute name="myBody" value="/DisplayMemberDetails.jsp" />
+	</definition>
+
+
+	<definition name="DisplayMemberList" extends="baseLayout">
+		<put-attribute name="myBody" value="/DisplayMemberList.jsp" />
+	</definition>
+
+	<definition name="DisplayRoleList" extends="baseLayout">
+		<put-attribute name="myBody" value="/DisplayRoleList.jsp" />
+	</definition>
+
+	<definition name="DisplayWorkflowData" extends="baseLayout">
+		<put-attribute name="myBody" value="/DisplayWorkflowData.jsp" />
+	</definition>
+
+	<definition name="DisplayWorkflowData" extends="baseLayout_member">
+		<put-attribute name="myBody" value="/DisplayWorkflowData.jsp" />
+	</definition>
+
+	<definition name="DisplayWorkflowTypeDetails" extends="baseLayout">
+		<put-attribute name="myBody" value="/DisplayWorkflowTypeDetails.jsp" />
+	</definition>
+
+
+	<definition name="DisplayWorkflowTypeList" extends="baseLayout">
+		<put-attribute name="myBody" value="/DisplayWorkflowTypeList.jsp" />
+	</definition>
+
+
+	<definition name="DisplayWorkflowInstanceDetails" extends="baseLayout">
+		<put-attribute name="myBody"
+			value="/DisplayWorkflowInstanceDetails.jsp" />
+	</definition>
+
+	<definition name="DisplayWorkflowInstanceDetails_member"
+		extends="baseLayout_member">
+		<put-attribute name="myBody"
+			value="/DisplayWorkflowInstanceDetails.jsp" />
+	</definition>
+
+	<definition name="Error" extends="baseLayout_member">
+		<put-attribute name="myBody" value="/Error.jsp" />
+	</definition>
+
+	<definition name="DisplayWorkflowInstanceList" extends="baseLayout">
+		<put-attribute name="myBody" value="/DisplayWorkflowInstanceList.jsp" />
+	</definition>
+
+	<definition name="DisplayWorkflowInstanceList_member"
+		extends="baseLayout_member">
+		<put-attribute name="myBody"
+			value="/DisplayWorkflowInstanceList_member.jsp" />
+	</definition>
+
+	<definition name="CreateWorkflowInstance" extends="baseLayout_member">
+		<put-attribute name="myBody" value="/CreateWorkflowInstance.jsp" />
+	</definition>
+
+	<definition name="ActionSelected" extends="baseLayout_member">
+		<put-attribute name="myBody" value="/ActionSelected.jsp" />
+	</definition>
+	
+	<definition name="Successwfinstance" extends="baseLayout_member">
+		<put-attribute name="myBody" value="/Successwfinstance.jsp" />
+	</definition>
+	
+
+</tiles-definitions>
