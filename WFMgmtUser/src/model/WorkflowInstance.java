@@ -161,5 +161,4 @@ public class WorkflowInstance {
 	public void setWfcategory(WorkflowCategory wfcategory) {
 		this.wfcategory = wfcategory;
 	}
-	
 }

@@ -14,7 +14,7 @@
 	<s:text name="memberid"></s:text>
 	<s:text name="wfinstanceid"></s:text>
 	<a
-		href="<s:url action="viewtypedetails.action">
+		href="<s:url action="wftypedetails.action">
 		<s:param name="cmd">
 		displaytypedetails
 		</s:param>
@@ -24,7 +24,7 @@
 		Workflow Type Details</a>
 
 	<a
-		href="<s:url action="viewtypelist.action">
+		href="<s:url action="appinfo.action">
 		<s:param name="cmd">
 		displaytypes
 		</s:param>
@@ -32,7 +32,7 @@
 		Workflow Types List</a>
 
 	<a
-		href="<s:url action="viewinstancedetails.action">
+		href="<s:url action="instancedetails.action">
 		<s:param name="cmd">
 		displayinstancedetails
 		</s:param>
@@ -43,7 +43,7 @@
 
 
 	<a
-		href="<s:url action="viewtypedetails.action">
+		href="<s:url action="wftypedetails.action" encode="false">
 		<s:param name="cmd">
 		displayinstances
 		</s:param>
@@ -53,18 +53,8 @@
 		Instance List</a>
 
 
-<a
-		href="<s:url action="viewtypedetails.action">
-		<s:param name="cmd">
-		displayinstances_member
-		</s:param>
-		<s:param name="wftypeid">1
-		</s:param>
-	</s:url>">View
-		Instance List for Member</a>
-
 	<a
-		href="<s:url action="viewinstancedetails.action">
+		href="<s:url action="instancedetails.action"  namespace="/" encode="false">
 		<s:param name="cmd">
 		displayeventhistory
 		</s:param>
@@ -73,7 +63,7 @@
 	</s:url>">View
 		Event History</a>
 	<a
-		href="<s:url action="viewinstancedetails.action">
+		href="<s:url action="instancedetails.action">
 		<s:param name="cmd">
 		displayworkflowinstancedata
 		</s:param>
@@ -81,9 +71,9 @@
 		</s:param>
 	</s:url>">View
 		Workflow Data</a>
-	
+
 	<a
-		href="<s:url action="viewtypedetails.action">
+		href="<s:url action="wftypedetails.action">
 		<s:param name="cmd">
 		displaymembers
 		</s:param>
@@ -94,7 +84,7 @@
 
 
 	<a
-		href="<s:url action="viewtypedetails.action">
+		href="<s:url action="wftypedetails">
 		<s:param name="cmd">
 		displayroles
 		</s:param>
@@ -103,16 +93,10 @@
 	</s:url>">View
 		Role List</a>
 
-
-<a
-		href="<s:url action="createworkflowinstance.action">
-		<s:param name="cmd">
-	createworkflowinstance
-		</s:param>
-		<s:param name="wftypeid">1
-		</s:param>
-	</s:url>">Create
-		Workflow Instance</a>
+	<a
+		href="<s:url action="addwftype">
+	</s:url>">Create 
+		Workflow Type</a>
 
 </body>
 </html>

@@ -76,10 +76,9 @@ public class StateSequence {
 		System.out.println("In wf insert()");
 		String insertSQL = "insert into statesequencetable "
 				+ "(wftypeid, roleid, previousstateid, nextstateid, actionid ) "
-				+ "values('" + workflowType.getWftypeid() + "', '"
-				+ role.getRoleid() + "', '" + prevState.getStateID() + "', '"
-				+ nextState.getStateID() + "', '" + action.getActionid()
-				+ "');";
+				+ "values(" + workflowType.getWftypeid() + ", "
+				+ role.getRoleid() + ", " + prevState.getStateID() + ", "
+				+ nextState.getStateID() + ", " + action.getActionid() + ");";
 		return DB.update(insertSQL);
 	}
 
@@ -99,6 +98,51 @@ public class StateSequence {
 						.getInt("previousstateid"));
 				stateseq.nextState.setStateID(resultSet.getInt("nextstateid"));
 				stateseq.action.setActionid(resultSet.getInt("actionid"));
+				selection.add(stateseq);
+			}
+		} catch (SQLException e) {
+			// MyLog.myCatch("Book.java", 43, e);
+			e.printStackTrace();
+		}
+		DB.close(resultSet);
+		DB.close(connection);
+		return selection;
+	}
+
+	public static ArrayList<StateSequence> selectallwftype(int wftype) {
+		ArrayList<StateSequence> selection = new ArrayList<StateSequence>();
+		ResultSet resultSet = null;
+		String query = "call display_state_sequences(" + wftype + ");";
+		Connection connection = DB.getConnection();
+		resultSet = DB.select(query, connection);
+		try {
+			while (resultSet.next()) {
+				StateSequence stateseq = new StateSequence();
+				stateseq.seqid = resultSet.getInt("seqid");
+				stateseq.workflowType.setWftypeid(resultSet.getInt("wftypeid"));
+				stateseq.workflowType.setWfname(resultSet.getString("wfname"));
+				stateseq.workflowType.setDescription(resultSet
+						.getString("wfdescription"));
+				stateseq.role.setRoleid(resultSet.getInt("roleid"));
+				stateseq.role.setRolename(resultSet.getString("rolename"));
+				stateseq.role.setRoledescription(resultSet
+						.getString("roledescription"));
+				stateseq.prevState.setStateID(resultSet
+						.getInt("prevstateid"));
+				stateseq.prevState.setStateName(resultSet
+						.getString("prevstatename"));
+				stateseq.prevState.setStateDescription(resultSet
+						.getString("prevstatedescription"));
+				stateseq.nextState.setStateID(resultSet.getInt("nextstateid"));
+				stateseq.nextState.setStateName(resultSet
+						.getString("nextstatename"));
+				stateseq.nextState.setStateDescription(resultSet
+						.getString("nextstatedescription"));
+				stateseq.action.setActionid(resultSet.getInt("actionid"));
+				stateseq.action
+						.setActionname(resultSet.getString("actionname"));
+				stateseq.action.setActiondescription(resultSet
+						.getString("actiondescription"));
 				selection.add(stateseq);
 			}
 		} catch (SQLException e) {
@@ -145,6 +189,13 @@ public class StateSequence {
 	public void setSeqid(int seqid) {
 		this.seqid = seqid;
 	}
-	
-	
+
+	public void clear() {
+		this.action = new Action();
+		this.nextState = new State();
+		this.prevState = new State();
+		this.role = new Role();
+		this.seqid = 0;
+		this.workflowType = new WorkflowType();
+	}
 }

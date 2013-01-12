@@ -26,12 +26,12 @@ public class WorkflowType {
 		return DB.update(deleteSQL);
 	}
 
-	/*public int insert() {
+	public int insert() {
 		System.out.println("In wf insert()");
-		System.out.println("wfname "+ wfname+"description "+description);
+		System.out.println("wfname " + wfname + "description " + description);
 		String insertSQL = "call create_workflow_type('" + wfname + "','"
 				+ description + "'); ";
-		
+
 		Connection connection = DB.getConnection();
 		ResultSet resultSet = DB.select(insertSQL, connection);
 		wftypeid = 0;
@@ -46,13 +46,14 @@ public class WorkflowType {
 		DB.close(connection);
 		return wftypeid;
 	}
-*/
-	public int insert() {
-		String insertSQL = "insert into workflowtype (wfname,description) values ('" + wfname
-				+ "', description = '" + description +"')";
-		// System.out.println("Updated the book");
-		return DB.update(insertSQL);
-	}
+
+	// public int insert() {
+	// String insertSQL =
+	// "insert into workflowtype (wfname,description) values ('" + wfname
+	// + "', description = '" + description +"')";
+	// // System.out.println("Updated the book");
+	// return DB.update(insertSQL);
+	// }
 	public static ArrayList<WorkflowType> selectall(String selectionModifier) {
 		ArrayList<WorkflowType> selection = new ArrayList<WorkflowType>();
 		ResultSet resultSet = null;
@@ -95,6 +96,7 @@ public class WorkflowType {
 			}
 			
 				
+
 		} catch (SQLException e) {
 			// MyLog.myCatch("Book.java", 43, e);
 			e.printStackTrace();
@@ -104,6 +106,29 @@ public class WorkflowType {
 		return selection;
 	}
 
+	// public static WorkflowType selectOne(String selectionModifier) {
+	// ResultSet resultSet = null;
+	// String query = "select * from workflowtype " + selectionModifier;
+	// Connection connection = DB.getConnection();
+	// resultSet = DB.select(query, connection);
+	// try {
+	// if (resultSet.next()) {
+	// WorkflowType workflow = new WorkflowType();
+	// workflow.wftypeid = resultSet.getInt("wftypeid");
+	// workflow.wfname = resultSet.getString("wfname");
+	// workflow.description = resultSet.getString("description");
+	// DB.close(resultSet);
+	// DB.close(connection);
+	// return workflow;
+	// }
+	// } catch (SQLException e) {
+	// // MyLog.myCatch("workflow.java", 43, e);
+	// e.printStackTrace();
+	// }
+	// DB.close(resultSet);
+	// DB.close(connection);
+	// return null;
+	// }
 
 	public int getWftypeid() {
 		return wftypeid;

@@ -42,7 +42,7 @@ public class DB {
 
 	public static void main(String[] args) {
 		// db.createDatabase("bookstore");
-		//db.runScript(RuntimeSettings.scriptSql);
+		// db.runScript(RuntimeSettings.scriptSql);
 	}
 
 	public void createDatabase(String databaseName) {
@@ -62,8 +62,7 @@ public class DB {
 			// This user is the default administrator
 			// having full privileges to do anything.
 			Connection con = DriverManager.getConnection(url,
-					RuntimeSettings.dbUserID, 
-					RuntimeSettings.dbPassword);
+					RuntimeSettings.dbUserID, RuntimeSettings.dbPassword);
 
 			// Display URL and connection information
 			System.out.println("URL: " + url);
@@ -97,10 +96,10 @@ public class DB {
 					"jdbc:mysql://localhost:3306/" + dbname
 							+ "?autoReconnect=true", "root", password);
 		} catch (SQLException se) {
-			//MyLog.myCatch("/java", 100, se);
+			// MyLog.myCatch("/java", 100, se);
 			se.printStackTrace();
 		} catch (ClassNotFoundException c) {
-			//MyLog.myCatch("/java", 103, c);
+			// MyLog.myCatch("/java", 103, c);
 			c.printStackTrace();
 		}
 
@@ -114,25 +113,24 @@ public class DB {
 		ResultSet result = null;
 		Statement stmt = null;
 		try {
-			//MyLog.log("in readFromDB with query:\n" + query);
+			// MyLog.log("in readFromDB with query:\n" + query);
 			if ((query.indexOf(" where ") >= 0)
 					|| (query.indexOf("count ") >= 0)) {
 				// ok
 			} else {
-				//MyLog.myIO("@@@ please check as query without a where clause!");
+				// MyLog.myIO("@@@ please check as query without a where clause!");
 			}
 			stmt = connection.createStatement();
 			// System.out.println("in readFromDB inside result with query:\n" +
 			// query);
 			result = stmt.executeQuery(query);
-			//MyLog.myIO("readFromDB sql:" + query);
+			// MyLog.myIO("readFromDB sql:" + query);
 		} catch (SQLException se) {
-			//MyLog.myCatch("/java", 66, se);
+			// MyLog.myCatch("/java", 66, se);
 		}
 		return result;
 	}
 
-	
 	public static int update(String sql) {
 
 		int rowsUpdated = 0;
@@ -142,62 +140,62 @@ public class DB {
 			connection.setAutoCommit(true);
 			System.out.println("DB.java before");
 			rowsUpdated = update(connection, sql);
-			System.out.println("DB.java after"+rowsUpdated);
+			System.out.println("DB.java after" + rowsUpdated);
 		} catch (SQLException ex) {
-			//MyLog.myCatch("/java", 143, ex);
+			// MyLog.myCatch("/java", 143, ex);
 		} finally {
 			close(connection);
 		}
 		return rowsUpdated;
 	}
 
-	
 	public static int update(Connection connection, String sql) {
 		Statement statement = null;
 		int rows = 0;
 		try {
 			statement = connection.createStatement();
-			System.out.println("update2 - DB.java" +sql);
+			System.out.println("update2 - DB.java" + sql);
 			rows = statement.executeUpdate(sql);
 			System.out.println("update2 - done DB.java");
-		    System.out.println("updating " + rows + " rows for sql:" + sql + ":");
+			System.out.println("updating " + rows + " rows for sql:" + sql
+					+ ":");
 		} catch (SQLException ex) {
+			ex.printStackTrace();
 			System.out.println("caught in exception");
-			//MyLog.myCatch("/update() while running sql:" + sql + ":", 79, ex);
+			// MyLog.myCatch("/update() while running sql:" + sql + ":", 79,
+			// ex);
 		} finally {
 			close(statement);
 		}
 		return rows;
 	}
 
-	public static void create(String sql)
-	{
+	public static void create(String sql) {
 		Connection connection = null;
 		try {
 			connection = getConnection();
 			connection.setAutoCommit(true);
-			create(connection,sql);
+			create(connection, sql);
 		} catch (SQLException ex) {
-		//	MyLog.myCatch("/java", 143, ex);
+			// MyLog.myCatch("/java", 143, ex);
 		} finally {
 			close(connection);
 		}
 	}
-	public static void create(Connection connection, String sql)
-	{
+
+	public static void create(Connection connection, String sql) {
 		Statement statement = null;
-		try{
+		try {
 			statement = connection.createStatement();
 			statement.executeQuery(sql);
-	//		MyLog.myIO("created table");
-		}
-		catch (SQLException e) {
-			//MyLog.myCatch("/create() while running sql:" + sql + ":", 80, e);
-		}
-		finally {
+			// MyLog.myIO("created table");
+		} catch (SQLException e) {
+			// MyLog.myCatch("/create() while running sql:" + sql + ":", 80, e);
+		} finally {
 			close(statement);
 		}
 	}
+
 	public static void close(Connection connection) {
 		// return;
 		if (connection == null) {
@@ -209,28 +207,25 @@ public class DB {
 			} else {
 				try {
 					connection.close();
-				//	MyLog.log("closing a conn; total conn:" + activeConnections);
+					// MyLog.log("closing a conn; total conn:" +
+					// activeConnections);
 					connection = null;
 				} catch (SQLException ex) {
-				//	MyLog.myCatch("/java", 106, ex);
+					// MyLog.myCatch("/java", 106, ex);
 				}
 			}
 		} catch (SQLException ex) {
-			//MyLog.myCatch("/java", 110, ex);
+			// MyLog.myCatch("/java", 110, ex);
 		}
 	}
 
 	public static Connection getConnection() {
 		Connection con = null;
 		try {
-
-			if (isSeekingConnectionFirstTime) {
-				isSeekingConnectionFirstTime = false;
-				try {
-					Class.forName("com.mysql.jdbc.Driver");
-				} catch (ClassNotFoundException ex) {
-				//	MyLog.myCatch("/java", 162, ex);
-				}
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (ClassNotFoundException ex) {
+				// MyLog.myCatch("/java", 162, ex);
 			}
 			String connectionUrl = "jdbc:mysql://" + RuntimeSettings.SERVER_IP
 					+ ":" + RuntimeSettings.portNo + "/"
@@ -239,11 +234,12 @@ public class DB {
 			con = DriverManager.getConnection(connectionUrl,
 					RuntimeSettings.dbUserID, RuntimeSettings.dbPassword);
 		} catch (SQLException ex) {
-		//	MyLog.myCatch("/java", 217, ex);
+			// MyLog.myCatch("/java", 217, ex);
 		}
 		activeConnections++;
-		//MyLog.log("in DBDataStandAlone added new tms conn; total connections:"
-		//		+ activeConnections);
+		System.out.println(activeConnections);
+		// MyLog.log("in DBDataStandAlone added new tms conn; total connections:"
+		// + activeConnections);
 		return con;
 	}
 
@@ -253,7 +249,7 @@ public class DB {
 				statement.close();
 				statement = null;
 			} catch (SQLException ex) {
-			//	MyLog.myCatch("/java", 202, ex);
+				// MyLog.myCatch("/java", 202, ex);
 			}
 		}
 	}
@@ -265,7 +261,7 @@ public class DB {
 				rs.close();
 				rs = null;
 			} catch (SQLException ex) {
-			//	MyLog.myCatch("/java", 214, ex);
+				// MyLog.myCatch("/java", 214, ex);
 			}
 		}
 	}
@@ -276,7 +272,7 @@ public class DB {
 				preparedStmt.close();
 				preparedStmt = null;
 			} catch (SQLException ex) {
-			//	MyLog.myCatch("/java", 225, ex);
+				// MyLog.myCatch("/java", 225, ex);
 			}
 		}
 	}
@@ -288,11 +284,10 @@ public class DB {
 
 	public int runScript(String[] sqlStatements) {
 		for (int i = 0; i < sqlStatements.length; i++) {
-			//MyLog.log("running sql:" + sqlStatements[i]);
+			// MyLog.log("running sql:" + sqlStatements[i]);
 			runScript(sqlStatements[i]);
 		}
 		return 1;
 	}
 
-	
 }
