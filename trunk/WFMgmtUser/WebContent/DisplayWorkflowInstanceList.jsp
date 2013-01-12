@@ -27,13 +27,6 @@
 			<a class="learn_more" href="#"></a>
 		</div>
 
-		<!--         <div id="slider"> -->
-		<!--             <a href="#"><img src="images/slideshow/01.jpg" alt="" title="Lorem ipsum dolor sit amet." /></a> -->
-		<!--             <a href="#"><img src="images/slideshow/02.jpg" alt="" title="Nullam ante leo, consectetur eget.." /></a> -->
-		<!--             <a href="#"><img src="images/slideshow/03.jpg" alt="" title="Suspendisse sit amet enim elit." /></a> -->
-		<!--             <a href="#"><img src="images/slideshow/04.jpg" alt="" title="Nulla faucibus luctus quam eget placerat." /></a> -->
-		<!--             <a href="#"><img src="images/slideshow/05.jpg" alt="" title="Phasellus aliquet viverra posuere. " /></a> -->
-		<!--         </div> -->
 	</div>
 
 	<div id="templatemo_main">

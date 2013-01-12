@@ -5,7 +5,7 @@ public class RuntimeSettings {
 	public static final String VERSION_ID = " version 1.0"
 			+ " dated October 28, 2012";
 	public static final String SERVER_IP = "localhost";
-	static String databaseName = "workflow1119";
+	static String databaseName = "workflowdb";
 	static String dbUserID = "root";
 	// "" for apple Macbook Air
 	static String dbPassword = "root"; 
