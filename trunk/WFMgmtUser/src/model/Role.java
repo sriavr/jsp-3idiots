@@ -30,12 +30,43 @@ public class Role {
 	public int insert() {
 		System.out.println("In insert of role.java");
 		String insertSQL = "insert into role "
-				+ "(wftypeid,rolename, description) " + "values('"
-				+ workflowType.getWftypeid() + "', '" + rolename + "', '"
+				+ "(wftypeid,rolename, description) " + "values("
+				+ workflowType.getWftypeid() + ", '" + rolename + "', '"
 				+ roledescription + "');";
 		System.out.println("Succ inserted");
 		return DB.update(insertSQL);
 
+	}
+
+	public static ArrayList<Role> selectallwftypeid(int wftypeid) {
+		ArrayList<Role> selection = new ArrayList<Role>();
+		ResultSet resultSet = null;
+		String query = "select r.roleid, r.wftypeid, r.rolename, "
+				+ "r.description as rdescription, w.wftypeid, w.wfname, "
+				+ "w.description as wfdescription from role r,"
+				+ " workflowtype w where r.wftypeid = w.wftypeid and r.wftypeid = "
+				+ wftypeid;
+		Connection connection = DB.getConnection();
+		resultSet = DB.select(query, connection);
+		try {
+			while (resultSet.next()) {
+				Role role = new Role();
+				role.roleid = resultSet.getInt("roleid");
+				role.rolename = resultSet.getString("rolename");
+				role.roledescription = resultSet.getString("rdescription");
+				role.workflowType.setWftypeid(resultSet.getInt("wftypeid"));
+				role.workflowType.setWfname(resultSet.getString("wfname"));
+				role.workflowType.setDescription(resultSet
+						.getString("wfdescription"));
+				selection.add(role);
+			}
+		} catch (SQLException e) {
+			// MyLog.myCatch("Book.java", 43, e);
+			e.printStackTrace();
+		}
+		DB.close(resultSet);
+		DB.close(connection);
+		return selection;
 	}
 
 	public static ArrayList<Role> selectall(String selectionModifier) {
@@ -69,6 +100,7 @@ public class Role {
 		DB.close(connection);
 		return selection;
 	}
+
 
 	public static Role selectOne(String selectionModifier) {
 		ResultSet resultSet = null;

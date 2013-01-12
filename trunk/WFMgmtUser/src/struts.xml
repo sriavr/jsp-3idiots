@@ -8,99 +8,157 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
 
-	<!-- <package name="default" extends="struts-default" namespace=""> -->
-	<!-- <result-types> -->
-	<!-- <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/> -->
-	<!-- </result-types> -->
+	<package name="default" extends="struts-default" namespace="/admin">
+		<action name="login" class="action.Login">
+			<result name="initial_entry">UserLogin.jsp</result>
+			<result name="success_admin">AdminPage.jsp</result>
+			<result name="success_member">MemberPage.jsp</result>
+			<result name="error">UserLogin.jsp</result>
+		</action>
+	</package>
 
+	<!-- <package name="default2" extends="struts-default" namespace="/admin"> 
+		<action name="adminfunctions" class="action.AdminFunctions"> <result name="next">CreateWorkflowType.jsp</result> 
+		<result name="error">Workflowlist.jsp</result> </action> <action name="createworkflow" 
+		class="action.CreateWorkflowType"> <result name="initial">CreateWorkflowType.jsp</result> 
+		<result name="createsuccess">CreateWorkflowType.jsp</result> <result name="next">WorkflowItem.jsp</result> 
+		<result name="error">CreateWorkflowType.jsp</result> <result name="addsuccess">WorkflowItem.jsp</result> 
+		</action> <action name="workflowitem" class="action.CreateWorkflowItem"> 
+		<result name="success_item">WorkflowItem.jsp</result> <result name="initial">WorkflowItem.jsp</result> 
+		<result name="next">AddRole.jsp</result> <result name="viewsuccess">WorkflowItemList.jsp</result> 
+		</action> <action name="displayworkflowitem" class="action.DisplayWorkflowItem"> 
+		<result name=" display_success">DisplayWorkflowItem.jsp</result> <result 
+		name=" delete_success">WorkflowItemList.jsp</result> </action> <action name="modifyworkflowitem" 
+		class="action.ModifyWorkflowItem"> <result name="modifysuccess">DisplayWorkflowType.jsp</result> 
+		<result name="deletesuccess">DisplayWorkflowType.jsp</result> <result name="error">DisplayWorkflowType.jsp</result> 
+		</action> <action name="displayworkflowtype" class="action.DisplayWorkflowType"> 
+		<result name="displaysuccess">DisplayWorkflowType.jsp</result> <result name="back">CreateWorkflowType.jsp</result> 
+		<result name="error">Workflowlist.jsp</result> </action> <action name="modifyworkflowtype" 
+		class="action.ModifyWorkflowType"> <result name="modifysuccess">DisplayWorkflowType.jsp</result> 
+		<result name="deletesuccess">DisplayWorkflowType.jsp</result> <result name="error">DisplayWorkflowType.jsp</result> 
+		</action> <action name="addworkflowdata" class="action.AddWorkflowData"> 
+		<result name="initial">AddWorkflowData.jsp</result> <result name="addsuccess">AddWorkflowData.jsp</result> 
+		<result name="viewsuccess">WorkflowDatalist.jsp</result> <result name="next">AddRole.jsp</result> 
+		<result name="error">AddWorkflowData.jsp</result> </action> <action name="displaymember" 
+		class="action.DisplayMember"> <result name="display_success">DisplayMember.jsp</result> 
+		<result name="error">DisplayMember.jsp</result> <result name="back">AddMember.jsp</result> 
+		</action> <action name="displayrole" class="action.DisplayRole"> <result 
+		name="displaysuccess">DisplayRole.jsp</result> <result name="back">Workflowlist.jsp</result> 
+		<result name="error">DisplayRole.jsp</result> </action> <action name="modifyrole" 
+		class="action.ModifyRole"> <result name="modifysuccess">Rolelist.jsp</result> 
+		<result name="deletesuccess">DisplayRole.jsp</result> <result name="error">DisplayRole.jsp</result> 
+		</action> <action name="modifymember" class="action.ModifyMember"> <result 
+		name="delete_success">Memberlist.jsp</result> <result name="modify_success">DisplayMember.jsp</result> 
+		<result name="error">DisplayMember.jsp</result> </action> <action name="addmember" 
+		class="action.AddMember"> <result name="initial">AddMember.jsp</result> <result 
+		name="display">Memberlist.jsp</result> <result name="next">AddActions.jsp</result> 
+		<result name="success">AddMember.jsp</result> </action> <action name="addrole" 
+		class="action.AddRole"> <result name="initial">AddRole.jsp</result> <result 
+		name="addsuccess">AddRole.jsp</result> <result name="viewsuccess">Rolelist.jsp</result> 
+		<result name="next">AddMember.jsp</result> <result name="error">AddRole.jsp</result> 
+		</action> <action name="logout" class="action.Logout"> <result name="success_logout">UserLogin.jsp</result> 
+		<result name="error">UserLogin.jsp</result> </action> <action name="memberlogout" 
+		class="action.MemberLogout"> <result name="success_member_logout">UserLogin.jsp</result> 
+		<result name="error">UserLogin.jsp</result> </action> <action name="addactions" 
+		class="action.AddActions"> <result name="error">AddActions.jsp</result> <result 
+		name="initial">AddActions.jsp</result> <result name="viewsuccess">actionlist.jsp</result> 
+		<result name="addsuccess">AddActions.jsp</result> </action> <action name="displayaction" 
+		class="action.DisplayAction"> <result name="display_success">DisplayAction.jsp</result> 
+		<result name="delete_success">actionlist.jsp</result> <result name="back">Rolelist.jsp</result> 
+		</action> <action name="modifyaction" class="action.ModifyAction"> <result 
+		name="delete_success">DisplayAction.jsp</result> <result name="modify_success">DisplayAction.jsp</result> 
+		<result name="error">DisplayAction.jsp</result> </action> <action name="memberfunctions" 
+		class="action.MemberFunctions"> <result name="Customer">CustomerPage.jsp</result> 
+		<result name="Bank Teller">BankTellerPage.jsp</result> <result name="Loan 
+		Officer">LoanOfficerPage.jsp</result> <result name="Loan Committee">LoanCommitteePage.jsp</result> 
+		<result name="Loan Manager">LoanManagerPage.jsp</result> <result name="Employee">EmployeePage.jsp</result> 
+		<result name="ReportingManager">ReportingManagerPage.jsp</result> <result 
+		name="ITHelpdeskEmp">ITHelpdeskEmpPage.jsp</result> <result name="ITManager">ITManagerPage.jsp</result> 
+		<result name="AssetManager">AssetManagerPage.jsp</result> <result name="error">UserLogin.jsp</result> 
+		</action> </package> -->
 
-	<!-- </package> -->
-
+	<!-- <action name="reportingmanager" class="ITAssetAllocation.ReportingManager"> 
+		<result name="view_success">DisplayReportingManager.jsp</result> <result 
+		name="error">ReportingManagerPage.jsp</result> </action> <action name="employeeaction" 
+		class="ITAssetAllocation.EmployeeAction"> <result name="itassetrequest">ITAssetRequest.jsp</result> 
+		<result name="allocatedassets">ViewAllocatedAssets.jsp</result> </action> 
+		<action name="assetallotment" class="ITAssetAllocation.AssetAllotment"> <result 
+		name="success">ITAssetRequest.jsp</result> <result name="error">ITAssetRequest.jsp</result> 
+		</action> -->
 
 	<!-- Workflow Instance details -->
-	<package name="wfinstance" extends="struts-default" namespace="">
-		<result-types>
-			<result-type name="tiles"
-				class="org.apache.struts2.views.tiles.TilesResult" />
-		</result-types>
-		<action name="viewinstancedetails" class="action.WorkflowInstanceAction">
-			<result name="displayinstancedetails" type="tiles">DisplayWorkflowInstanceDetails_member
-			</result>
-			<result name="displayworkflowinstancedata" type="tiles">DisplayWorkflowData
-			</result>
-			<result name="displayeventhistory" type="tiles">DisplayEventHistory
-			</result>
-			<result name="error" type="tiles">Error</result>
-		</action>
+	<package name="wfinstance" extends="struts-default" namespace="/">
 
+		<action name="instancedetails" class="action.WorkflowInstanceAction">
+			<result name="displayinstancedetails">/DisplayWorkflowInstanceDetails.jsp</result>
+			<result name="displayworkflowinstancedata">/DisplayWorkflowData.jsp</result>
+			<result name="displayeventhistory">/DisplayEventHistory.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
 
 	</package>
 
 	<!-- Workflow Type details -->
 	<package name="wftype" extends="struts-default" namespace="/">
-		<result-types>
-			<result-type name="tiles"
-				class="org.apache.struts2.views.tiles.TilesResult" />
-		</result-types>
 
-		<action name="login" class="action.Login">
-			<result name="initial_entry" type="tiles">Login</result>
-			<result name="success_admin" type="tiles">AdminPage</result>
-			<result name="success_member" type="tiles">DisplayWorkflowInstanceList_member
-			</result>
-			<result name="error" type="tiles">Error</result>
-		</action>
-
-		<action name="viewtypedetails" class="action.WorkflowTypeAction">
-			<exception-mapping exception="java.lang.Exception"
-				result="error" />
-			<result name="displaytypedetails" type="tiles">DisplayWorkflowTypeDetails
-			</result>
-			<result name="displaymembers" type="tiles">DisplayMemberList</result>
-			<result name="displayinstances" type="tiles">DisplayWorkflowInstanceList
-			</result>
-			<result name="displayinstances_member" type="tiles">DisplayWorkflowInstanceList_member
-			</result>
-			<result name="displayroles" type="tiles">DisplayRoleList</result>
-			<result name="displayactions" type="tiles">DisplayActions</result>
-			<result name="displaystates" type="tiles">DisplayStates</result>
-			<result name="displaystatesequence" type="tiles">DisplayStateSequence
-			</result>
-			<result name="error" type="tiles">Error</result>
-		</action>
-
-		<action name="viewtypelist" class="action.WorkflowAppAction">
-			<result name="displaytypes" type="tiles">DisplayWorkflowTypeList
-			</result>
-			<result name="error" type="tiles">Error</result>
+		<action name="wftypedetails" class="action.WorkflowTypeAction">
+			<result name="createworkflowtype">/admin/CreateWorkflowType.jsp</result>
+			<result name="addwfcategory">/admin/AddWorkflowCategory.jsp</result>
+			<result name="addwfdatadef">/admin/AddWorkflowDataDef.jsp</result>
+			<result name="displaytypedetails">/DisplayWorkflowTypeDetails.jsp</result>
+			<result name="displaymembers">/DisplayMemberList.jsp</result>
+			<result name="displayinstances">/DisplayWorkflowInstanceList.jsp</result>
+			<result name="displayroles">/DisplayRoleList.jsp</result>
+			<result name="error">/Error.jsp</result>
 		</action>
 
 		<action name="viewmemberdetails" class="action.MemberAction">
-			<result name="displaymemberdetails" type="tiles">DisplayMemberDetails
-			</result>
-			<result name="error" type="tiles">Error</result>
+			<result name="displaymemberdetails">/DisplayMemberDetails.jsp</result>
+			<result name="error">/Error.jsp</result>
 		</action>
 
-		<action name="createworkflowinstance" class="action.CreateWorkflowInstanceAction">
-			<exception-mapping exception="java.lang.Exception"
-				result="error" />
-			<result name="createworkflowinstance" type="tiles">CreateWorkflowInstance
-			</result>
-			<result name="actionselected" type="tiles">ActionSelected</result>
-			<result name="success" type="tiles">Successwfinstance</result>
-			<result name="error" type="tiles">Error</result>
+		<action name="appinfo" class="action.WorkflowAppAction">
+			<result name="displaytypes">/DisplayWorkflowTypeList.jsp</result>
+			<result name="error">/Error.jsp</result>
 		</action>
-
-		<!-- <action name="dummycreatewfinstance" class="action.DummyCreateWfInstanceAction"> 
-			<result name="success" type="tiles">CreateWorkflowInstance</result> <result 
-			name="error" type="tiles">Error</result> </action> -->
-		<action name="logout" class="action.Logout">
-			<result name="success" type="tiles">Logout</result>
-			<result name="error" type="tiles">Error</result>
+		<action name="addwftype" class="action.AddWorkflowTypeAction">
+			<result name="home">admin/CreateWorkflowType.jsp</result>
+			<result name="success">admin/AddWorkflowCategory.jsp</result>
+			<result name="error">/Error.jsp</result>
 		</action>
-		<action name="progressworkflow" class="action.ProgressWorkflowAction">
-			<result name="success" type="tiles">Successwfinstance</result>
+		<action name="addwfcategory" class="action.AddWorkflowCategoryAction">
+			<result name="success">admin/AddWorkflowCategory.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
+		<action name="addwfdatadef" class="action.AddWorkflowDatadefAction">
+			<result name="success">admin/AddWorkflowDataDef.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
+		<action name="addrole" class="action.AddRoleAction">
+			<result name="success">admin/AddRole.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
+		<action name="addaction" class="action.AddAction">
+			<result name="success">admin/AddAction.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
+		<action name="addmember" class="action.AddMemberAction">
+			<result name="success">admin/AddMember.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
+		<action name="addstate" class="action.AddStateAction">
+			<result name="success">admin/AddState.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
+		<action name="mapping" class="action.MappingAction">
+			<result name="success">admin/Mapping.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
+		<action name="finishwftype" class="action.FinishWftypeAction">
+			<result name="success">admin/Successwftype.jsp</result>
+			<result name="error">/Error.jsp</result>
 		</action>
 
 	</package>
+
 </struts>

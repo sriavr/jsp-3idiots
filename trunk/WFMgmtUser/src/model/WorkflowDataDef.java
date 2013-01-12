@@ -1,11 +1,9 @@
 package model;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
-import util.DB;
+import util.*;
 
 public class WorkflowDataDef {
 
@@ -15,13 +13,11 @@ public class WorkflowDataDef {
 	private String description;
 	private int isreadonly;
 	private String constantvalue;
-	
-	
-	
+
 	public int updatedef() {
 		String updateSQL = "update workflowdatadef " + "set wftypeid = '"
 				+ wftypeid + "', name = '" + name + "', description = '"
-				+ description + "', isreadonly = '" + isreadonly + "', constantvalue = '" + constantvalue
+				+ description + "', isreadonly = '" + isreadonly
 				+ "' where wfdatadefid = " + wfdatadefid;
 		// System.out.println("Updated the book");
 		return DB.update(updateSQL);
@@ -34,20 +30,19 @@ public class WorkflowDataDef {
 		return DB.update(deleteSQL);
 	}
 
-	public int insertdef() {
+	public int insert() {
 		System.out.println("In wf insert()");
 		String insertSQL = "insert into workflowdatadef "
-				+ "(wfdatadefid,wftypeid,name,description,isreadonly,constantvalue) "
-				+ "values('" + wfdatadefid + "', '" + wftypeid + "', '" + name
-				+ "', '" + description + "', '" + isreadonly +  "', '" + constantvalue +"');";
+				+ "(wftypeid,name,description,isreadonly,constantvalue) "
+				+ "values(" + wftypeid + ", '" + name + "', '" + description
+				+ "', " + isreadonly + ",'" + constantvalue + "');";
 		return DB.update(insertSQL);
 	}
 
-	public static ArrayList<WorkflowDataDef> selectalldef(
-			String selectionModifier) {
+	public static ArrayList<WorkflowDataDef> selectall(int wftypeid) {
 		ArrayList<WorkflowDataDef> selection = new ArrayList<WorkflowDataDef>();
 		ResultSet resultSet = null;
-		String query = "select * from workflowdatadef " + selectionModifier;
+		String query = "select * from workflowdatadef where wftypeid = " + wftypeid ;
 		Connection connection = DB.getConnection();
 		resultSet = DB.select(query, connection);
 		try {
@@ -58,7 +53,8 @@ public class WorkflowDataDef {
 				workflowitem.name = resultSet.getString("name");
 				workflowitem.description = resultSet.getString("description");
 				workflowitem.isreadonly = resultSet.getInt("isreadonly");
-				workflowitem.constantvalue=resultSet.getString("constantvalue");
+				workflowitem.constantvalue = resultSet
+						.getString("constantvalue");
 				selection.add(workflowitem);
 			}
 		} catch (SQLException e) {
@@ -70,7 +66,7 @@ public class WorkflowDataDef {
 		return selection;
 	}
 
-	public static WorkflowDataDef selectOnedef(String selectionModifier) {
+	public static WorkflowDataDef selectOne(String selectionModifier) {
 		ResultSet resultSet = null;
 		String query = "select * from workflowdatadef " + selectionModifier;
 		Connection connection = DB.getConnection();
@@ -83,7 +79,6 @@ public class WorkflowDataDef {
 				workflowitem.name = resultSet.getString("name");
 				workflowitem.description = resultSet.getString("description");
 				workflowitem.isreadonly = resultSet.getInt("isreadonly");
-				workflowitem.constantvalue=resultSet.getString("constantvalue");
 				DB.close(resultSet);
 				DB.close(connection);
 				return workflowitem;

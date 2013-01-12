@@ -9,23 +9,22 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class WorkflowTypeAction extends ActionSupport {
 	private int wftypeid;
-	private String wfname;
-    private String description; 
-	private String cmd;
-	private String submit;
+	private String cmd = "";
+	private String submit = "";
 	private WorkflowTypeDetails wfTypeDetails = new WorkflowTypeDetails();
 	private ArrayList<WorkflowType> wfTypes = new ArrayList<WorkflowType>();
-	//private ArrayList<WorkflowItem> wfitems = new ArrayList<WorkflowItem>();
-/*
-	public ArrayList<WorkflowItem> getWfitems() {
+	private ArrayList<WorkflowCategory> wfitems = new ArrayList<WorkflowCategory>();
+	private WorkflowCategory wfCategory = new WorkflowCategory();
+
+	public ArrayList<WorkflowCategory> getWfitems() {
 		return wfitems;
 	}
 
-	public void setWfitems(ArrayList<WorkflowItem> wfitems) {
+	public void setWfitems(ArrayList<WorkflowCategory> wfitems) {
 		this.wfitems = wfitems;
 	}
 
-*/	public ArrayList<WorkflowType> getWfTypes() {
+	public ArrayList<WorkflowType> getWfTypes() {
 		return wfTypes;
 	}
 
@@ -66,6 +65,8 @@ public class WorkflowTypeAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception {
+		if (cmd == null)
+			cmd = "";
 		System.out.println("Inside WorkflowTypeAction");
 		System.out.println("wftype id " + wftypeid);
 		System.out.println("WorkflowName: "
@@ -77,8 +78,8 @@ public class WorkflowTypeAction extends ActionSupport {
 			wfTypeDetails = WorkflowTypeDetails.selectone(wftypeid);
 			this.setWfTypeDetails(wfTypeDetails);
 
-			wfTypes = WorkflowType.selectall("");
-//			wfitems = WorkflowItem.selectall(wftypeid);
+//			wfTypes = WorkflowType.selectall("");
+			wfitems = WorkflowCategory.selectall(wftypeid);
 		}
 
 		if (cmd.equals("displaytypedetails")) {
@@ -158,39 +159,60 @@ public class WorkflowTypeAction extends ActionSupport {
 
 		else if (submit.startsWith("Create Workflow")) {
 			System.out
-					.println("Inside Create Workflow routine of WorkflowTypeAction");
-			//if (wfTypeDetails.getWorkflowType().getWftypeid() == 0) {
-			WorkflowType wf = new WorkflowType();
-			
-			System.out.println(" ---------------------- "+wftypeid);
-			wf.setWfname(wfname);
-			wf.setDescription(description);
-			wf.insert();	
-	        
-			
-			wfTypes=WorkflowType.selectall("");
-			for(int i=0;i<wfTypes.size();i++)
-			{
-				wf=wfTypes.get(i);
-				System.out.println(wf.getWftypeid()+" "+wf.getWfname()+" "+wf.getDescription());
+					.println("Inside Create Workflow routine of WorkflowTypeAction, wftypeid:"
+							+ wftypeid);
+			if (wfTypeDetails.getWorkflowType().getWftypeid() == 0) {
+				System.out.println("Before wftypid " + wftypeid);
+				wfTypeDetails.getWorkflowType().setWfname(
+						wfTypeDetails.getWorkflowType().getWfname());
+				wfTypeDetails.getWorkflowType().setDescription(
+						wfTypeDetails.getWorkflowType().getDescription());
+				wftypeid = wfTypeDetails.getWorkflowType().insert();
+				wfTypeDetails.getWorkflowType().setWftypeid(wftypeid);
+
+				System.out.println("After insertion into db");
+				System.out.println("WorkflowName: "
+						+ wfTypeDetails.getWorkflowType().getWfname()
+						+ "WorkflowDescription: "
+						+ wfTypeDetails.getWorkflowType().getDescription()
+						+ " cmd:" + cmd);
 			}
-		
-	    
-			
-			/* 
-			System.out.println("wftypeid is" +wftypeid);
-			
-			System.out.println("wftypename"
-					+ wfTypeDetails.getWorkflowType().getWfname());*/
+
+			/*
+			 * wfTypes = WorkflowType.selectall(""); for (int i = 0; i <
+			 * wfTypes.size(); i++) { WorkflowType wf = wfTypes.get(i);
+			 * System.out.println(wf.getWftypeid() + " " + wf.getWfname() + " "
+			 * + wf.getDescription()); }
+			 */
+
 			return "addwfcategory";
 		}
-		
+
 		else if (submit.startsWith("Add Workflow Category")) {
+			wfCategory.setWftypeid(wftypeid);
 			System.out
 					.println("Inside Add Workflow Category routine of WorkflowTypeAction");
-			
-			return "addwfdatadef";
+			System.out.println("category name "
+					+ wfCategory.getWfcategoryname());
+			wfCategory.insert();
+			System.out.println("After insertion");
+			return "addwfcategory";
 		}
 		return ERROR;
+	}
+
+	/**
+	 * @return the wfCategory
+	 */
+	public WorkflowCategory getWfCategory() {
+		return wfCategory;
+	}
+
+	/**
+	 * @param wfCategory
+	 *            the wfCategory to set
+	 */
+	public void setWfCategory(WorkflowCategory wfCategory) {
+		this.wfCategory = wfCategory;
 	};
 }

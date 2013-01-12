@@ -89,7 +89,7 @@
 <!-- <div id="templatemo_footer_wrapper"> -->
 <!-- 	<div id="templatemo_footer"> -->
     	
-<!--         Copyright Â© 2048 <a href="#">3-Idiots web solutions</a> -  -->
+<!--         Copyright © 2048 <a href="#">3-Idiots web solutions</a> -  -->
 <!--         Designed by <a href="http://www.templatemo.com" target="_parent">Damn Mads JSP Team</a> -->
     
 <!--     </div> end of footer wrapper -->
